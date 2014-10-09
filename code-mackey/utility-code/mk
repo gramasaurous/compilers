@@ -1,0 +1,9 @@
+#!/bin/sh
+# $Id: mk,v 1.2 2013-10-11 18:53:00-07 - - $
+FILES='astree.h    astree.cc
+       auxlib.h    auxlib.cc
+       lyutils.h   lyutils.cc
+       stringset.h stringset.cc 
+       yyparse.h   parser.y'
+cid + $FILES
+mkpspdf -s12 Listing.ps $FILES

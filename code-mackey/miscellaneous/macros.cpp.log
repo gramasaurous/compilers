@@ -1,0 +1,6 @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ mkc: starting macros.cpp
+macros.cpp:
+     $Id: macros.cpp,v 1.6 2014-08-14 17:06:32-07 - - $
+g++ -g -O0 -Wall -Wextra -rdynamic -std=gnu++11 macros.cpp -o macros -lglut -lGLU -lGL -lX11 -lrt -lm
+rm -f macros.o
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ mkc: finished macros.cpp

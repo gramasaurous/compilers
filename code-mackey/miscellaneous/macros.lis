@@ -1,0 +1,8 @@
+argv[0] = "./macros"
+__FILE__ = "macros.cpp"
+__LINE__ = "14"
+__func__ = "main"
+__DATE__ = "Aug 14 2014"
+__TIME__ = "17:06:32"
+__STDC__ = "1"
+__cplusplus = "201103"

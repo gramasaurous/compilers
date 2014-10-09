@@ -1,0 +1,947 @@
+%!PS-Adobe-3.0
+%%BoundingBox: 38 24 574 768
+%%Title: Enscript Output
+%%For: Wesley Mackey
+%%Creator: GNU enscript 1.6.4
+%%CreationDate: Tue Sep 24 18:51:15 2013
+%%Orientation: Portrait
+%%Pages: (atend)
+%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentNeededResources: (atend)
+%%EndComments
+%%BeginProlog
+%%BeginResource: procset Enscript-Prolog 1.6 4
+%
+% Procedures.
+%
+
+/_S {	% save current state
+  /_s save def
+} def
+/_R {	% restore from saved state
+  _s restore
+} def
+
+/S {	% showpage protecting gstate
+  gsave
+  showpage
+  grestore
+} bind def
+
+/MF {	% fontname newfontname -> -	make a new encoded font
+  /newfontname exch def
+  /fontname exch def
+
+  /fontdict fontname findfont def
+  /newfont fontdict maxlength dict def
+
+  fontdict {
+    exch
+    dup /FID eq {
+      % skip FID pair
+      pop pop
+    } {
+      % copy to the new font dictionary
+      exch newfont 3 1 roll put
+    } ifelse
+  } forall
+
+  newfont /FontName newfontname put
+
+  % insert only valid encoding vectors
+  encoding_vector length 256 eq {
+    newfont /Encoding encoding_vector put
+  } if
+
+  newfontname newfont definefont pop
+} def
+
+/MF_PS { % fontname newfontname -> -	make a new font preserving its enc
+  /newfontname exch def
+  /fontname exch def
+
+  /fontdict fontname findfont def
+  /newfont fontdict maxlength dict def
+
+  fontdict {
+    exch
+    dup /FID eq {
+      % skip FID pair
+      pop pop
+    } {
+      % copy to the new font dictionary
+      exch newfont 3 1 roll put
+    } ifelse
+  } forall
+
+  newfont /FontName newfontname put
+
+  newfontname newfont definefont pop
+} def
+
+/SF { % fontname width height -> -	set a new font
+  /height exch def
+  /width exch def
+
+  findfont
+  [width 0 0 height 0 0] makefont setfont
+} def
+
+/SUF { % fontname width height -> -	set a new user font
+  /height exch def
+  /width exch def
+
+  /F-gs-user-font MF
+  /F-gs-user-font width height SF
+} def
+
+/SUF_PS { % fontname width height -> -	set a new user font preserving its enc
+  /height exch def
+  /width exch def
+
+  /F-gs-user-font MF_PS
+  /F-gs-user-font width height SF
+} def
+
+/M {moveto} bind def
+/s {show} bind def
+
+/Box {	% x y w h -> -			define box path
+  /d_h exch def /d_w exch def /d_y exch def /d_x exch def
+  d_x d_y  moveto
+  d_w 0 rlineto
+  0 d_h rlineto
+  d_w neg 0 rlineto
+  closepath
+} def
+
+/bgs {	% x y height blskip gray str -> -	show string with bg color
+  /str exch def
+  /gray exch def
+  /blskip exch def
+  /height exch def
+  /y exch def
+  /x exch def
+
+  gsave
+    x y blskip sub str stringwidth pop height Box
+    gray setgray
+    fill
+  grestore
+  x y M str s
+} def
+
+/bgcs { % x y height blskip red green blue str -> -  show string with bg color
+  /str exch def
+  /blue exch def
+  /green exch def
+  /red exch def
+  /blskip exch def
+  /height exch def
+  /y exch def
+  /x exch def
+
+  gsave
+    x y blskip sub str stringwidth pop height Box
+    red green blue setrgbcolor
+    fill
+  grestore
+  x y M str s
+} def
+
+% Highlight bars.
+/highlight_bars {	% nlines lineheight output_y_margin gray -> -
+  gsave
+    setgray
+    /ymarg exch def
+    /lineheight exch def
+    /nlines exch def
+
+    % This 2 is just a magic number to sync highlight lines to text.
+    0 d_header_y ymarg sub 2 sub translate
+
+    /cw d_output_w cols div def
+    /nrows d_output_h ymarg 2 mul sub lineheight div cvi def
+
+    % for each column
+    0 1 cols 1 sub {
+      cw mul /xp exch def
+
+      % for each rows
+      0 1 nrows 1 sub {
+        /rn exch def
+        rn lineheight mul neg /yp exch def
+        rn nlines idiv 2 mod 0 eq {
+	  % Draw highlight bar.  4 is just a magic indentation.
+	  xp 4 add yp cw 8 sub lineheight neg Box fill
+	} if
+      } for
+    } for
+
+  grestore
+} def
+
+% Line highlight bar.
+/line_highlight {	% x y width height gray -> -
+  gsave
+    /gray exch def
+    Box gray setgray fill
+  grestore
+} def
+
+% Column separator lines.
+/column_lines {
+  gsave
+    .1 setlinewidth
+    0 d_footer_h translate
+    /cw d_output_w cols div def
+    1 1 cols 1 sub {
+      cw mul 0 moveto
+      0 d_output_h rlineto stroke
+    } for
+  grestore
+} def
+
+% Column borders.
+/column_borders {
+  gsave
+    .1 setlinewidth
+    0 d_footer_h moveto
+    0 d_output_h rlineto
+    d_output_w 0 rlineto
+    0 d_output_h neg rlineto
+    closepath stroke
+  grestore
+} def
+
+% Do the actual underlay drawing
+/draw_underlay {
+  ul_style 0 eq {
+    ul_str true charpath stroke
+  } {
+    ul_str show
+  } ifelse
+} def
+
+% Underlay
+/underlay {	% - -> -
+  gsave
+    0 d_page_h translate
+    d_page_h neg d_page_w atan rotate
+
+    ul_gray setgray
+    ul_font setfont
+    /dw d_page_h dup mul d_page_w dup mul add sqrt def
+    ul_str stringwidth pop dw exch sub 2 div ul_h_ptsize -2 div moveto
+    draw_underlay
+  grestore
+} def
+
+/user_underlay {	% - -> -
+  gsave
+    ul_x ul_y translate
+    ul_angle rotate
+    ul_gray setgray
+    ul_font setfont
+    0 0 ul_h_ptsize 2 div sub moveto
+    draw_underlay
+  grestore
+} def
+
+% Page prefeed
+/page_prefeed {		% bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} def
+
+% Wrapped line markers
+/wrapped_line_mark {	% x y charwith charheight type -> -
+  /type exch def
+  /h exch def
+  /w exch def
+  /y exch def
+  /x exch def
+
+  type 2 eq {
+    % Black boxes (like TeX does)
+    gsave
+      0 setlinewidth
+      x w 4 div add y M
+      0 h rlineto w 2 div 0 rlineto 0 h neg rlineto
+      closepath fill
+    grestore
+  } {
+    type 3 eq {
+      % Small arrows
+      gsave
+        .2 setlinewidth
+        x w 2 div add y h 2 div add M
+        w 4 div 0 rlineto
+        x w 4 div add y lineto stroke
+
+        x w 4 div add w 8 div add y h 4 div add M
+        x w 4 div add y lineto
+	w 4 div h 8 div rlineto stroke
+      grestore
+    } {
+      % do nothing
+    } ifelse
+  } ifelse
+} def
+
+% EPSF import.
+
+/BeginEPSF {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack
+  userdict begin
+  /showpage { } def
+  0 setgray 0 setlinecap
+  1 setlinewidth 0 setlinejoin
+  10 setmiterlimit [ ] 0 setdash newpath
+  /languagelevel where {
+    pop languagelevel
+    1 ne {
+      false setstrokeadjust false setoverprint
+    } if
+  } if
+} bind def
+
+/EndEPSF {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+%%EndResource
+%%BeginResource: procset Enscript-Encoding-88591 1.6 4
+/encoding_vector [
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/space        	/exclam       	/quotedbl     	/numbersign   	
+/dollar       	/percent      	/ampersand    	/quoteright   	
+/parenleft    	/parenright   	/asterisk     	/plus         	
+/comma        	/hyphen       	/period       	/slash        	
+/zero         	/one          	/two          	/three        	
+/four         	/five         	/six          	/seven        	
+/eight        	/nine         	/colon        	/semicolon    	
+/less         	/equal        	/greater      	/question     	
+/at           	/A            	/B            	/C            	
+/D            	/E            	/F            	/G            	
+/H            	/I            	/J            	/K            	
+/L            	/M            	/N            	/O            	
+/P            	/Q            	/R            	/S            	
+/T            	/U            	/V            	/W            	
+/X            	/Y            	/Z            	/bracketleft  	
+/backslash    	/bracketright 	/asciicircum  	/underscore   	
+/quoteleft    	/a            	/b            	/c            	
+/d            	/e            	/f            	/g            	
+/h            	/i            	/j            	/k            	
+/l            	/m            	/n            	/o            	
+/p            	/q            	/r            	/s            	
+/t            	/u            	/v            	/w            	
+/x            	/y            	/z            	/braceleft    	
+/bar          	/braceright   	/tilde        	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/.notdef      	/.notdef      	/.notdef      	/.notdef      	
+/space        	/exclamdown   	/cent         	/sterling     	
+/currency     	/yen          	/brokenbar    	/section      	
+/dieresis     	/copyright    	/ordfeminine  	/guillemotleft	
+/logicalnot   	/hyphen       	/registered   	/macron       	
+/degree       	/plusminus    	/twosuperior  	/threesuperior	
+/acute        	/mu           	/paragraph    	/bullet       	
+/cedilla      	/onesuperior  	/ordmasculine 	/guillemotright	
+/onequarter   	/onehalf      	/threequarters	/questiondown 	
+/Agrave       	/Aacute       	/Acircumflex  	/Atilde       	
+/Adieresis    	/Aring        	/AE           	/Ccedilla     	
+/Egrave       	/Eacute       	/Ecircumflex  	/Edieresis    	
+/Igrave       	/Iacute       	/Icircumflex  	/Idieresis    	
+/Eth          	/Ntilde       	/Ograve       	/Oacute       	
+/Ocircumflex  	/Otilde       	/Odieresis    	/multiply     	
+/Oslash       	/Ugrave       	/Uacute       	/Ucircumflex  	
+/Udieresis    	/Yacute       	/Thorn        	/germandbls   	
+/agrave       	/aacute       	/acircumflex  	/atilde       	
+/adieresis    	/aring        	/ae           	/ccedilla     	
+/egrave       	/eacute       	/ecircumflex  	/edieresis    	
+/igrave       	/iacute       	/icircumflex  	/idieresis    	
+/eth          	/ntilde       	/ograve       	/oacute       	
+/ocircumflex  	/otilde       	/odieresis    	/divide       	
+/oslash       	/ugrave       	/uacute       	/ucircumflex  	
+/udieresis    	/yacute       	/thorn        	/ydieresis    	
+] def
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier-Bold
+/HFpt_w 10 def
+/HFpt_h 10 def
+/Courier-Bold /HF-gs-font MF
+/HF /HF-gs-font findfont [HFpt_w 0 0 HFpt_h 0 0] makefont def
+/Courier-Bold /F-gs-font MF
+/F-gs-font 10.5 10.5 SF
+/#copies 1 def
+% Pagedevice definitions:
+gs_languagelevel 1 gt {
+  <<
+    /PageSize [612 792] 
+  >> setpagedevice
+} if
+%%BeginResource: procset Enscript-Header-enscript 1.6 4
+%%IncludeResource: font Times-Bold
+%%IncludeResource: font Times-Roman
+
+% Fonts.
+/Times-Bold /HeaderFont-Bold MF
+/HeaderDateF /HeaderFont-Bold findfont 12 scalefont def
+
+/Times-Roman /HeaderFont-Times MF
+/HeaderHDRF /HeaderFont-Times findfont 14 scalefont def
+
+/HeaderPageNumF /Helvetica-Bold findfont 28.8 scalefont def
+
+/do_header {	% print enscript header
+  gsave
+    d_header_x d_header_y translate
+
+    % light bar
+    0 0 d_header_w d_header_h 2 div Box
+    .95 setgray fill
+
+    % dark gray boxes
+    /dbw d_header_h 2 mul def	% dark box width
+    /dbc .7 def			% dark box color
+
+    % left dark box.
+    0 0 dbw d_header_h Box
+    dbc setgray fill
+
+    0 setgray 
+    HeaderDateF setfont
+    moddatestr dup stringwidth pop dbw exch sub 2 div 
+    d_header_h 2 div 2 add moveto show
+    modtimestr dup stringwidth pop dbw exch sub 2 div 
+    d_header_h 5 div moveto show
+
+    % right dark box
+    d_header_w dbw sub 0 dbw d_header_h Box
+    dbc setgray fill
+
+    HeaderPageNumF setfont
+    1 setgray
+    pagenumstr dup
+    stringwidth pop dbw exch sub 2 div d_header_w dbw sub add
+    d_header_h .2 mul moveto show
+
+    % filename
+    0 setgray 
+    HeaderHDRF setfont
+    d_header_w fname stringwidth pop sub 2 div d_header_h 8 div moveto
+    fname show
+
+    % user supplied header string.
+    user_header_p {
+      /h d_header_h 8 div 5 mul def
+
+      % Implement strict enscript compatibility.
+      user_header_center_str () eq user_header_right_str () eq and {
+        d_header_w user_header_left_str stringwidth pop sub 2 div 
+        h moveto user_header_left_str show
+      } {
+        dbw 5 add h moveto user_header_left_str show
+
+        d_header_w user_header_center_str stringwidth pop sub 2 div 
+        h moveto user_header_center_str show
+
+	d_header_w dbw sub 5 sub user_header_right_str stringwidth pop
+	sub h moveto user_header_right_str show
+      } ifelse
+    } if
+
+  grestore
+} def
+%%EndResource
+/d_page_w 536 def
+/d_page_h 744 def
+/d_header_x 0 def
+/d_header_y 708 def
+/d_header_w 536 def
+/d_header_h 36 def
+/d_footer_x 0 def
+/d_footer_y 0 def
+/d_footer_w 536 def
+/d_footer_h 0 def
+/d_output_w 536 def
+/d_output_h 708 def
+/cols 1 def
+%%EndSetup
+%%Page: (1) 1
+%%BeginPageSetup
+_S
+38 24 translate
+/pagenum 1 def
+/fname (attributes.cc) def
+/fdir () def
+/ftail (attributes.cc) def
+% User defined strings:
+/pagenumstr (1) def
+/moddatestr (09/24/13) def
+/modtimestr (18:51:15) def
+/user_header_p true def
+/user_header_left_str ($cmps104a-wm/Assignments/code/miscellaneous/) def
+/user_header_center_str () def
+/user_header_right_str () def
+/user_footer_p false def
+%%EndPageSetup
+column_borders
+do_header
+31.2 694.5 M (1:) s
+50.1 694.5 M
+(// $Id: attributes.cc,v 1.1 2013-09-24 18:51:15-07 - - $) s
+31.2 683 M (2:) s
+31.2 671.5 M (3:) s
+50.1 671.5 M
+(//) s
+31.2 660 M (4:) s
+50.1 660 M
+(// Example which shows how to manage attributes as bitsets and) s
+31.2 648.5 M (5:) s
+50.1 648.5 M
+(// how to print them.) s
+31.2 637 M (6:) s
+50.1 637 M
+(//) s
+31.2 625.5 M (7:) s
+31.2 614 M (8:) s
+50.1 614 M
+(#include <limits.h>) s
+31.2 602.5 M (9:) s
+50.1 602.5 M
+(#include <stdio.h>) s
+24.9 591 M (10:) s
+50.1 591 M
+(#include <stdlib.h>) s
+24.9 579.5 M (11:) s
+24.9 568 M (12:) s
+50.1 568 M
+(typedef unsigned long bitset_t;) s
+24.9 556.5 M (13:) s
+24.9 545 M (14:) s
+50.1 545 M
+(typedef enum {FALSE = 0, TRUE = 1} bool;) s
+24.9 533.5 M (15:) s
+24.9 522 M (16:) s
+50.1 522 M
+(enum {) s
+24.9 510.5 M (17:) s
+50.1 510.5 M
+(   ATTR_INDEX_VOID     =  0,) s
+24.9 499 M (18:) s
+50.1 499 M
+(   ATTR_INDEX_BOOL     =  1,) s
+24.9 487.5 M (19:) s
+50.1 487.5 M
+(   ATTR_INDEX_CHAR     =  2,) s
+24.9 476 M (20:) s
+50.1 476 M
+(   ATTR_INDEX_INT      =  3,) s
+24.9 464.5 M (21:) s
+50.1 464.5 M
+(   ATTR_INDEX_NULL     =  4,) s
+24.9 453 M (22:) s
+50.1 453 M
+(   ATTR_INDEX_STRING   =  5,) s
+24.9 441.5 M (23:) s
+50.1 441.5 M
+(   ATTR_INDEX_STRUCT   =  6,) s
+24.9 430 M (24:) s
+50.1 430 M
+(   ATTR_INDEX_ARRAY    =  7,) s
+24.9 418.5 M (25:) s
+50.1 418.5 M
+(   ATTR_INDEX_FUNCTION =  8,) s
+24.9 407 M (26:) s
+50.1 407 M
+(   ATTR_INDEX_VARIABLE =  9,) s
+24.9 395.5 M (27:) s
+50.1 395.5 M
+(   ATTR_INDEX_FIELD    = 10,) s
+24.9 384 M (28:) s
+50.1 384 M
+(   ATTR_INDEX_TYPEID   = 11,) s
+24.9 372.5 M (29:) s
+50.1 372.5 M
+(   ATTR_INDEX_PARAM    = 12,) s
+24.9 361 M (30:) s
+50.1 361 M
+(   ATTR_INDEX_LVALUE   = 13,) s
+24.9 349.5 M (31:) s
+50.1 349.5 M
+(   ATTR_INDEX_CONST    = 14,) s
+24.9 338 M (32:) s
+50.1 338 M
+(   ATTR_INDEX_VREG     = 15,) s
+24.9 326.5 M (33:) s
+50.1 326.5 M
+(   ATTR_INDEX_VADDR    = 16,) s
+24.9 315 M (34:) s
+50.1 315 M
+(};) s
+24.9 303.5 M (35:) s
+24.9 292 M (36:) s
+50.1 292 M
+(const bitset_t ATTR_VOID     = 1 << ATTR_INDEX_VOID;) s
+24.9 280.5 M (37:) s
+50.1 280.5 M
+(const bitset_t ATTR_BOOL     = 1 << ATTR_INDEX_BOOL;) s
+24.9 269 M (38:) s
+50.1 269 M
+(const bitset_t ATTR_CHAR     = 1 << ATTR_INDEX_CHAR;) s
+24.9 257.5 M (39:) s
+50.1 257.5 M
+(const bitset_t ATTR_INT      = 1 << ATTR_INDEX_INT;) s
+24.9 246 M (40:) s
+50.1 246 M
+(const bitset_t ATTR_NULL     = 1 << ATTR_INDEX_NULL;) s
+24.9 234.5 M (41:) s
+50.1 234.5 M
+(const bitset_t ATTR_STRING   = 1 << ATTR_INDEX_STRING;) s
+24.9 223 M (42:) s
+50.1 223 M
+(const bitset_t ATTR_STRUCT   = 1 << ATTR_INDEX_STRUCT;) s
+24.9 211.5 M (43:) s
+50.1 211.5 M
+(const bitset_t ATTR_ARRAY    = 1 << ATTR_INDEX_ARRAY;) s
+24.9 200 M (44:) s
+50.1 200 M
+(const bitset_t ATTR_FUNCTION = 1 << ATTR_INDEX_FUNCTION;) s
+24.9 188.5 M (45:) s
+50.1 188.5 M
+(const bitset_t ATTR_VARIABLE = 1 << ATTR_INDEX_VARIABLE;) s
+24.9 177 M (46:) s
+50.1 177 M
+(const bitset_t ATTR_FIELD    = 1 << ATTR_INDEX_FIELD;) s
+24.9 165.5 M (47:) s
+50.1 165.5 M
+(const bitset_t ATTR_TYPEID   = 1 << ATTR_INDEX_TYPEID;) s
+24.9 154 M (48:) s
+50.1 154 M
+(const bitset_t ATTR_PARAM    = 1 << ATTR_INDEX_PARAM;) s
+24.9 142.5 M (49:) s
+50.1 142.5 M
+(const bitset_t ATTR_LVALUE   = 1 << ATTR_INDEX_LVALUE;) s
+24.9 131 M (50:) s
+50.1 131 M
+(const bitset_t ATTR_CONST    = 1 << ATTR_INDEX_CONST;) s
+24.9 119.5 M (51:) s
+50.1 119.5 M
+(const bitset_t ATTR_VREG     = 1 << ATTR_INDEX_VREG;) s
+24.9 108 M (52:) s
+50.1 108 M
+(const bitset_t ATTR_VADDR    = 1 << ATTR_INDEX_VADDR;) s
+24.9 96.5 M (53:) s
+24.9 85 M (54:) s
+50.1 85 M
+(bitset_t bitset \(int attribute_index\) {) s
+24.9 73.5 M (55:) s
+50.1 73.5 M
+(   return 1L << attribute_index;) s
+24.9 62 M (56:) s
+50.1 62 M
+(}) s
+24.9 50.5 M (57:) s
+_R
+S
+%%Page: (2) 2
+%%BeginPageSetup
+_S
+38 24 translate
+/pagenum 2 def
+/fname (attributes.cc) def
+/fdir () def
+/ftail (attributes.cc) def
+% User defined strings:
+/pagenumstr (2) def
+/moddatestr (09/24/13) def
+/modtimestr (18:51:15) def
+/user_header_p true def
+/user_header_left_str ($cmps104a-wm/Assignments/code/miscellaneous/) def
+/user_header_center_str () def
+/user_header_right_str () def
+/user_footer_p false def
+%%EndPageSetup
+column_borders
+do_header
+24.9 694.5 M (58:) s
+24.9 683 M (59:) s
+50.1 683 M
+(bool is_primitive \(bitset_t attributes\) {) s
+24.9 671.5 M (60:) s
+50.1 671.5 M
+(   return attributes) s
+24.9 660 M (61:) s
+50.1 660 M
+(          & \(ATTR_BOOL | ATTR_CHAR | ATTR_INT\)) s
+24.9 648.5 M (62:) s
+50.1 648.5 M
+(       && ! \(attributes | ATTR_ARRAY\);) s
+24.9 637 M (63:) s
+50.1 637 M
+(}) s
+24.9 625.5 M (64:) s
+24.9 614 M (65:) s
+50.1 614 M
+(bool is_reference \(bitset_t attributes\) {) s
+24.9 602.5 M (66:) s
+50.1 602.5 M
+(   return attributes) s
+24.9 591 M (67:) s
+50.1 591 M
+(          & \(ATTR_NULL | ATTR_STRING | ATTR_STRUCT | ATTR_ARRAY\)) s
+24.9 579.5 M (68:) s
+50.1 579.5 M
+(       && TRUE;) s
+24.9 568 M (69:) s
+50.1 568 M
+(}) s
+24.9 556.5 M (70:) s
+24.9 545 M (71:) s
+50.1 545 M
+(// The following initialization style is a gcc-ism and will) s
+24.9 533.5 M (72:) s
+50.1 533.5 M
+(// not work with some C compilers, and confuses lint.) s
+24.9 522 M (73:) s
+50.1 522 M
+(const char *attr_names[] = {) s
+24.9 510.5 M (74:) s
+50.1 510.5 M
+(   [ATTR_INDEX_VOID    ] "void"    ,) s
+24.9 499 M (75:) s
+50.1 499 M
+(   [ATTR_INDEX_BOOL    ] "bool"    ,) s
+24.9 487.5 M (76:) s
+50.1 487.5 M
+(   [ATTR_INDEX_CHAR    ] "char"    ,) s
+24.9 476 M (77:) s
+50.1 476 M
+(   [ATTR_INDEX_INT     ] "int"     ,) s
+24.9 464.5 M (78:) s
+50.1 464.5 M
+(   [ATTR_INDEX_NULL    ] "null"    ,) s
+24.9 453 M (79:) s
+50.1 453 M
+(   [ATTR_INDEX_STRING  ] "string"  ,) s
+24.9 441.5 M (80:) s
+50.1 441.5 M
+(   [ATTR_INDEX_STRUCT  ] "struct"  ,) s
+24.9 430 M (81:) s
+50.1 430 M
+(   [ATTR_INDEX_ARRAY   ] "array"   ,) s
+24.9 418.5 M (82:) s
+50.1 418.5 M
+(   [ATTR_INDEX_FUNCTION] "function",) s
+24.9 407 M (83:) s
+50.1 407 M
+(   [ATTR_INDEX_VARIABLE] "variable",) s
+24.9 395.5 M (84:) s
+50.1 395.5 M
+(   [ATTR_INDEX_FIELD   ] "field"   ,) s
+24.9 384 M (85:) s
+50.1 384 M
+(   [ATTR_INDEX_TYPEID  ] "typeid"  ,) s
+24.9 372.5 M (86:) s
+50.1 372.5 M
+(   [ATTR_INDEX_PARAM   ] "param"   ,) s
+24.9 361 M (87:) s
+50.1 361 M
+(   [ATTR_INDEX_LVALUE  ] "lvalue"  ,) s
+24.9 349.5 M (88:) s
+50.1 349.5 M
+(   [ATTR_INDEX_CONST   ] "const"   ,) s
+24.9 338 M (89:) s
+50.1 338 M
+(   [ATTR_INDEX_VREG    ] "vreg"    ,) s
+24.9 326.5 M (90:) s
+50.1 326.5 M
+(   [ATTR_INDEX_VADDR   ] "vaddr"   ,) s
+24.9 315 M (91:) s
+50.1 315 M
+(};) s
+24.9 303.5 M (92:) s
+24.9 292 M (93:) s
+50.1 292 M
+(void print_attributes \(bitset_t attributes\) {) s
+24.9 280.5 M (94:) s
+50.1 280.5 M
+(   ssize_t size = sizeof attr_names / sizeof *attr_names;) s
+24.9 269 M (95:) s
+50.1 269 M
+(   for \(int index = 0; index < size; ++index\) {) s
+24.9 257.5 M (96:) s
+50.1 257.5 M
+(      if \(attributes & bitset \(index\)\) {) s
+24.9 246 M (97:) s
+50.1 246 M
+(         printf \(" %s", attr_names [index]\);) s
+24.9 234.5 M (98:) s
+50.1 234.5 M
+(      }) s
+24.9 223 M (99:) s
+50.1 223 M
+(   }) s
+18.6 211.5 M (100:) s
+50.1 211.5 M
+(}) s
+18.6 200 M (101:) s
+18.6 188.5 M (102:) s
+50.1 188.5 M
+(int main \(void\) {) s
+18.6 177 M (103:) s
+50.1 177 M
+(   printf \("Number of bits in a bitset = %lu\\n",) s
+18.6 165.5 M (104:) s
+50.1 165.5 M
+(           CHAR_BIT * sizeof \(bitset_t\)\);) s
+18.6 154 M (105:) s
+50.1 154 M
+(   for \(bitset_t set = 0xF; set < 1L << 32; set <<= 4\) {) s
+18.6 142.5 M (106:) s
+50.1 142.5 M
+(      printf \("bitset 0x%016lX =", set\);) s
+18.6 131 M (107:) s
+50.1 131 M
+(      print_attributes \(set\);) s
+18.6 119.5 M (108:) s
+50.1 119.5 M
+(      printf \("\\n"\);) s
+18.6 108 M (109:) s
+50.1 108 M
+(   }) s
+18.6 96.5 M (110:) s
+50.1 96.5 M
+(   return EXIT_SUCCESS;) s
+18.6 85 M (111:) s
+50.1 85 M
+(}) s
+18.6 73.5 M (112:) s
+18.6 62 M (113:) s
+50.1 62 M
+(/*) s
+18.6 50.5 M (114:) s
+50.1 50.5 M
+(//TEST// attributes >attributes.out 2>&1) s
+18.6 39 M (115:) s
+50.1 39 M
+(//TEST// mkpspdf attributes.ps //TEST//    attributes.cc* attributes.out) s
+18.6 27.5 M (116:) s
+50.1 27.5 M
+(*/) s
+18.6 16 M (117:) s
+_R
+S
+%%Page: (1) 3
+%%BeginPageSetup
+_S
+38 24 translate
+/pagenum 1 def
+/fname (attributes.cc.log) def
+/fdir () def
+/ftail (attributes.cc.log) def
+% User defined strings:
+/pagenumstr (1) def
+/moddatestr (09/24/13) def
+/modtimestr (18:51:15) def
+/user_header_p true def
+/user_header_left_str ($cmps104a-wm/Assignments/code/miscellaneous/) def
+/user_header_center_str () def
+/user_header_right_str () def
+/user_footer_p false def
+%%EndPageSetup
+column_borders
+do_header
+31.2 694.5 M (1:) s
+50.1 694.5 M
+(* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ mkc: starting attributes.cc) s
+31.2 683 M (2:) s
+50.1 683 M
+(* attributes.cc: $Id: attributes.cc,v 1.1 2013-09-24 18:51:15-07 - - $) s
+31.2 671.5 M (3:) s
+50.1 671.5 M
+(* g++ -g -O0 -Wall -Wextra -std=gnu++0x attributes.cc -o attributes -lm) s
+_R
+S
+%%Page: (1) 4
+%%BeginPageSetup
+_S
+38 24 translate
+/pagenum 1 def
+/fname (attributes.out) def
+/fdir () def
+/ftail (attributes.out) def
+% User defined strings:
+/pagenumstr (1) def
+/moddatestr (09/24/13) def
+/modtimestr (18:51:15) def
+/user_header_p true def
+/user_header_left_str ($cmps104a-wm/Assignments/code/miscellaneous/) def
+/user_header_center_str () def
+/user_header_right_str () def
+/user_footer_p false def
+%%EndPageSetup
+column_borders
+do_header
+31.2 694.5 M (1:) s
+50.1 694.5 M
+(Number of bits in a bitset = 64) s
+31.2 683 M (2:) s
+50.1 683 M
+(bitset 0x000000000000000F = void bool char int) s
+31.2 671.5 M (3:) s
+50.1 671.5 M
+(bitset 0x00000000000000F0 = null string struct array) s
+31.2 660 M (4:) s
+50.1 660 M
+(bitset 0x0000000000000F00 = function variable field typeid) s
+31.2 648.5 M (5:) s
+50.1 648.5 M
+(bitset 0x000000000000F000 = param lvalue const vreg) s
+31.2 637 M (6:) s
+50.1 637 M
+(bitset 0x00000000000F0000 = vaddr) s
+31.2 625.5 M (7:) s
+50.1 625.5 M
+(bitset 0x0000000000F00000 =) s
+31.2 614 M (8:) s
+50.1 614 M
+(bitset 0x000000000F000000 =) s
+31.2 602.5 M (9:) s
+50.1 602.5 M
+(bitset 0x00000000F0000000 =) s
+_R
+S
+%%Trailer
+%%Pages: 4
+%%DocumentNeededResources: font Times-Roman Courier-Bold Times-Bold 
+%%EOF
