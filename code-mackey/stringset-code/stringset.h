@@ -1,4 +1,4 @@
-// $Id: stringset.h,v 1.1 2013-09-20 19:45:47-07 - - $
+// $Id: stringset.h,v 1.2 2014-10-03 18:47:35-07 - - $
 
 #ifndef __STRINGSET__
 #define __STRINGSET__
@@ -14,3 +14,4 @@ const string* intern_stringset (const char*);
 void dump_stringset (FILE*);
 
 #endif
+

@@ -1,4 +1,4 @@
-// $Id: main.cc,v 1.3 2013-09-23 14:39:10-07 - - $
+// $Id: main.cpp,v 1.2 2014-10-09 15:09:33-07 - - $
 
 #include <string>
 using namespace std;
@@ -14,7 +14,7 @@ int main (int argc, char **argv) {
    for (int i = 1; i < argc; ++i) {
       const string* str = intern_stringset (argv[i]);
       printf ("intern (\"%s\") returned %p->\"%s\"\n",
-              argv[i], str->c_str(), str->c_str());
+              argv[i], str, str->c_str());
    }
    dump_stringset (stdout);
    return EXIT_SUCCESS;

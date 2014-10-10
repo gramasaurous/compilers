@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2011-09-22 18:48:16-07 - - $
+# $Id: Makefile,v 1.9 2014-10-03 18:47:56-07 - - $
 
 #
 # The parser in this directory is a dummy useable for asg2.
@@ -7,7 +7,7 @@
 # as a test harness for the scanner assignment.
 #
 
-GCC       = g++ -g -O0 -Wall -Wextra -std=gnu99
+GPP       = g++ -g -O0 -Wall -Wextra -std=gnu++11
 LISTING   = Listing.ps
 
 all : printtokens addresses macros
@@ -19,11 +19,11 @@ parser.c parser.h : parser.y
 
 printtokens : printtokens.c parser.c parser.h
 	cid + printtokens.c
-	${GCC} printtokens.c parser.c -o printtokens
+	${GPP} printtokens.c parser.c -o printtokens
 
 % : %.c
 	cid + $<
-	${GCC} $< -o $@
+	${GPP} $< -o $@
 
 lis : all printtokens.output addresses.output macros.output Makefile
 	mkpspdf ${LISTING} parser.y parser.h \

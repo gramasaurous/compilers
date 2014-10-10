@@ -1,4 +1,8 @@
-// $Id: stringset.cpp,v 1.7 2014-10-09 15:09:33-07 - - $
+// $Id: stringset.cpp,v 1.11 2014-10-09 15:47:45-07 - - $
+
+#include <iomanip>
+#include <unordered_set>
+using namespace std;
 
 #include "stringset.h"
 
@@ -11,7 +15,7 @@ const string* intern_stringset (const char* string) {
    return &*handle.first;
 }
 
-void dump_stringset (FILE* out) {
+void dump_stringset (ostream& out) {
    size_t max_bucket_size = 0;
    for (size_t bucket = 0; bucket < set.bucket_count(); ++bucket) {
       bool need_index = true;
@@ -19,17 +23,18 @@ void dump_stringset (FILE* out) {
       if (max_bucket_size < curr_size) max_bucket_size = curr_size;
       for (stringset::const_local_iterator itor = set.cbegin (bucket);
            itor != set.cend (bucket); ++itor) {
-         if (need_index) fprintf (out, "stringset[%4lu]: ", bucket);
-                    else fprintf (out, "          %4s   ", "");
+         if (need_index) out << "stringset[" << setw(4) << bucket
+                             << "]: ";
+                    else out << setw(17) << "";
          need_index = false;
          const string* str = &*itor;
-         fprintf (out, "%22lu %p->\"%s\"\n",
-                  set.hash_function()(*str),
-                  str, str->c_str());
+         out << setw(22) << set.hash_function()(*str) << ": "
+             << str << "->\"" << *str << "\"" << endl;
       }
    }
-   fprintf (out, "load_factor = %.3f\n", set.load_factor());
-   fprintf (out, "bucket_count = %lu\n", set.bucket_count());
-   fprintf (out, "max_bucket_size = %lu\n", max_bucket_size);
+   out << "load_factor = " << fixed << setprecision(3)
+       << set.load_factor() << endl;
+   out << "bucket_count = " << set.bucket_count() << endl;
+   out << "max_bucket_size = " << max_bucket_size << endl;
 }
 

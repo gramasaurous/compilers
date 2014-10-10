@@ -39,4 +39,4 @@ void dump_stringset (FILE* out) {
    fprintf (out, "max_bucket_size = %lu\n", max_bucket_size);
 }
 
-RCSC("$Id: stringset.cc,v 1.2 2013-10-11 18:54:12-07 - - $")
+RCSC("$Id: stringset.cpp,v 1.1 2014-10-03 18:22:05-07 - - $")

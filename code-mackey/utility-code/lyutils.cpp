@@ -96,5 +96,5 @@ void scanner_include (void) {
    }
 }
 
-RCSC("$Id: lyutils.cc,v 1.3 2013-10-11 18:56:52-07 - - $")
+RCSC("$Id: lyutils.cpp,v 1.1 2014-10-03 18:22:05-07 - - $")
 
