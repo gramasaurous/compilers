@@ -29,8 +29,8 @@ void scan_options (int argc, char** argv) {
             break;
          case 'D':
             // Pass 'string' to cpp
-            cout << "D set" << endl;
-            DEBUGF('o', "opt D set.");
+            //cout << "D set with " endl;
+            DEBUGF('o', optarg << " opt D set. with flag: ");
             break;
          case 'l':
             // Debug yylex() yy_flex_debug = 1;
@@ -52,7 +52,20 @@ int main (int argc, char **argv) {
    sys_info::execname (argv[0]);
    scan_options (argc, argv);
    vector<string> args (&argv[optind], &argv[argc]);
-   if (args.size() < 1) {
+   if (args.size() != 1) {
+      cerr << "Usage: " << sys_info::execname() << " [-ly] " <<
+         "[-@ flag ...][-D string] program.oc" << endl;
+   } else {
+      const string infilename = args[0];
+      ifstream infile (infilename.c_str());
+      if (infile.fail()) {
+         syscall_error (infilename);
+      } else {
+         DEBUGF('m', infilename << "opened OK");
 
+      }
    }
+   int status = sys_info::exit_status();
+   if (status != 0) return status;
+   return 0;
 }

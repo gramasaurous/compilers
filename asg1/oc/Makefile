@@ -36,7 +36,7 @@ ${EXECBIN} : ${OBJECTS}
 	${COMPILECPP} -c $<
 
 clean :
-	- rm ${OBJECTS} ${DEPFILE} core
+	- rm ${OBJECTS} ${DEPFILE}
 
 spotless : clean
 	- rm ${EXECBIN}
