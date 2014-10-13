@@ -2,6 +2,9 @@
 // ggreving@ucsc.edu
 // asg4:debug.cpp
 
+// Note, core code taken from cmps109-wm.u14
+// Originally called debug.cpp
+
 #include <cassert>
 #include <climits>
 #include <iostream>

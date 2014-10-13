@@ -24,7 +24,7 @@ HOST 		= $(findstring ucsc,$(shell hostname))
 CLASS       = cmps104a-wm.f14
 PROJECT     = asg1
 
-all : ${EXECBIN}
+all : ${EXECBIN} 
 ifeq ($(HOST),ucsc)
 	- checksource ${ALLSOURCES}
 endif

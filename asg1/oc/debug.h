@@ -2,6 +2,9 @@
 // ggreving@ucsc.edu
 // asg4:debug.h
 
+// Note, core code taken from cmps109-wm.u14 
+// Originally called debug.h
+
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
 
@@ -31,7 +34,6 @@ class debugflags {
                          const char* func);
 };
 
-
 //
 // DEBUGF -
 //    Macro which expands into trace code.  First argument is a
