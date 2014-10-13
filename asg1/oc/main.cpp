@@ -14,6 +14,14 @@
 #include "util.h"
 #include "stringset.h"
 
+string CPP = "/usr/bin/cpp";
+const size_t LINESIZE = 1024;
+
+void cpp_lines(FILE *, char * filename) {
+
+}
+
+
 //
 // Scan the options, -D -y -l -@ and check for operands.
 //
@@ -30,6 +38,9 @@ void scan_options (int argc, char** argv) {
          case 'D':
             // Pass 'string' to cpp
             //cout << "D set with " endl;
+            CPP += " -D";
+            CPP += optarg;
+            CPP += " ";
             DEBUGF('o', optarg << " opt D set. with flag: ");
             break;
          case 'l':
@@ -57,13 +68,8 @@ int main (int argc, char **argv) {
          "[-@ flag ...][-D string] program.oc" << endl;
    } else {
       const string infilename = args[0];
-      ifstream infile (infilename.c_str());
-      if (infile.fail()) {
-         syscall_error (infilename);
-      } else {
-         DEBUGF('m', infilename << "opened OK");
-
-      }
+      string cmd = CPP + infilename;
+      DEBUGF('m', cmd);
    }
    int status = sys_info::exit_status();
    if (status != 0) return status;
