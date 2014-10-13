@@ -15,13 +15,13 @@
 #include "stringset.h"
 
 //
-// Scan the option -@ and check for operands.
+// Scan the options, -D -y -l -@ and check for operands.
 //
 
 void scan_options (int argc, char** argv) {
    opterr = 0;
    for (;;) {
-      int option = getopt (argc, argv, "Dyl@:");
+      int option = getopt (argc, argv, "D:yl@:");
       if (option == EOF) break;
       switch (option) {
          case '@':
@@ -51,4 +51,8 @@ void scan_options (int argc, char** argv) {
 int main (int argc, char **argv) {
    sys_info::execname (argv[0]);
    scan_options (argc, argv);
+   vector<string> args (&argv[optind], &argv[argc]);
+   if (args.size() < 1) {
+
+   }
 }
