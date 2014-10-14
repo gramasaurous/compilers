@@ -9,15 +9,18 @@
 #include <iostream>
 #include <unistd.h>
 #include <vector>
+#include <string>
 // local libs
 #include "debug.h"
+#include "auxlib.h"
 #include "util.h"
 #include "stringset.h"
 
 string CPP = "/usr/bin/cpp";
 const size_t LINESIZE = 1024;
 
-void cpp_lines(FILE *, char * filename) {
+// Run cpp against the lines of the file.
+void cpplines (FILE* pipe, char* filename) {
 
 }
 
@@ -37,7 +40,6 @@ void scan_options (int argc, char** argv) {
             break;
          case 'D':
             // Pass 'string' to cpp
-            //cout << "D set with " endl;
             CPP += " -D";
             CPP += optarg;
             CPP += " ";
@@ -67,9 +69,10 @@ int main (int argc, char **argv) {
       cerr << "Usage: " << sys_info::execname() << " [-ly] " <<
          "[-@ flag ...][-D string] program.oc" << endl;
    } else {
-      const string infilename = args[0];
-      string cmd = CPP + infilename;
+      const string filename = args[0];
+      string cmd = CPP + filename;
       DEBUGF('m', cmd);
+
    }
    int status = sys_info::exit_status();
    if (status != 0) return status;
