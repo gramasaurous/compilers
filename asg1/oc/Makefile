@@ -10,10 +10,9 @@ GMAKE       = ${MAKE} --no-print-directory
 COMPILECPP  = g++ -g -O0 -Wall -Wextra -std=gnu++11
 MAKEDEPCPP  = g++ -MM -std=gnu++11
 
-MODULES     = debug stringset util
+MODULES     = auxlib stringset
 CPPHEADER   = ${MODULES:=.h}
 CPPSOURCE   = ${MODULES:=.cpp} main.cpp
-TEMPLATES   = util.tcc
 OTHERS      = ${MKFILE} README
 ALLSOURCES  = ${CPPHEADER} ${TEMPLATES} ${CPPSOURCE} ${OTHERS}
 EXECBIN     = oc
@@ -60,9 +59,6 @@ ${DEPFILE} :
 
 again :
 	${GMAKE} spotless dep all
-
-man :
-	man ../asg4-oop-inheritance.tt
 
 ifeq (${NEEDINCL}, )
 include ${DEPFILE}
