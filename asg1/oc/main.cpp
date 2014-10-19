@@ -44,7 +44,6 @@ void cpplines (FILE* pipe, char* filename) {
       int sscanf_rc = sscanf (buffer, "# %d \"%[^\"]\"",
                               &linenr, filename);
       if (sscanf_rc == 2) {
-         //printf ("DIRECTIVE: line %d file \"%s\"\n", linenr, filename);
          continue;
       }
       char* savepos = NULL;
