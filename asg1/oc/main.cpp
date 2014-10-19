@@ -126,8 +126,12 @@ int main (int argc, char** argv) {
          int pclose_rc = pclose (pipe);
          eprint_status (command.c_str(), pclose_rc);
       }
+      // Strip the filebname to it's basename
+      // Remove it's suffix and replace with .str
       string outfile = basename(filename);
-      outfile += ".str";
+      size_t i = outfile.find_last_of('.');
+      outfile.erase(i+1, 2);
+      outfile.append("str");
       FILE *out = fopen(outfile.c_str(), "w");
       dump_stringset(out);
       fclose(out);
