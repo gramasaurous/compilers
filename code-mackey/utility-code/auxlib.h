@@ -71,7 +71,6 @@ void syserrprintf (const char* object);
    // Sets the exit status to EXIT_FAILURE.
    //
 
-
 //
 // Support for stub messages.
 //

@@ -13,11 +13,12 @@ using namespace std;
 #include <stdlib.h>
 #include <string.h>
 #include <wait.h>
+#include <unistd.h>
 
 #include "auxlib.h"
 #include "stringset.h"
 
-const string CPP = "/usr/bin/cpp";
+string CPP = "/usr/bin/cpp";
 const size_t LINESIZE = 1024;
 
 // Chomp the last character from a buffer if it is delim.
@@ -60,12 +61,58 @@ void cpplines (FILE* pipe, char* filename) {
    dump_stringset(stdout);
 }
 
+//
+// Scan the options, -D -y -l -@ and check for operands.
+//
+
+void scan_options (int argc, char** argv) {
+   opterr = 0;
+   for (;;) {
+      int option = getopt (argc, argv, "D:yl@:");
+      if (option == EOF) break;
+      switch (option) {
+         case '@':
+            set_debugflags(optarg);
+            break;
+         case 'D':
+            // Pass 'string' to cpp
+            CPP += " -D";
+            CPP += optarg;
+            CPP += " ";
+            DEBUGF('o', "Opt D set with flag: %c", optarg);
+            break;
+         case 'l':
+            // Debug yylex() yy_flex_debug = 1;
+            DEBUGF('o', "opt l set");
+            break;
+         case 'y':
+            // Debug yyparse() with yydebug = 1; 
+            DEBUGF('o', "opt y set");
+            break;
+         default:
+            errprintf("%c: %s", (char) optopt, "invalid option.\n");
+            break;
+      }
+   }
+}
+
+
 int main (int argc, char** argv) {
    set_execname (argv[0]);
-   for (int argi = 1; argi < argc; ++argi) {
-      char* filename = argv[argi];
+   scan_options(argc, argv);
+
+   DEBUGF('c', "argc: %d optind: %d\n", argc, optind);
+   if (optind >= argc) {
+      errprintf("Usage: %s [-ly] [-@ flag ...] [-D string] filename.oc\n", get_execname());
+   } else {
+      char *filename = argv[optind];
+      char *ext = strrchr(filename, '.');
+      if (ext == NULL || strcmp(ext, ".oc") != 0) {
+         errprintf("Error: bad file. oc requires oc files.\n");
+         return (get_exitstatus());
+      }
       string command = CPP + " " + filename;
-      //printf ("command=\"%s\"\n", command.c_str());
+      printf ("command=\"%s\"\n", command.c_str());
       FILE* pipe = popen (command.c_str(), "r");
       if (pipe == NULL) {
          syserrprintf (command.c_str());
