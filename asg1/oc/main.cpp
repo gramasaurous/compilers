@@ -53,7 +53,8 @@ void cpplines (FILE* pipe, char* filename) {
          bufptr = NULL;
          if (token == NULL) break;
          printf ("token %d.%d: [%s]\n",linenr, tokenct, token);
-         const string* str = intern_stringset (token);
+         //const string* str = intern_stringset (token);
+         intern_stringset(token);
       }
       ++linenr;
    }
