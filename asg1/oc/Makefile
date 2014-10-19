@@ -22,6 +22,7 @@ LINKLIBS    =
 HOST 		= $(findstring ucsc,$(shell hostname))
 CLASS       = cmps104a-wm.f14
 PROJECT     = asg1
+TEST_DIR    = ../../grading/${PROJECT}_test
 
 all : ${EXECBIN} 
 ifeq ($(HOST),ucsc)
@@ -62,7 +63,9 @@ again :
 	${GMAKE} spotless dep all
 
 testsubmit :
-	cp ${ALLSOURCES} ../../grading/${PROJECT}
+	- rm ${TEST_DIR}/*
+	cp ${ALLSOURCES} ${TEST_DIR}/
+	cp ../../grading/mk* ${TEST_DIR}/
 
 ifeq (${NEEDINCL}, )
 include ${DEPFILE}
