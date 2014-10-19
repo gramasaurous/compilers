@@ -62,7 +62,6 @@ void cpplines (FILE* pipe, char* filename) {
       }
       ++linenr;
    }
-   dump_stringset(stdout);
 }
 
 //
@@ -128,7 +127,13 @@ int main (int argc, char** argv) {
          int pclose_rc = pclose (pipe);
          eprint_status (command.c_str(), pclose_rc);
       }
+      string outfile = basename(filename);
+      outfile += ".str";
+      FILE *out = fopen(outfile.c_str(), "w");
+      dump_stringset(out);
+      fclose(out);
    }
+//   FILE *out = open();
    return get_exitstatus();
 }
 
