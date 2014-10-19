@@ -102,7 +102,8 @@ int main (int argc, char** argv) {
 
    DEBUGF('c', "argc: %d optind: %d\n", argc, optind);
    if (optind >= argc) {
-      errprintf("Usage: %s [-ly] [-@ flag ...] [-D string] filename.oc\n", get_execname());
+      errprintf("%s %s %s %s", "Usage: ", "[-ly] [-@ flag ...]",
+         " [-D string] filename.oc\n", get_execname());
    } else {
       char *filename = argv[optind];
       char *ext = strrchr(filename, '.');
