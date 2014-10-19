@@ -61,6 +61,9 @@ ${DEPFILE} :
 again :
 	${GMAKE} spotless dep all
 
+testsubmit :
+	cp ${ALLSOURCES} ../../grading/${PROJECT}
+
 ifeq (${NEEDINCL}, )
 include ${DEPFILE}
 endif
