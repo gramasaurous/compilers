@@ -22,6 +22,8 @@ using namespace std;
 
 string CPP = "/usr/bin/cpp";
 const size_t LINESIZE = 1024;
+int yydebug = 0;
+int yy_flex_debug = 0;
 
 // Chomp the last character from a buffer if it is delim.
 void chomp (char* string, char delim) {
@@ -85,10 +87,12 @@ void scan_options (int argc, char** argv) {
             break;
          case 'l':
             // Debug yylex() yy_flex_debug = 1;
+            yy_flex_debug = 1;
             DEBUGF('o', "opt l set");
             break;
          case 'y':
             // Debug yyparse() with yydebug = 1; 
+            yydebug = 1;
             DEBUGF('o', "opt y set");
             break;
          default:

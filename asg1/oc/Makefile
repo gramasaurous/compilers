@@ -48,7 +48,7 @@ endif
 
 git :
 	#git commit -a -m "gmake auto commit: `LC_TIME=C date`"
-	git commit -a -m "gmake auto commit: $m"
+	git commit -a
 
 dep : ${CPPSOURCE} ${CPPHEADER} ${GENFILES}
 	@ echo "# ${DEPFILE} created `LC_TIME=C date`" >${DEPFILE}
