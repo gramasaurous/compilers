@@ -1,3 +1,7 @@
+// Graham Greving
+// ggreving@ucsc.edu
+// CMPS104a: asg1: auxlib.h
+
 #ifndef __AUXLIB_H__
 #define __AUXLIB_H__
 

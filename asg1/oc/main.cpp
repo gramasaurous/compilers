@@ -1,4 +1,6 @@
-// $Id: cppstrtok.cpp,v 1.3 2014-10-07 18:09:11-07 - - $
+// Graham Greving
+// ggreving@ucsc.edu
+// CMPS104a: asg1: main.cpp
 
 // Use cpp to scan a file and print line numbers.
 // Print out each input line read in, then strtok it for

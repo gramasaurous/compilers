@@ -1,4 +1,6 @@
-// $Id: stringset.cpp,v 1.7 2014-10-09 15:09:33-07 - - $
+// Graham Greving
+// ggreving@ucsc.edu
+// CMPS104a: asg1: stringset.cpp
 
 #include "stringset.h"
 
