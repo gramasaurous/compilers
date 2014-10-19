@@ -56,7 +56,7 @@ void cpplines (FILE* pipe, char* filename) {
          char* token = strtok_r (bufptr, " \t\n", &savepos);
          bufptr = NULL;
          if (token == NULL) break;
-         printf ("token %d.%d: [%s]\n",linenr, tokenct, token);
+         //printf ("token %d.%d: [%s]\n",linenr, tokenct, token);
          //const string* str = intern_stringset (token);
          intern_stringset(token);
       }
@@ -118,7 +118,6 @@ int main (int argc, char** argv) {
          return (get_exitstatus());
       }
       string command = CPP + " " + filename;
-      printf ("command=\"%s\"\n", command.c_str());
       FILE* pipe = popen (command.c_str(), "r");
       if (pipe == NULL) {
          syserrprintf (command.c_str());
@@ -133,24 +132,5 @@ int main (int argc, char** argv) {
       dump_stringset(out);
       fclose(out);
    }
-//   FILE *out = open();
    return get_exitstatus();
 }
-
-// #include <string>
-// using namespace std;
-
-// #include <assert.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-
-
-// int main (int argc, char **argv) {
-//    for (int i = 1; i < argc; ++i) {
-//       printf ("intern (\"%s\") returned %p->\"%s\"\n",
-//               argv[i], str, str->c_str());
-//    }
-//    dump_stringset (stdout);
-//    return EXIT_SUCCESS;
-// }
