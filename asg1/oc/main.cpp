@@ -121,10 +121,11 @@ int main (int argc, char** argv) {
       FILE* pipe = popen (command.c_str(), "r");
       if (pipe == NULL) {
          syserrprintf (command.c_str());
-      }else {
+      } else {
          cpplines (pipe, filename);
          int pclose_rc = pclose (pipe);
          eprint_status (command.c_str(), pclose_rc);
+         printf("CPP Exit: %d\n", pclose_rc);
       }
       // Strip the filebname to it's basename
       // Remove it's suffix and replace with .str
