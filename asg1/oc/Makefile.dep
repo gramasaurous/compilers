@@ -1,2 +1,4 @@
-# Makefile.dep created Mon Oct 20 13:53:40 PDT 2014
+# Makefile.dep created Mon Oct 20 14:19:25 PDT 2014
+auxlib.o: auxlib.cpp auxlib.h
 stringset.o: stringset.cpp stringset.h
+main.o: main.cpp auxlib.h stringset.h
