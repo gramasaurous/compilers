@@ -1,0 +1,196 @@
+CMPS-104A · Compiler Design I · Fall 2010 · Test #2        page 1 of 1
+$Id: cmps104a-2010q4-exam2.mm,v 1.23 2010-11-09 20:06:43-08 - - $
+
+.PS
+examboxes(3)
+.PE
+
+No books;  No calculator;  No computer;  No email;  No internet;  No
+notes;  No phone.  Neatness counts!  Do your scratch work elsewhere
+and enter only your final answer into the spaces provided.
+
+.EQ
+delim $$
+.EN
+
+ 1. Given the grammar presented here, and using the style from the
+    LALR(1) handout:
+     (a) Construct the characteristic finite state machine (CFSM),
+         sets of items and transition diagram, showing shifts,
+         reductions, and acceptance.  [6pt]
+     (b) Construct the FOLLOW sets.  [3pt]
+     (c) Answer yes or no to each of the following questions:  [1pt]
+
+         Is the grammar LR(0)?  __________    Is the grammar SLR(1)?
+         __________
+
+    +---------------+
+    |0.  S -> $ A $ |
+    |1.  A -> ( L ) |
+    |2.  A -> ( )   |
+    |3.  A -> x     |
+    |4.  L -> L A   |
+    |5.  L ->       |
+    +---------------+
+
+ 2. Define a grammar for the following language, carefully separating
+    the bison grammar from the flex grammar.  Do not show any semantic
+    a ations.  [5pt]
+     (a) A program is a sequence of zero or more expressions.  If more
+         than one expression, they are separated by semi-colons.
+     (b) An expression is a function call, or an identifier, or a
+         number.
+     (c) A function call is an identifier followed by a parenthesized
+         argument list.
+     (d) An argument list is a sequence of zero or more expressions,
+         separated by commas if there are more than one expression.
+     (e) An identifier is a sequence of one or more upper and lower
+         case letters.
+     (f) A number is a sequence of digits, optionally preceded by a +
+         or - sign.
+     (g) A comment is a hash (#) followed by any number of characters
+         not including newline.
+     (h) White space is ignored and consists of spaces, tabs, and
+         newlines.
+
+    +--------------------------+------------------------------------+
+    |flex                      | bison                              |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+    |                          |                                    |
+
+ 3. Using the specifications of project 3, draw abstract syntax trees
+    for each of the following.  [5pt]
+
+    int f (int n) { // [2 pts.]      int g (int n) { // [3 pts.]
+       /* This is O(2^n). */            /* This is O(n). */
+       if (n <= 1) return n;            int a; int b; int c;
+       return f (n - 1)                 a = 0; b = 1;
+            + f (n - 2);                while (n > 0) {
+    }                                      c = a + b; a = b; b = c;
+                                        }
+                                        return a;
+                                     }
+
+Multiple choice.  To the left of each question, write the letter that
+indicates your answer.  Write Z if you don't want to risk a wrong
+answer.  Wrong answers are worth negative points.  [11pt]
+
++--------------------------+------+------+------------+
+|number of                 |      |× 1 = |      $= a$ |
+|correct answers           |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× ½ = |      $= b$ |
+|wrong answers             |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× 0 = |  0         |
+|missing answers           |      |      |            |
++--------------------------+------+------+------------+
+|column total              |   11 |      |      $= c$ |
+|$ c = max ( a - b , 0 ) $ |      |      |            |
++--------------------------+------+------+------------+
+
+ 1. For a grammar $G = < V sub N , V sub T , P , S > $, If $ roman LR
+    ( k ) $ analysis generates $n$ states, then the size of the
+    parsing table will be:
+    (A) $ n times { left | V sub N right | } sup k $
+    (B) $ n times { left | V sub T right | } sup k $
+    (C) $ n sup k times { left | V sub N right | } $
+    (D) $ n sup k times { left | V sub T right | } $
+
+ 2. What variable is used to pass semantic information from yylex to
+    yyparse?
+    (A) yyerror
+    (B) yyin
+    (C) yylval
+    (D) yytext
+
+ 3. The part of the compiler that figures out which declaration of the
+    form int x;  is being referred to by the statment x = 3;  is:
+    (A) lexical analyzer
+    (B) parser
+    (C) symbol table manager
+    (D) code generator
+
+ 4. If $N$ is the set of languages recognizable by an NFA, and $D$ is
+    the set of languages recognizable by a DFA, then:
+    (A) $ N subset D $
+    (B) $ N = D $
+    (C) $ N supset D $
+    (D) none of the above
+
+ 5. What is a reasonable guess as to what might be printed by:
+       printf (%p0,malloc(1));"
+    (A) 0x0
+    (B) 0xdb9b030
+    (C) 0x7fff498c72d9
+    (D) 0xabcdefgh
+
+ 6. In order to disambiguate the following grammar consistent with the
+    syntax of C, C++, and Java, we should insert the declaration (x)
+    in the first part of the bison grammar, because we need to resolve
+    the shift/reduce conflict in favor of a (y).
+    stmt : IF '(' expr ')' stmt ELSE stmt
+         | IF '(' expr ')' stmt %prec ELSE
+         | other
+         ;
+    (A) (x) = %left ELSE     (y) = reduce.
+    (B) (x) = %left ELSE     (y) = shift.
+    (C) (x) = %right ELSE     (y) = reduce.
+    (D) (x) = %right ELSE     (y) = shift.
+
+ 7. Which statement is true about these languages?
+    (A) $ LR ( 0 ) subset LALR ( 1 ) subset SLR ( 1 ) subset LR ( 1 )
+        $
+    (B) $ LR ( 0 ) subset LR ( 1 ) subset SLR ( 1 ) subset LALR ( 1 )
+        $
+    (C) $ LR ( 0 ) subset SLR ( 1 ) subset LALR ( 1 ) subset LR ( 1 )
+        $
+    (D) $ LR ( 1 ) subset LALR ( 1 ) subset SLR ( 1 ) subset LR ( 0 )
+        $
+
+ 8. Which of these items was entered into a state after having
+    propagated a shift transition?
+    (A) $ E ~ -> ~ · ~ E + T $
+    (B) $ E ~ -> ~ E ~ · ~ + T $
+    (C) $ E ~ -> ~ E + ~ · ~ T $
+    (D) $ E ~ -> ~ E + T ~ · $
+
+ 9. Which of the following items in a state will cause a reduction
+    action to be added to the state?
+    (A) $ E ~ -> ~ · ~ E + T $
+    (B) $ E ~ -> ~ E ~ · ~ + T $
+    (C) $ E ~ -> ~ E + ~ · ~ T $
+    (D) $ E ~ -> ~ E + T ~ · $
+
+10. How many tokens in the following C code?
+       /* Say hello. */
+       printf ("Hello, world.\n");
+    (A) 3
+    (B) 5
+    (C) 7
+    (D) 9
+
+11. The name bison is a pun on an earlier program whose name is a
+    homonym for:
+    (A) Buffalo:  a kind of African stag or gazelle.
+    (B) Camel:  a ruminant used for carrying burdens and for riding.
+    (C) Minotaur:  a monster confined to the labyrinth on Crete.
+    (D) Yak:  a bovine mammal native to the high plains of central
+        Asia.
+

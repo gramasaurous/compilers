@@ -1,0 +1,3244 @@
+%PDF-1.2
+5 0 obj
+<</Length 6 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+4 w
+1 J
+1 j
+1 i
+0 G
+720.25 7404.25 m
+5400.25 7404.25 l
+S
+720.25 7392.25 m
+5400.25 7392.25 l
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R7 10 Tf
+1 0 0 1 72 744 Tm
+[(CMPS-104A \203 Compiler Design I \203 F)25.0098(all 2009 \203 Final Exam)]TJ
+/R8 10 Tf
+423.289 0 Td
+(page 1 of 5)Tj
+/R12 9 Tf
+0.75 0 0 1 72 730.6 Tm
+($Id: cmps104a-2009q4-exam3.mm,v 1.48 2009-12-03 19:00:09-08 - - $)Tj
+ET
+Q
+0.900391 g
+1152 6850 m
+1152 6730.71 1055.29 6634 935.996 6634 c
+816.703 6634 719.996 6730.71 719.996 6850 c
+719.996 6969.29 816.703 7066 935.996 7066 c
+1055.29 7066 1152 6969.29 1152 6850 c
+f
+1152 6850 m
+1152 6730.71 1055.29 6634 935.996 6634 c
+816.703 6634 719.996 6730.71 719.996 6850 c
+719.996 6969.29 816.703 7066 935.996 7066 c
+1055.29 7066 1152 6969.29 1152 6850 c
+h
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 80.4098 710.4 Tm
+(page 1)Tj
+ET
+Q
+0.900391 g
+1584 6850 m
+1584 6730.71 1487.29 6634 1368 6634 c
+1248.71 6634 1152 6730.71 1152 6850 c
+1152 6969.29 1248.71 7066 1368 7066 c
+1487.29 7066 1584 6969.29 1584 6850 c
+f
+1584 6850 m
+1584 6730.71 1487.29 6634 1368 6634 c
+1248.71 6634 1152 6730.71 1152 6850 c
+1152 6969.29 1248.71 7066 1368 7066 c
+1487.29 7066 1584 6969.29 1584 6850 c
+h
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 123.61 710.4 Tm
+(page 2)Tj
+ET
+Q
+0.900391 g
+2016 6850 m
+2016 6730.71 1919.29 6634 1800 6634 c
+1680.71 6634 1584 6730.71 1584 6850 c
+1584 6969.29 1680.71 7066 1800 7066 c
+1919.29 7066 2016 6969.29 2016 6850 c
+f
+2016 6850 m
+2016 6730.71 1919.29 6634 1800 6634 c
+1680.71 6634 1584 6730.71 1584 6850 c
+1584 6969.29 1680.71 7066 1800 7066 c
+1919.29 7066 2016 6969.29 2016 6850 c
+h
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 166.81 710.4 Tm
+(page 3)Tj
+ET
+Q
+0.900391 g
+2448 6850 m
+2448 6730.71 2351.29 6634 2232 6634 c
+2112.7 6634 2016 6730.71 2016 6850 c
+2016 6969.29 2112.7 7066 2232 7066 c
+2351.29 7066 2448 6969.29 2448 6850 c
+f
+2448 6850 m
+2448 6730.71 2351.29 6634 2232 6634 c
+2112.7 6634 2016 6730.71 2016 6850 c
+2016 6969.29 2112.7 7066 2232 7066 c
+2351.29 7066 2448 6969.29 2448 6850 c
+h
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 210.01 710.4 Tm
+(page 4)Tj
+ET
+Q
+0.900391 g
+2880 6850 m
+2880 6730.71 2783.29 6634 2664 6634 c
+2544.7 6634 2448 6730.71 2448 6850 c
+2448 6969.29 2544.7 7066 2664 7066 c
+2783.29 7066 2880 6969.29 2880 6850 c
+f
+2880 6850 m
+2880 6730.71 2783.29 6634 2664 6634 c
+2544.7 6634 2448 6730.71 2448 6850 c
+2448 6969.29 2544.7 7066 2664 7066 c
+2783.29 7066 2880 6969.29 2880 6850 c
+h
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 253.21 710.4 Tm
+(page 5)Tj
+ET
+Q
+3600 6850 1800 216 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R9 10 Tf
+1 0 0 1 365 710.4 Tm
+[(Please print clearly)-166.548(:)]TJ
+/R7 10 Tf
+21.6 TL
+-0.834 Tw
+(Name :)'
+ET
+Q
+3600 6634 1800 216 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R7 10 Tf
+1 0 0 1 365 667.2 Tm
+-0.834 Tw
+(Login :)Tj
+/R12 10 Tf
+0.75 0 0 1 495 667.2 Tm
+(@ucsc.edu)Tj
+ET
+Q
+0.900391 g
+3571.2 6850 m
+3571.2 6730.71 3422.91 6634 3240 6634 c
+3057.09 6634 2908.8 6730.71 2908.8 6850 c
+2908.8 6969.29 3057.09 7066 3240 7066 c
+3422.91 7066 3571.2 6969.29 3571.2 6850 c
+f
+20 w
+3571.2 6850 m
+3571.2 6730.71 3422.91 6634 3240 6634 c
+3057.09 6634 2908.8 6730.71 2908.8 6850 c
+2908.8 6969.29 3057.09 7066 3240 7066 c
+3422.91 7066 3571.2 6969.29 3571.2 6850 c
+h
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+-0.8 Tc
+/R8 10 Tf
+1 0 0 1 305.789 710.4 Tm
+(To)Tj
+0 Tc
+10.3098 0 Td
+-0.834 Tw
+(tal / 52)Tj
+/R9 10 Tf
+-244.098 -71 Td
+0.067 Tw
+(No books)Tj
+5.067 Tc
+40.3426 0 Td
+(;N)Tj
+2.567 Tc
+15.6172 0 Td
+(oc)Tj
+0 Tc
+12.007 0 Td
+-0.834 Tw
+(alculator ;)Tj
+47.2926 0 Td
+0.067 Tw
+(No computer)Tj
+5.067 Tc
+55.3426 0 Td
+(;N)Tj
+2.567 Tc
+15.6172 0 Td
+(oe)Tj
+0 Tc
+12.007 0 Td
+-0.834 Tw
+(mail ;)Tj
+28.4027 0 Td
+0.067 Tw
+(No internet)Tj
+5.067 Tc
+48.6824 0 Td
+(;N)Tj
+2.567 Tc
+15.6172 0 Td
+(on)Tj
+0 Tc
+13.127 0 Td
+-0.834 Tw
+(otes ;)Tj
+26.1727 0 Td
+0.066 Tw
+[(No phone.)-506.533(Neatness counts)]TJ
+5.066 Tc
+116.593 0 Td
+(!D)Tj
+0 Tc
+16.1762 0 Td
+(o)Tj
+-462.997 -12 Td
+0 Tw
+(your scratc)Tj
+2.5 Tc
+45.7297 0 Td
+(hw)Tj
+0 Tc
+14.5797 0 Td
+[(ork elsewhere and enter only your \214nal answ)10(er into the spaces pro)15.0317(vided.)]TJ
+/R8 10 Tf
+-52.8094 -18 Td
+2.5 Tw
+(1. Gi)Tj
+-0.15 Tc
+22.25 0 Td
+(ve)Tj
+2.5 Tc
+9.28984 0 Td
+(nt)Tj
+0 Tc
+10.2797 0 Td
+0 Tw
+[(he grammar presented here, and using the style from the LALR\(1\) handout)-166.548(:)]TJ
+-20.4195 -12 Td
+2.5 Tw
+(\(a\) Construct)Tj
+58.3617 0 Td
+0.872 Tw
+(the characteristic \214nite state machine \(CFSM\), sets of items and transition diagram, sho)Tj
+360.734 0 Td
+(wing)Tj
+-402.996 -12 Td
+0 Tw
+(shifts, reductions, and acceptance.)Tj
+/R10 10 Tf
+141.63 0 Td
+([6)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+/R8 10 Tf
+-175.639 -12 Td
+2.5 Tw
+(\(b\) Construct)Tj
+58.05 0 Td
+0 Tw
+(the FOLLO)Tj
+2.5 Tc
+46.5902 0 Td
+(Ws)Tj
+0 Tc
+15.8297 0 Td
+(ets.)Tj
+/R10 10 Tf
+18.6098 0 Td
+([3)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+/R8 10 Tf
+-155.869 -12 Td
+2.5 Tw
+(\(c\) Answer)Tj
+/R9 10 Tf
+49.7 0 Td
+(yes)Tj
+/R8 10 Tf
+15.2699 0 Td
+(or)Tj
+/R9 10 Tf
+10.8297 0 Td
+(no)Tj
+/R8 10 Tf
+13.0598 0 Td
+0 Tw
+[(to each of the follo)25.0171(wing questions)-166.531(:)]TJ
+/R10 10 Tf
+145.015 0 Td
+([1)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+/R8 10 Tf
+-235.124 -18 Td
+[(Is the grammar LR\(0\))-166.531(?)]TJ
+ET
+Q
+4 w
+2156.25 5434.25 m
+2206.25 5434.25 l
+S
+2176.25 5434.25 m
+2226.25 5434.25 l
+S
+2226.25 5434.25 m
+2276.25 5434.25 l
+S
+2276.25 5434.25 m
+2326.25 5434.25 l
+S
+2326.25 5434.25 m
+2376.25 5434.25 l
+S
+2376.25 5434.25 m
+2426.25 5434.25 l
+S
+2426.25 5434.25 m
+2476.25 5434.25 l
+S
+2476.25 5434.25 m
+2526.25 5434.25 l
+S
+2526.25 5434.25 m
+2576.25 5434.25 l
+S
+2576.25 5434.25 m
+2626.25 5434.25 l
+S
+2626.25 5434.25 m
+2676.25 5434.25 l
+S
+2676.25 5434.25 m
+2726.25 5434.25 l
+S
+2726.25 5434.25 m
+2776.25 5434.25 l
+S
+2776.25 5434.25 m
+2826.25 5434.25 l
+S
+2826.25 5434.25 m
+2876.25 5434.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 310.586 543.4 Tm
+[(Is the grammar SLR\(1\))-166.545(?)]TJ
+ET
+Q
+4147.25 5434.25 m
+4197.25 5434.25 l
+S
+4167.25 5434.25 m
+4217.25 5434.25 l
+S
+4217.25 5434.25 m
+4267.25 5434.25 l
+S
+4267.25 5434.25 m
+4317.25 5434.25 l
+S
+4317.25 5434.25 m
+4367.25 5434.25 l
+S
+4367.25 5434.25 m
+4417.25 5434.25 l
+S
+4417.25 5434.25 m
+4467.25 5434.25 l
+S
+4467.25 5434.25 m
+4517.25 5434.25 l
+S
+4517.25 5434.25 m
+4567.25 5434.25 l
+S
+4567.25 5434.25 m
+4617.25 5434.25 l
+S
+4617.25 5434.25 m
+4667.25 5434.25 l
+S
+4667.25 5434.25 m
+4717.25 5434.25 l
+S
+4717.25 5434.25 m
+4767.25 5434.25 l
+S
+4767.25 5434.25 m
+4817.25 5434.25 l
+S
+4817.25 5434.25 m
+4867.25 5434.25 l
+S
+920.25 5329.25 m
+1732.25 5329.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 97 523.4 Tm
+(0.)Tj
+/R7 10 Tf
+17.5 0 Td
+(S)Tj
+/R15 10 Tf
+14.4395 0 Td
+<AE>Tj
+2.5 Tc
+/R7 10 Tf
+14.8699 0 Td
+($M$)Tj
+0 Tc
+/R8 10 Tf
+-46.8094 -12 Td
+(1.)Tj
+/R7 10 Tf
+17.5 0 Td
+(M)Tj
+/R15 10 Tf
+14.4398 0 Td
+<AE>Tj
+2.5 Tc
+/R7 10 Tf
+14.8699 0 Td
+(ME)Tj
+0 Tc
+/R8 10 Tf
+-46.8098 -12 Td
+(2.)Tj
+/R7 10 Tf
+17.5 0 Td
+(M)Tj
+/R15 10 Tf
+14.4398 0 Td
+<AE>Tj
+/R8 10 Tf
+-31.9398 -12 Td
+(3.)Tj
+/R7 10 Tf
+17.5 0 Td
+(E)Tj
+/R15 10 Tf
+14.4398 0 Td
+<AE>Tj
+2.5 Tc
+/R7 10 Tf
+14.8699 0 Td
+(\(M\))Tj
+0 Tc
+/R8 10 Tf
+-46.8098 -12 Td
+(4.)Tj
+/R7 10 Tf
+17.5 0 Td
+(E)Tj
+/R15 10 Tf
+14.4398 0 Td
+<AE>Tj
+2.5 Tc
+/R7 10 Tf
+14.8699 0 Td
+(*E)Tj
+0 Tc
+/R8 10 Tf
+-46.8098 -12 Td
+(5.)Tj
+/R7 10 Tf
+17.5 0 Td
+(E)Tj
+/R15 10 Tf
+14.4398 0 Td
+<AE>Tj
+/R7 10 Tf
+14.8699 0 Td
+(x)Tj
+ET
+Q
+920.25 4589.25 m
+1732.25 4589.25 l
+S
+1732.25 4589.25 m
+1732.25 5329.25 l
+S
+920.25 4589.25 m
+920.25 5329.25 l
+S
+Q
+endstream
+endobj
+6 0 obj
+7371
+endobj
+18 0 obj
+<</Length 19 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+4 w
+1 J
+1 j
+0 G
+720.25 7404.25 m
+5400.25 7404.25 l
+S
+720.25 7392.25 m
+5400.25 7392.25 l
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R7 10 Tf
+1 0 0 1 72 744 Tm
+[(CMPS-104A \203 Compiler Design I \203 F)25.0098(all 2009 \203 Final Exam)]TJ
+/R8 10 Tf
+423.289 0 Td
+(page 2 of 5)Tj
+-415.789 -24 Td
+2.5 Tw
+(2. T)Tj
+18.2602 0 Td
+0.343 Tw
+[(ranslate the C code on the left into icode as per the project 5 specs.)-534.275(Do not write an)]TJ
+2.842 Tc
+340.404 0 Td
+(yd)Tj
+0 Tc
+12.8422 0 Td
+0.342 Tw
+(eclarations for tempo-)Tj
+-359.006 -12 Td
+0.505 Tw
+(raries, just use them and assume the)Tj
+3.005 Tc
+146.47 0 Td
+(ya)Tj
+0 Tc
+12.4453 0 Td
+[(re of the correct type.)-550.461(As f)10.0073(ar as is possible, write the icode in the right)]TJ
+-158.915 -12 Td
+0 Tw
+(box parallel to the C code.)Tj
+110.54 0 Td
+-0.834 Tw
+(Note :)Tj
+28.8859 0 Td
+0 Tw
+(we are using some constructs not a)Tj
+-0.25 Tc
+139.22 0 Td
+(va)Tj
+0 Tc
+9.18984 0 Td
+(ilable in c0.)Tj
+/R10 10 Tf
+51.9398 0 Td
+([7)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+ET
+Q
+920.25 6855.25 m
+5405.25 6855.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R13 10 Tf
+0.75 0 0 1 124.5 676 Tm
+(int compare \(int, int\);)Tj
+/R8 10 Tf
+1 0 0 1 265.5 676 Tm
+(\(Do not translate this line.\))Tj
+ET
+Q
+920.25 6715.25 m
+5405.25 6715.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 102 662 Tm
+(1.)Tj
+/R13 10 Tf
+0.75 0 0 1 124.5 662 Tm
+(int shift \()Tj
+/R8 10 Tf
+1 0 0 1 102 650 Tm
+(2.)Tj
+/R13 10 Tf
+0.75 0 0 1 138 650 Tm
+(int *array,)Tj
+/R8 10 Tf
+1 0 0 1 102 638 Tm
+(3.)Tj
+/R13 10 Tf
+0.75 0 0 1 138 638 Tm
+(int slot,)Tj
+/R8 10 Tf
+1 0 0 1 102 626 Tm
+(4.)Tj
+/R13 10 Tf
+0.75 0 0 1 138 626 Tm
+(int saved)Tj
+ET
+Q
+920.25 6071.25 m
+5405.25 6071.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 102 597.6 Tm
+(5.)Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 124.5 597.6 Tm
+(\){)Tj
+ET
+Q
+920.25 5931.25 m
+5405.25 5931.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 102 583.6 Tm
+(6.)Tj
+/R13 10 Tf
+0.75 0 0 1 138 583.6 Tm
+(while \(slot > 0\) {)Tj
+ET
+Q
+920.25 5575.25 m
+5405.25 5575.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 102 548 Tm
+(7.)Tj
+/R13 10 Tf
+0.75 0 0 1 151.5 548 Tm
+(if \(compare \()Tj
+/R8 10 Tf
+1 0 0 1 102 536 Tm
+(8.)Tj
+/R13 10 Tf
+0.75 0 0 1 169.5 536 Tm
+(array [slot - 1],)Tj
+/R8 10 Tf
+1 0 0 1 102 524 Tm
+(9.)Tj
+/R13 10 Tf
+0.75 0 0 1 169.5 524 Tm
+(saved\) <= 0\))Tj
+ET
+Q
+920.25 4907.25 m
+5405.25 4907.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 97 481.2 Tm
+(10.)Tj
+/R13 10 Tf
+0.75 0 0 1 178.5 481.2 Tm
+(break;)Tj
+ET
+Q
+920.25 4623.25 m
+5405.25 4623.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 97 452.8 Tm
+(11.)Tj
+/R13 10 Tf
+0.75 0 0 1 151.5 452.8 Tm
+(array[slot] =)Tj
+/R8 10 Tf
+1 0 0 1 97 440.8 Tm
+(12.)Tj
+/R13 10 Tf
+0.75 0 0 1 178.5 440.8 Tm
+(array[slot - 1];)Tj
+ET
+Q
+920.25 4075.25 m
+5405.25 4075.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 97 398 Tm
+(13.)Tj
+/R13 10 Tf
+0.75 0 0 1 151.5 398 Tm
+(--slot;)Tj
+ET
+Q
+920.25 3791.25 m
+5405.25 3791.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 97 369.6 Tm
+(14.)Tj
+/R13 10 Tf
+0.75 0 0 1 138 369.6 Tm
+(})Tj
+ET
+Q
+920.25 3507.25 m
+5405.25 3507.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 97 341.2 Tm
+(15.)Tj
+/R13 10 Tf
+0.75 0 0 1 138 341.2 Tm
+(return slot;)Tj
+ET
+Q
+920.25 3223.25 m
+5405.25 3223.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 97 312.8 Tm
+(16.)Tj
+/R13 10 Tf
+0.75 0 0 1 124.5 312.8 Tm
+(})Tj
+ET
+Q
+920.25 2939.25 m
+5405.25 2939.25 l
+S
+5405.25 2939.25 m
+5405.25 6855.25 l
+S
+2580.25 2939.25 m
+2580.25 6855.25 l
+S
+1170.25 2939.25 m
+1170.25 6855.25 l
+S
+920.25 2939.25 m
+920.25 6855.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 79.5 272.4 Tm
+2.5 Tw
+(3. In)Tj
+23.6965 0 Td
+0.367 Tw
+(the follo)Tj
+33.727 0 Td
+0.366 Tw
+(wing table, assuming the function)Tj
+/R13 10 Tf
+0.75 0 0 1 276.523 272.4 Tm
+(shift)Tj
+-0.25 Tc
+/R8 10 Tf
+1 0 0 1 301.889 272.4 Tm
+(ow)Tj
+0 Tc
+11.9699 0 Td
+(ns block 4, write the mangled names of all identi\214ers in)Tj
+-221.859 -12 Td
+0.954 Tw
+(the program under the heading)Tj
+/R11 10 Tf
+130.02 0 Td
+(Identi\214er)Tj
+/R8 10 Tf
+40.1137 0 Td
+[(and the associated attrib)20.0366(utes in the adjacent box labelled)]TJ
+/R11 10 Tf
+235.845 0 Td
+[(Attrib)20.0146(utes)]TJ
+/R8 10 Tf
+39.5195 0 Td
+(.)Tj
+-445.498 -12 Td
+1.146 Tw
+[(Choose some combination of attrib)20.0024(utes from the follo)25.0342(wing list)]TJ
+259.823 0 Td
+(:)Tj
+/R13 10 Tf
+0.75 0 0 1 360.748 248.4 Tm
+(int)Tj
+/R8 10 Tf
+1 0 0 1 374.248 248.4 Tm
+(,)Tj
+/R13 10 Tf
+0.75 0 0 1 380.394 248.4 Tm
+(char)Tj
+/R8 10 Tf
+1 0 0 1 398.394 248.4 Tm
+(,)Tj
+/R13 10 Tf
+0.75 0 0 1 404.54 248.4 Tm
+(void)Tj
+/R8 10 Tf
+1 0 0 1 422.54 248.4 Tm
+(,)Tj
+/R13 10 Tf
+0.75 0 0 1 428.686 248.4 Tm
+(array)Tj
+/R8 10 Tf
+1 0 0 1 451.186 248.4 Tm
+([)Tj
+/R11 10 Tf
+3.68945 0 Td
+(n)Tj
+/R8 10 Tf
+5.23984 0 Td
+(],)Tj
+/R13 10 Tf
+0.75 0 0 1 469.59 248.4 Tm
+(ptr)Tj
+/R8 10 Tf
+1 0 0 1 483.09 248.4 Tm
+<28>Tj
+/R11 10 Tf
+3.68945 0 Td
+(n)Tj
+/R8 10 Tf
+5.23984 0 Td
+(\),)Tj
+/R13 10 Tf
+0.75 0 0 1 501.495 248.4 Tm
+(function)Tj
+/R8 10 Tf
+1 0 0 1 537.495 248.4 Tm
+(,)Tj
+/R13 10 Tf
+0.75 0 0 1 92 236.4 Tm
+(lvalue)Tj
+/R8 10 Tf
+1 0 0 1 119 236.4 Tm
+(,)Tj
+/R13 10 Tf
+0.75 0 0 1 124 236.4 Tm
+(global)Tj
+/R8 10 Tf
+1 0 0 1 151 236.4 Tm
+(,)Tj
+/R13 10 Tf
+0.75 0 0 1 156 236.4 Tm
+(local)Tj
+/R8 10 Tf
+1 0 0 1 178.5 236.4 Tm
+(,)Tj
+/R13 10 Tf
+0.75 0 0 1 183.5 236.4 Tm
+(param)Tj
+5 Tc
+/R8 10 Tf
+1 0 0 1 206 236.4 Tm
+(.F)Tj
+0 Tc
+12.9098 0 Td
+0 Tw
+(or pointers,)Tj
+/R11 10 Tf
+48.4098 0 Td
+(n)Tj
+/R8 10 Tf
+7.73984 0 Td
+(is the number of le)Tj
+-0.15 Tc
+74.7398 0 Td
+(ve)Tj
+0 Tc
+9.28984 0 Td
+(ls, and for arrays,)Tj
+/R11 10 Tf
+72.5598 0 Td
+(n)Tj
+/R8 10 Tf
+7.73984 0 Td
+(is the dimension.)Tj
+/R10 10 Tf
+73.0598 0 Td
+([3)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+ET
+Q
+920.25 2259.25 m
+3090.25 2259.25 l
+S
+3240.25 2259.25 m
+5410.25 2259.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 97 216.4 Tm
+34.59 Tw
+(Identi\214er Attrib)Tj
+97.4398 0 Td
+118.451 Tw
+(utes Identi\214er)Tj
+210.811 0 Td
+[(Attrib)20.0146(utes)]TJ
+ET
+Q
+920.25 2119.25 m
+3090.25 2119.25 l
+S
+3240.25 2119.25 m
+5410.25 2119.25 l
+S
+920.25 1739.25 m
+3090.25 1739.25 l
+S
+3240.25 1739.25 m
+5410.25 1739.25 l
+S
+920.25 1359.25 m
+3090.25 1359.25 l
+S
+3240.25 1359.25 m
+5410.25 1359.25 l
+S
+920.25 979.25 m
+3090.25 979.25 l
+S
+3240.25 979.25 m
+5410.25 979.25 l
+S
+5410.25 979.25 m
+5410.25 2259.25 l
+S
+3977.25 979.25 m
+3977.25 2259.25 l
+S
+3240.25 979.25 m
+3240.25 2259.25 l
+S
+3090.25 979.25 m
+3090.25 2259.25 l
+S
+1632.25 979.25 m
+1632.25 2259.25 l
+S
+920.25 979.25 m
+920.25 2259.25 l
+S
+Q
+endstream
+endobj
+19 0 obj
+6341
+endobj
+22 0 obj
+<</Length 23 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+4 w
+1 J
+1 j
+0 G
+720.25 7404.25 m
+5400.25 7404.25 l
+S
+720.25 7392.25 m
+5400.25 7392.25 l
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R7 10 Tf
+1 0 0 1 72 744 Tm
+[(CMPS-104A \203 Compiler Design I \203 F)25.0098(all 2009 \203 Final Exam)]TJ
+/R8 10 Tf
+423.289 0 Td
+(page 3 of 5)Tj
+-415.789 -24 Td
+2.5 Tw
+(4. F)Tj
+17.9098 0 Td
+0 Tw
+[(or the program on the pre)25.0085(vious page)-166.562(:)]TJ
+3.49023 -12 Td
+2.5 Tw
+(\(a\) Dra)Tj
+3.323 Tc
+30.9398 0 Td
+(wag)Tj
+0 Tc
+23.3062 0 Td
+0.823 Tw
+(raph of basic blocks.)Tj
+91.0516 0 Td
+(Dra)Tj
+3.323 Tc
+14.8398 0 Td
+(wac)Tj
+0 Tc
+22.7461 0 Td
+(ircle for each basic block in the program, and inside the circle)Tj
+-166.784 -12 Td
+0.058 Tw
+[(write the numbers in the left column which refer to lines of code belonging to that basic block.)-505.781(Using the)]TJ
+12 TL
+0 Tw
+(capital letters A, B, C, .)'
+1.666 Tc
+95.8254 0 Td
+-3.332 Tw
+(.., w)Tj
+0 Tc
+20.5523 0 Td
+0 Tw
+(rite one letter in each circle.)Tj
+/R10 10 Tf
+116.63 0 Td
+([2)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+/R8 10 Tf
+-267.017 -12 Td
+2.5 Tw
+(\(b\) Dra)Tj
+2.5 Tc
+31.5 0 Td
+(wad)Tj
+0 Tc
+21.6598 0 Td
+0 Tw
+(epth \214rst spanning tree using the letters from the \214rst diagram, not the numbers.)Tj
+/R10 10 Tf
+324.14 0 Td
+([1)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+/R8 10 Tf
+-394.089 -12 Td
+2.5 Tw
+(\(c\) Dra)Tj
+2.65 Tc
+30.9398 0 Td
+(wad)Tj
+0 Tc
+21.9598 0 Td
+0.15 Tw
+[(ominator tree and write an asterisk ne)15.0073(xt to the head of the natural loop.)-514.976(Inside each circle, write)]TJ
+-36.7996 -12 Td
+0 Tw
+[(the letters used in the pre)25.0244(vious question.)]TJ
+/R10 10 Tf
+165.57 0 Td
+([2)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+/R8 10 Tf
+-199.579 -12 Td
+2.5 Tw
+(\(d\) Using)Tj
+43.05 0 Td
+0 Tw
+[(the letters, what blocks are part of the natural loop)-166.553(?)]TJ
+/R10 10 Tf
+212.175 0 Td
+([1)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+/R8 10 Tf
+-293.415 -300 Td
+2.5 Tw
+(5. Using)Tj
+39.2418 0 Td
+0.352 Tw
+(the general rules of project 3, dra)Tj
+2.852 Tc
+134.422 0 Td
+[(wa)285.227(na)]TJ
+0 Tc
+26.8035 0 Td
+(bstract syntax tree of that part of the AST for the pre)Tj
+213.852 0 Td
+0.351 Tw
+(vious ques-)Tj
+-401.819 -12 Td
+0.57 Tw
+(tion which is rooted at)Tj
+/R13 10 Tf
+0.75 0 0 1 186.79 324 Tm
+(while)Tj
+5.57 Tc
+/R8 10 Tf
+1 0 0 1 209.29 324 Tm
+(.T)Tj
+0 Tc
+14.1801 0 Td
+(hat is, ignore e)Tj
+-0.15 Tc
+60.3398 0 Td
+(ve)Tj
+0 Tc
+9.28984 0 Td
+[(rything e)15(xcept for the)]TJ
+/R13 10 Tf
+0.75 0 0 1 384.099 324 Tm
+(while)Tj
+/R8 10 Tf
+1 0 0 1 409.669 324 Tm
+(node and all of its descendants..)Tj
+-317.669 -12 Td
+(Mak)Tj
+2.5 Tc
+18.2297 0 Td
+(ear)Tj
+0 Tc
+17.2098 0 Td
+0 Tw
+(easonable choice for those elements not part of c0.)Tj
+/R10 10 Tf
+207.45 0 Td
+([4)Tj
+/R14 10 Tf
+8.88984 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+ET
+Q
+Q
+endstream
+endobj
+23 0 obj
+2807
+endobj
+26 0 obj
+<</Length 27 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+4 w
+1 J
+1 j
+0 G
+720.25 7404.25 m
+5400.25 7404.25 l
+S
+720.25 7392.25 m
+5400.25 7392.25 l
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R7 10 Tf
+1 0 0 1 72 744 Tm
+[(CMPS-104A \203 Compiler Design I \203 F)25.0098(all 2009 \203 Final Exam)]TJ
+/R8 10 Tf
+423.289 0 Td
+(page 4 of 5)Tj
+-423.289 -24 Td
+1.675 Tw
+(Multiple choice.)Tj
+-0.8 Tc
+73.9 0 Td
+3.275 Tw
+(To t)Tj
+0 Tc
+17.2648 0 Td
+(he)Tj
+/R9 10 Tf
+13.6148 0 Td
+(left)Tj
+/R8 10 Tf
+17.5047 0 Td
+1.675 Tw
+(of each question, write)Tj
+-122.284 -12 Td
+1.276 Tw
+(the letter that indicates your answer)Tj
+6.277 Tc
+148.3 0 Td
+(.W)Tj
+0 Tc
+18.2168 0 Td
+(rite)Tj
+/R9 10 Tf
+17.1066 0 Td
+(Z)Tj
+/R8 10 Tf
+9.88672 0 Td
+1.277 Tw
+(if you)Tj
+-193.51 -12 Td
+(don')Tj
+4.077 Tc
+18.15 0 Td
+(tw)Tj
+0 Tc
+13.977 0 Td
+1.576 Tw
+(ant to risk a wrong answer)Tj
+6.576 Tc
+113.14 0 Td
+(.W)Tj
+0 Tc
+18.516 0 Td
+(rong answers)Tj
+-163.783 -12 Td
+0 Tw
+[(are w)10.0311(orth ne)]TJ
+-0.05 Tc
+49.7297 0 Td
+(ga)Tj
+0 Tc
+9.38984 0 Td
+(ti)Tj
+-0.15 Tc
+5.30977 0 Td
+0.3 Tw
+(ve p)Tj
+0 Tc
+16.7898 0 Td
+(oints.)Tj
+/R10 10 Tf
+26.95 0 Td
+([11)Tj
+/R14 10 Tf
+14.45 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+ET
+Q
+720.25 6675.25 m
+2929.25 6675.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 77 658 Tm
+(number of)Tj
+7.5 Tc
+123.9 0 Td
+<D731>Tj
+0 Tc
+23.1398 0 Td
+(=)Tj
+/R15 10 Tf
+50.0398 0 Td
+(=)Tj
+/R11 10 Tf
+8.61953 0 Td
+(a)Tj
+/R8 10 Tf
+-205.699 -12 Td
+(correct answers)Tj
+ET
+Q
+720.25 6415.25 m
+2929.25 6415.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 77 632 Tm
+(number of)Tj
+5 Tc
+123.9 0 Td
+<D7BD3D>Tj
+0 Tc
+/R15 10 Tf
+73.1797 0 Td
+(=)Tj
+/R11 10 Tf
+8.55977 0 Td
+(b)Tj
+/R8 10 Tf
+-205.639 -12 Td
+(wrong answers)Tj
+ET
+Q
+720.25 6155.25 m
+2929.25 6155.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 77 606 Tm
+(number of)Tj
+7.5 Tc
+123.9 0 Td
+<D730>Tj
+24.4 Tc
+23.1398 0 Td
+(=0)Tj
+0 Tc
+-147.039 -12 Td
+(missing answers)Tj
+ET
+Q
+720.25 5895.25 m
+2929.25 5895.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 77 580 Tm
+[(column total)-5361.96(11)]TJ
+/R15 10 Tf
+197.079 0 Td
+(=)Tj
+/R11 10 Tf
+8.48984 0 Td
+(c)Tj
+-205.37 -12 Td
+(c)Tj
+/R15 10 Tf
+7.54961 0 Td
+(=)Tj
+/R8 10 Tf
+8.28945 0 Td
+(max\()Tj
+/R11 10 Tf
+20.8797 0 Td
+(a)Tj
+/R15 10 Tf
+7.45977 0 Td
+(-)Tj
+/R11 10 Tf
+7.95977 0 Td
+(b)Tj
+1.7 Tc
+/R8 10 Tf
+5.22969 0 Td
+(,0)Tj
+0 Tc
+9.2 0 Td
+<29>Tj
+ET
+Q
+720.25 5635.25 m
+2929.25 5635.25 l
+S
+2929.25 5635.25 m
+2929.25 6675.25 l
+S
+2372.25 5635.25 m
+2372.25 6675.25 l
+S
+1959.25 5635.25 m
+1959.25 6675.25 l
+S
+1546.25 5635.25 m
+1546.25 6675.25 l
+S
+720.25 5635.25 m
+720.25 6675.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 79.5 542 Tm
+2.5 Tw
+(1. Which)Tj
+42.0504 0 Td
+0.391 Tw
+[(of the follo)25.0122(wing items will cause a reduc-)]TJ
+-29.5504 -12 Td
+0 Tw
+[(tion action to be added to the state)-166.531(?)]TJ
+1.11992 -12 Td
+(\(A\))Tj
+/R11 10 Tf
+19.3895 0 Td
+(E)Tj
+/R15 10 Tf
+9.63945 0 Td
+<AE>Tj
+/R8 10 Tf
+12.6695 0 Td
+<83>Tj
+/R11 10 Tf
+6.80977 0 Td
+(E)Tj
+/R15 10 Tf
+9.03945 0 Td
+(+)Tj
+/R11 10 Tf
+7.59961 0 Td
+(T)Tj
+/R8 10 Tf
+-64.5973 -12 Td
+(\(B\))Tj
+/R11 10 Tf
+18.8395 0 Td
+(E)Tj
+/R15 10 Tf
+9.63945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.1797 0 Td
+(E)Tj
+/R8 10 Tf
+9.63945 0 Td
+<83>Tj
+/R15 10 Tf
+6.29961 0 Td
+(+)Tj
+/R11 10 Tf
+7.59961 0 Td
+(T)Tj
+/R8 10 Tf
+-65.1973 -12 Td
+(\(C\))Tj
+/R11 10 Tf
+18.8395 0 Td
+(E)Tj
+/R15 10 Tf
+9.63945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.1797 0 Td
+(E)Tj
+/R15 10 Tf
+9.03945 0 Td
+(+)Tj
+/R8 10 Tf
+8.28945 0 Td
+<83>Tj
+/R11 10 Tf
+6.20977 0 Td
+(T)Tj
+/R8 10 Tf
+-65.7473 -12 Td
+(\(D\))Tj
+/R11 10 Tf
+19.3895 0 Td
+(E)Tj
+/R15 10 Tf
+9.63945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.1797 0 Td
+(E)Tj
+/R15 10 Tf
+9.03945 0 Td
+(+)Tj
+/R11 10 Tf
+7.59961 0 Td
+(T)Tj
+/R8 10 Tf
+9.62969 0 Td
+<83>Tj
+-82.0973 -18 Td
+2.5 Tw
+(2. The)Tj
+/R13 10 Tf
+0.75 0 0 1 110.05 464 Tm
+(flex)Tj
+/R8 10 Tf
+1 0 0 1 130.55 464 Tm
+[(re)15.0073(ge)]TJ
+2.5 Tc
+16.9098 0 Td
+(x`)Tj
+0 Tc
+10.0898 0 Td
+0 Tw
+(`dot star')Tj
+2.5 Tc
+35.6398 0 Td
+('\()Tj
+0 Tc
+/R13 10 Tf
+0.75 0 0 1 202.349 464 Tm
+(.*)Tj
+2.5 Tc
+/R8 10 Tf
+1 0 0 1 211.349 464 Tm
+[(\)i)250.024(se)]TJ
+0 Tc
+19.4395 0 Td
+(qui)Tj
+-0.25 Tc
+12.5297 0 Td
+(va)Tj
+0 Tc
+9.18984 0 Td
+[(lent to)-166.531(:)]TJ
+-159.388 -12 Td
+(\(A\))Tj
+/R13 10 Tf
+0.75 0 0 1 112 452 Tm
+([/n\000]*)Tj
+/R8 10 Tf
+1 0 0 1 93.6699 440 Tm
+(\(B\))Tj
+/R13 10 Tf
+0.75 0 0 1 112 440 Tm
+([\\n\000]*)Tj
+/R8 10 Tf
+1 0 0 1 93.6699 428 Tm
+(\(C\))Tj
+/R13 10 Tf
+0.75 0 0 1 112 428 Tm
+([\000/n]*)Tj
+/R8 10 Tf
+1 0 0 1 93.1199 416 Tm
+(\(D\))Tj
+/R13 10 Tf
+0.75 0 0 1 112 416 Tm
+([\000\\n]*)Tj
+/R8 10 Tf
+1 0 0 1 79.5 398 Tm
+2.5 Tw
+(3. Which)Tj
+41.6598 0 Td
+0 Tw
+[(statement is true)-166.562(?)]TJ
+-28.0398 -12 Td
+2.5 Tw
+(\(A\) All)Tj
+34.1598 0 Td
+0 Tw
+(LR\(k\) languages are unambiguous.)Tj
+-33.6098 -12 Td
+2.5 Tw
+(\(B\) All)Tj
+33.6098 0 Td
+0 Tw
+[(conte)15.0232(xt free languages are LR\(k\).)]TJ
+-33.6098 -12 Td
+2.5 Tw
+(\(C\) Some)Tj
+43.6098 0 Td
+0 Tw
+(LR\(k\) languages are ambiguous.)Tj
+-44.1598 -12 Td
+2.5 Tw
+(\(D\) Some)Tj
+44.1598 0 Td
+0 Tw
+[(re)15.0073(gular languages are not LR\(k\).)]TJ
+-57.7797 -18 Td
+2.5 Tw
+(4. The)Tj
+30.55 0 Td
+-0.834 Tw
+(grammar :)Tj
+/R11 10 Tf
+-3.54023 -12 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.4398 0 Td
+(x)Tj
+-22.3793 -12 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.4098 0 Td
+(y)Tj
+/R8 10 Tf
+-35.7391 -12 Td
+2.5 Tw
+(\(A\) is)Tj
+28.05 0 Td
+0 Tw
+(both LR\(0\) and SLR\(1\).)Tj
+-27.5 -12 Td
+2.5 Tw
+(\(B\) is)Tj
+27.5 0 Td
+0 Tw
+[(LR\(0\) b)20.0159(ut not SLR\(1\).)]TJ
+-27.5 -12 Td
+2.5 Tw
+(\(C\) is)Tj
+27.5 0 Td
+0 Tw
+[(not LR\(0\) b)20.0085(ut is SLR\(1\).)]TJ
+-28.05 -12 Td
+2.5 Tw
+(\(D\) is)Tj
+28.05 0 Td
+0 Tw
+(neither LR\(0\) nor SLR\(1\).)Tj
+-41.6699 -18 Td
+2.5 Tw
+(5. Which)Tj
+/R13 10 Tf
+0.75 0 0 1 121.16 242 Tm
+(bison)Tj
+/R8 10 Tf
+1 0 0 1 146.16 242 Tm
+0 Tw
+[(grammar is ambiguous)-166.538(?)]TJ
+-53.0398 -12 Td
+(\(A\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 230 Tm
+(e:IXI|I;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.6699 218 Tm
+(\(B\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 218 Tm
+(e:IXe|I;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.6699 206 Tm
+(\(C\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 206 Tm
+(e:eXI|I;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.1199 194 Tm
+(\(D\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 194 Tm
+(e:eXe|I;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 79.5 176 Tm
+2.5 Tw
+(6. Which)Tj
+/R13 10 Tf
+0.75 0 0 1 123.504 176 Tm
+(bison)Tj
+/R8 10 Tf
+1 0 0 1 150.847 176 Tm
+2.344 Tw
+(grammar is unambiguous, allo)Tj
+128.442 0 Td
+(ws)Tj
+-187.289 -12 Td
+2.947 Tw
+(an arbitrary number of occurrences of)Tj
+/R13 10 Tf
+0.75 0 0 1 263.512 164 Tm
+(I)Tj
+5.448 Tc
+/R8 10 Tf
+1 0 0 1 268.012 164 Tm
+(,a)Tj
+0 Tc
+12.3883 0 Td
+(nd)Tj
+-188.4 -12 Td
+[(mak)10.0073(es)]TJ
+/R13 10 Tf
+0.75 0 0 1 119.95 152 Tm
+(X)Tj
+/R8 10 Tf
+1 0 0 1 126.95 152 Tm
+0 Tw
+(right associati)Tj
+-0.15 Tc
+55.5797 0 Td
+-0.534 Tw
+(ve ?)Tj
+0 Tc
+-89.4094 -12 Td
+(\(A\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 140 Tm
+(e:IXI|I;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.6699 128 Tm
+(\(B\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 128 Tm
+(e:IXe|I;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.6699 116 Tm
+(\(C\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 116 Tm
+(e:eXI|I;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.1199 104 Tm
+(\(D\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 104 Tm
+(e:eXe|I;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 329.1 714 Tm
+2.5 Tw
+(7. The)Tj
+32.7687 0 Td
+(string)Tj
+/R11 10 Tf
+28.2387 0 Td
+(yxxxxxxxx)Tj
+/R8 10 Tf
+45.2086 0 Td
+2.219 Tw
+(is a sentence in the lan-)Tj
+-93.716 -12 Td
+0 Tw
+[(guage de\214ned by which grammar)-166.538(?)]TJ
+1.11992 -12 Td
+(\(A\))Tj
+/R11 10 Tf
+19.8895 0 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+3.6 Tc
+/R11 10 Tf
+13.6797 0 Td
+(Ax)Tj
+0 Tc
+-22.6187 -12 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.4098 0 Td
+(y)Tj
+/R8 10 Tf
+-41.6891 -12 Td
+(\(B\))Tj
+/R11 10 Tf
+19.3395 0 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+3.57 Tc
+/R11 10 Tf
+13.6797 0 Td
+(Ay)Tj
+0 Tc
+-22.6187 -12 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.4398 0 Td
+(x)Tj
+/R8 10 Tf
+-41.7191 -12 Td
+(\(C\))Tj
+/R11 10 Tf
+19.3395 0 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+4.34 Tc
+/R11 10 Tf
+13.4398 0 Td
+(xA)Tj
+0 Tc
+-22.3789 -12 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.4098 0 Td
+(y)Tj
+/R8 10 Tf
+-42.2391 -12 Td
+(\(D\))Tj
+/R11 10 Tf
+19.8895 0 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+4.13 Tc
+/R11 10 Tf
+13.4098 0 Td
+(yA)Tj
+0 Tc
+-22.3488 -12 Td
+(A)Tj
+/R15 10 Tf
+8.93945 0 Td
+<AE>Tj
+/R11 10 Tf
+13.4398 0 Td
+(x)Tj
+/R8 10 Tf
+-55.8891 -18 Td
+2.5 Tw
+(8. Which)Tj
+41.6598 0 Td
+0 Tw
+[(answer has only one basic block)-166.548(?)]TJ
+-28.0398 -12 Td
+(\(A\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 361.6 576 Tm
+(a=b+f)Tj
+0 Tc
+54 0 Td
+(\(x\); g\(h\(y\)\); m = n;)Tj
+/R8 10 Tf
+1 0 0 1 343.27 564 Tm
+(\(B\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 361.6 564 Tm
+[(a=b<c?d>e:f=)600(=g)]TJ
+0 Tc
+156 0 Td
+(;)Tj
+/R8 10 Tf
+1 0 0 1 343.27 552 Tm
+(\(C\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 552 Tm
+(for \(i = 0; i < n; ++i\) s += a[i];)Tj
+/R8 10 Tf
+1 0 0 1 342.72 540 Tm
+(\(D\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 540 Tm
+(if \(a[i] > 3\) t = false;)Tj
+/R8 10 Tf
+1 0 0 1 329.1 522 Tm
+2.5 Tw
+(9. An)Tj
+29.3066 0 Td
+2.087 Tw
+(AST node with what k)Tj
+-0.15 Tc
+98.7977 0 Td
+(ey)Tj
+-0.1 Tc
+9.28984 0 Td
+(wo)Tj
+0 Tc
+12.1199 0 Td
+(rd will require)Tj
+-137.014 -12 Td
+1.563 Tw
+(data associated with code generation of a jump)Tj
+12 TL
+(tar)'
+10.3703 0 Td
+2.14 Tw
+(get using information not in the node being)Tj
+-10.3703 -12 Td
+-0.834 Tw
+(considered ?)Tj
+1.11992 -12 Td
+(\(A\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 474 Tm
+(continue)Tj
+/R8 10 Tf
+1 0 0 1 343.27 462 Tm
+(\(B\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 462 Tm
+(if)Tj
+/R8 10 Tf
+1 0 0 1 343.27 450 Tm
+(\(C\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 450 Tm
+(return)Tj
+/R8 10 Tf
+1 0 0 1 342.72 438 Tm
+(\(D\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 438 Tm
+(while)Tj
+/R8 10 Tf
+1 0 0 1 324.1 420 Tm
+2.5 Tw
+(10. Ho)Tj
+3.162 Tc
+29.4699 0 Td
+(wm)Tj
+0 Tc
+18.1621 0 Td
+(an)Tj
+3.162 Tc
+9.28984 0 Td
+(yt)Tj
+0 Tc
+10.9422 0 Td
+(ok)Tj
+9.9 0 Td
+0.661 Tw
+[(ens are there in the follo)25(wing line)]TJ
+-60.2641 -12 Td
+0 Tw
+(of Ja)Tj
+-0.25 Tc
+18.9598 0 Td
+0.5 Tw
+(va c)Tj
+0 Tc
+16.1297 0 Td
+-0.834 Tw
+(ode ?)Tj
+/R13 10 Tf
+0.75 0 0 1 341.6 396 Tm
+0 Tw
+(out.printf \("Hello%n"\); // Say hello.)Tj
+/R8 10 Tf
+1 0 0 1 342.72 384 Tm
+7.5 Tw
+(\(A\) 7)Tj
+0.55 -12 Td
+(\(B\) 8)Tj
+(\(C\) 9)'
+-0.55 -12 Td
+2.5 Tw
+(\(D\) 10)Tj
+-18.6199 -18 Td
+(11. Which)Tj
+/R13 10 Tf
+0.75 0 0 1 375.08 330 Tm
+(bison)Tj
+/R8 10 Tf
+1 0 0 1 404.4 330 Tm
+4.32 Tw
+(grammar will parse input that)Tj
+-62.7996 -12 Td
+1.082 Tw
+(causes this program to return success)Tj
+6.082 Tc
+155.655 0 Td
+(?A)Tj
+0 Tc
+17.7422 0 Td
+(ssume)Tj
+/R13 10 Tf
+0.75 0 0 1 341.6 306 Tm
+(yylex)Tj
+/R8 10 Tf
+1 0 0 1 369.402 306 Tm
+2.802 Tw
+(returns all non-whitespace characters as)Tj
+-27.802 -12 Td
+[(themselv)15.0244(es.)]TJ
+/R13 10 Tf
+0.75 0 0 1 341.6 282 Tm
+0 Tw
+(int main \(\) { int n = 0; int c;)Tj
+12 -12 Td
+(while \(\(c = getchar\(\)\) != EOF\) {)Tj
+12 -12 Td
+(if \(isspace \(c\)\) continue;)Tj
+(switch \(c\) {)'
+12 -12 Td
+(case'\(': ++n; break;)Tj
+(case'\)': if \(--n<0\) return 1; break;)'
+(default: return 1;)'
+-12 -12 Td
+(})Tj
+-12 -12 Td
+(})Tj
+(return 0;)'
+-12 -12 Td
+(})Tj
+/R8 10 Tf
+1 0 0 1 342.72 150 Tm
+(\(A\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 361.6 150 Tm
+(b:')Tj
+0 Tc
+30 0 Td
+(\(' '\)' b | ;)Tj
+/R8 10 Tf
+1 0 0 1 343.27 138 Tm
+(\(B\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 361.6 138 Tm
+(b:')Tj
+0 Tc
+30 0 Td
+(\(' b '\)' b | ;)Tj
+/R8 10 Tf
+1 0 0 1 343.27 126 Tm
+(\(C\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 361.6 126 Tm
+(b:')Tj
+0 Tc
+30 0 Td
+(\(' b '\)' | ;)Tj
+/R8 10 Tf
+1 0 0 1 342.72 114 Tm
+(\(D\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 361.6 114 Tm
+(b:')Tj
+0 Tc
+30 0 Td
+(\(' b | b '\)' | ;)Tj
+ET
+Q
+Q
+endstream
+endobj
+27 0 obj
+11168
+endobj
+30 0 obj
+<</Length 31 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+4 w
+1 J
+1 j
+0 G
+720.25 7404.25 m
+5400.25 7404.25 l
+S
+720.25 7392.25 m
+5400.25 7392.25 l
+S
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R7 10 Tf
+1 0 0 1 72 744 Tm
+[(CMPS-104A \203 Compiler Design I \203 F)25.0098(all 2009 \203 Final Exam)]TJ
+/R8 10 Tf
+423.289 0 Td
+(page 5 of 5)Tj
+-423.289 -24 Td
+1.675 Tw
+(Multiple choice.)Tj
+-0.8 Tc
+73.9 0 Td
+3.275 Tw
+(To t)Tj
+0 Tc
+17.2648 0 Td
+(he)Tj
+/R9 10 Tf
+13.6148 0 Td
+(left)Tj
+/R8 10 Tf
+17.5047 0 Td
+1.675 Tw
+(of each question, write)Tj
+-122.284 -12 Td
+1.276 Tw
+(the letter that indicates your answer)Tj
+6.277 Tc
+148.3 0 Td
+(.W)Tj
+0 Tc
+18.2168 0 Td
+(rite)Tj
+/R9 10 Tf
+17.1066 0 Td
+(Z)Tj
+/R8 10 Tf
+9.88672 0 Td
+1.277 Tw
+(if you)Tj
+-193.51 -12 Td
+(don')Tj
+4.077 Tc
+18.15 0 Td
+(tw)Tj
+0 Tc
+13.977 0 Td
+1.576 Tw
+(ant to risk a wrong answer)Tj
+6.576 Tc
+113.14 0 Td
+(.W)Tj
+0 Tc
+18.516 0 Td
+(rong answers)Tj
+-163.783 -12 Td
+0 Tw
+[(are w)10.0311(orth ne)]TJ
+-0.05 Tc
+49.7297 0 Td
+(ga)Tj
+0 Tc
+9.38984 0 Td
+(ti)Tj
+-0.15 Tc
+5.30977 0 Td
+0.3 Tw
+(ve p)Tj
+0 Tc
+16.7898 0 Td
+(oints.)Tj
+/R10 10 Tf
+26.95 0 Td
+([11)Tj
+/R14 10 Tf
+14.45 0 Td
+(4)Tj
+/R10 10 Tf
+8.45977 0 Td
+(])Tj
+ET
+Q
+720.25 6675.25 m
+2929.25 6675.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 77 658 Tm
+(number of)Tj
+7.5 Tc
+123.9 0 Td
+<D731>Tj
+0 Tc
+23.1398 0 Td
+(=)Tj
+/R15 10 Tf
+50.0398 0 Td
+(=)Tj
+/R11 10 Tf
+8.61953 0 Td
+(a)Tj
+/R8 10 Tf
+-205.699 -12 Td
+(correct answers)Tj
+ET
+Q
+720.25 6415.25 m
+2929.25 6415.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 77 632 Tm
+(number of)Tj
+5 Tc
+123.9 0 Td
+<D7BD3D>Tj
+0 Tc
+/R15 10 Tf
+73.1797 0 Td
+(=)Tj
+/R11 10 Tf
+8.55977 0 Td
+(b)Tj
+/R8 10 Tf
+-205.639 -12 Td
+(wrong answers)Tj
+ET
+Q
+720.25 6155.25 m
+2929.25 6155.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 77 606 Tm
+(number of)Tj
+7.5 Tc
+123.9 0 Td
+<D730>Tj
+24.4 Tc
+23.1398 0 Td
+(=0)Tj
+0 Tc
+-147.039 -12 Td
+(missing answers)Tj
+ET
+Q
+720.25 5895.25 m
+2929.25 5895.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 77 580 Tm
+[(column total)-5361.96(11)]TJ
+/R15 10 Tf
+197.079 0 Td
+(=)Tj
+/R11 10 Tf
+8.48984 0 Td
+(c)Tj
+-205.37 -12 Td
+(c)Tj
+/R15 10 Tf
+7.54961 0 Td
+(=)Tj
+/R8 10 Tf
+8.28945 0 Td
+(max\()Tj
+/R11 10 Tf
+20.8797 0 Td
+(a)Tj
+/R15 10 Tf
+7.45977 0 Td
+(-)Tj
+/R11 10 Tf
+7.95977 0 Td
+(b)Tj
+1.7 Tc
+/R8 10 Tf
+5.22969 0 Td
+(,0)Tj
+0 Tc
+9.2 0 Td
+<29>Tj
+ET
+Q
+720.25 5635.25 m
+2929.25 5635.25 l
+S
+2929.25 5635.25 m
+2929.25 6675.25 l
+S
+2372.25 5635.25 m
+2372.25 6675.25 l
+S
+1959.25 5635.25 m
+1959.25 6675.25 l
+S
+1546.25 5635.25 m
+1546.25 6675.25 l
+S
+720.25 5635.25 m
+720.25 6675.25 l
+S
+q
+10 0 0 10 0 0 cm BT
+/R8 10 Tf
+1 0 0 1 79.5 542 Tm
+2.5 Tw
+(1. Which)Tj
+42.4426 0 Td
+0.783 Tw
+(kind of storage management pro)Tj
+132.402 0 Td
+0.784 Tw
+(vides for)Tj
+-162.345 -12 Td
+0 Tw
+[(the f)10(astest v)15.0085(ersion of)]TJ
+/R13 10 Tf
+0.75 0 0 1 177.29 530 Tm
+(malloc)Tj
+/R8 10 Tf
+1 0 0 1 205.955 530 Tm
+(?)Tj
+-112.836 -12 Td
+2.5 Tw
+(\(A\) cop)Tj
+33.2199 0 Td
+0 Tw
+(ying collector with semispaces)Tj
+-32.6699 -12 Td
+2.5 Tw
+(\(B\) mark)Tj
+41.3797 0 Td
+0 Tw
+(and sweep collector)Tj
+-41.3797 -12 Td
+2.5 Tw
+(\(C\) reference)Tj
+58.0199 0 Td
+0 Tw
+(counting collector)Tj
+-58.5699 -12 Td
+2.5 Tw
+(\(D\) using)Tj
+/R13 10 Tf
+0.75 0 0 1 136.17 482 Tm
+(free)Tj
+-0.15 Tc
+/R8 10 Tf
+1 0 0 1 156.67 482 Tm
+(ex)Tj
+0 Tc
+9.28984 0 Td
+(plicitly)Tj
+-86.4598 -18 Td
+(2. Which)Tj
+43.2355 0 Td
+1.576 Tw
+(grammar is unambiguous, recognizes an)Tj
+-30.7355 -12 Td
+0.671 Tw
+[(arbitrarily lar)17.9749(ge number of occurrences of)]TJ
+/R13 10 Tf
+0.75 0 0 1 265.787 452 Tm
+(X)Tj
+3.172 Tc
+/R8 10 Tf
+1 0 0 1 270.287 452 Tm
+(,a)Tj
+0 Tc
+10.1121 0 Td
+(nd)Tj
+-188.399 -12 Td
+0.292 Tw
+(uses the smallest amount of parsing stack space)Tj
+193.959 0 Td
+(?)Tj
+-192.839 -12 Td
+(\(A\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 428 Tm
+(e:XX|X;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.6699 416 Tm
+(\(B\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 416 Tm
+(e:Xe|X;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.6699 404 Tm
+(\(C\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 404 Tm
+(e:eX|X;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 93.1199 392 Tm
+(\(D\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 392 Tm
+(e:ee|X;)Tj
+0 Tc
+/R8 10 Tf
+1 0 0 1 79.5 374 Tm
+2.5 Tw
+(3. In)Tj
+25.3676 0 Td
+(Ja)Tj
+-0.25 Tc
+8.12969 0 Td
+(va)Tj
+4.538 Tc
+9.18984 0 Td
+(,g)Tj
+0 Tc
+12.0379 0 Td
+2.038 Tw
+(enericity with primiti)Tj
+-0.15 Tc
+88.8258 0 Td
+2.339 Tw
+(ve d)Tj
+0 Tc
+18.8289 0 Td
+2.039 Tw
+(ata types is)Tj
+-149.88 -12 Td
+0 Tw
+[(accomplished by)-166.547(:)]TJ
+1.11992 -12 Td
+2.5 Tw
+(\(A\) automatic)Tj
+60.8199 0 Td
+0 Tw
+(boxing and unboxing.)Tj
+-60.2699 -12 Td
+2.5 Tw
+(\(B\) determining)Tj
+69.1598 0 Td
+0 Tw
+(all types at runtime.)Tj
+-69.1598 -12 Td
+2.5 Tw
+(\(C\) recompilation)Tj
+76.7523 0 Td
+0.372 Tw
+(for each generic instantiation.)Tj
+-77.3023 -12 Td
+2.5 Tw
+(\(D\) tagging)Tj
+51.3797 0 Td
+0 Tw
+[(inte)15(gers and pointers.)]TJ
+-65 -18 Td
+2.5 Tw
+(4. What)Tj
+37.1105 0 Td
+0.451 Tw
+(is the appropriate semantic action to attach)Tj
+-24.6105 -12 Td
+0 Tw
+(to the)Tj
+/R13 10 Tf
+0.75 0 0 1 117 284 Tm
+(bison)Tj
+/R8 10 Tf
+1 0 0 1 142 284 Tm
+(rule)Tj
+/R13 10 Tf
+0.75 0 0 1 92 272 Tm
+(expr : '\(' expr '\)')Tj
+/R8 10 Tf
+1 0 0 1 93.1199 260 Tm
+(\(A\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 260 Tm
+[({$)600($=$)]TJ
+0 Tc
+48 0 Td
+(1; })Tj
+/R8 10 Tf
+1 0 0 1 93.6699 248 Tm
+(\(B\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 248 Tm
+[({$)600($=$)]TJ
+0 Tc
+48 0 Td
+(2; })Tj
+/R8 10 Tf
+1 0 0 1 93.6699 236 Tm
+(\(C\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 236 Tm
+[({$)600(1=$)]TJ
+0 Tc
+48 0 Td
+($; })Tj
+/R8 10 Tf
+1 0 0 1 93.1199 224 Tm
+(\(D\))Tj
+6 Tc
+/R13 10 Tf
+0.75 0 0 1 112 224 Tm
+[({$)600(2=$)]TJ
+0 Tc
+48 0 Td
+(1; })Tj
+/R8 10 Tf
+1 0 0 1 79.5 206 Tm
+2.5 Tw
+(5. Gi)Tj
+-0.15 Tc
+22.25 0 Td
+(ve)Tj
+3.354 Tc
+9.28984 0 Td
+[(na)335.425(nN)]TJ
+-0.74 Tc
+28.3676 0 Td
+2.333 Tw
+(FA c)Tj
+0 Tc
+19.8328 0 Td
+0.853 Tw
+(onstructed via Thompson')Tj
+3.353 Tc
+106.146 0 Td
+(sc)Tj
+0 Tc
+11.6832 0 Td
+(on-)Tj
+-185.069 -12 Td
+2.418 Tw
+(struction, which is then con)Tj
+-0.15 Tc
+119.542 0 Td
+(ve)Tj
+0 Tc
+9.28984 0 Td
+2.419 Tw
+(rted into a DF)Tj
+62.3469 0 Td
+(A)Tj
+-191.179 -12 Td
+4.257 Tw
+(using the subset construction, b)Tj
+142.658 0 Td
+4.256 Tw
+(ut not mim-)Tj
+-142.658 -12 Td
+0.462 Tw
+(imized, the NF)Tj
+2.962 Tc
+59.9039 0 Td
+(Aw)Tj
+0 Tc
+17.402 0 Td
+[(ill lik)10.0281(ely be [x] than the DF)]TJ
+111.372 0 Td
+(A,)Tj
+-188.678 -12 Td
+1.053 Tw
+(and when used in scanning, the NF)Tj
+3.552 Tc
+145.838 0 Td
+(Aw)Tj
+0 Tc
+17.9918 0 Td
+1.052 Tw
+(ill lik)Tj
+22.352 0 Td
+(ely)Tj
+-186.182 -12 Td
+0 Tw
+[(run more [y] than the DF)74.0088(A.)]TJ
+1.11992 -12 Td
+2.5 Tw
+(\(A\) [x])Tj
+2.5 Tc
+33.0398 0 Td
+(=l)Tj
+0 Tc
+10.9199 0 Td
+[(ar)17.9761(ger)]TJ
+2.5 Tc
+19.9602 0 Td
+(,[)Tj
+0 Tc
+8.32969 0 Td
+0 Tw
+(y] = quickly)Tj
+-71.6996 -12 Td
+2.5 Tw
+(\(B\) [x])Tj
+2.5 Tc
+32.4898 0 Td
+(=l)Tj
+0 Tc
+10.9199 0 Td
+[(ar)17.9761(ger)]TJ
+2.5 Tc
+19.9602 0 Td
+(,[)Tj
+0 Tc
+8.32969 0 Td
+0 Tw
+[(y] = slo)25.0159(wly)]TJ
+-71.6996 -12 Td
+2.5 Tw
+(\(C\) [x])Tj
+2.5 Tc
+32.4898 0 Td
+(=s)Tj
+0 Tc
+12.0297 0 Td
+(maller)Tj
+2.5 Tc
+25.15 0 Td
+(,[)Tj
+0 Tc
+8.32969 0 Td
+0 Tw
+(y] = quickly)Tj
+-78.5492 -12 Td
+2.5 Tw
+(\(D\) [x])Tj
+2.5 Tc
+33.0398 0 Td
+(=s)Tj
+0 Tc
+12.0297 0 Td
+(maller)Tj
+2.5 Tc
+25.15 0 Td
+(,[)Tj
+0 Tc
+8.32969 0 Td
+0 Tw
+[(y] = slo)25.0159(wly)]TJ
+157.431 616 Td
+2.5 Tw
+(6. An)Tj
+29.4078 0 Td
+2.188 Tw
+(LALR\(1\) shift/reduce con\215ict occurs when)Tj
+-16.9078 -12 Td
+0 Tw
+[(there is)-166.538(:)]TJ
+1.11992 -12 Td
+2.5 Tw
+(\(A\) a)Tj
+26.0238 0 Td
+0.203 Tw
+(reduction action whose lookahead set con-)Tj
+-7.14375 -12 Td
+4.848 Tw
+(tains a nonterminal symbol which also)Tj
+12 TL
+0 Tw
+(labels an outgoing transition.)'
+-18.3301 -12 Td
+2.5 Tw
+(\(B\) a)Tj
+25.4738 0 Td
+0.203 Tw
+(reduction action whose lookahead set con-)Tj
+-7.14375 -12 Td
+0.21 Tw
+(tains a terminal symbol which also labels an)Tj
+0 Tw
+(outgoing transition.)'
+-18.3301 -12 Td
+2.5 Tw
+(\(C\) more)Tj
+42.2273 0 Td
+0.847 Tw
+(than one reduction action in the same)Tj
+-23.8973 -12 Td
+1.959 Tw
+(state and their lookahead sets are not dis-)Tj
+(joint.)'
+-18.8801 -12 Td
+2.5 Tw
+(\(D\) no)Tj
+32.5023 0 Td
+1.122 Tw
+(reduction action in a state and the sym-)Tj
+-13.6223 -12 Td
+0.056 Tw
+(bol produced by the scanner does not appear)Tj
+0 Tw
+(on an)'
+2.5 Tc
+21.7898 0 Td
+(yo)Tj
+0 Tc
+12.5 0 Td
+(utgoing transition.)Tj
+-66.7898 -18 Td
+2.5 Tw
+(7. If)Tj
+21.6598 0 Td
+0 Tw
+(the \214le)Tj
+/R13 10 Tf
+0.75 0 0 1 380.76 540 Tm
+(foo.sh)Tj
+/R8 10 Tf
+1 0 0 1 410.26 540 Tm
+(has as its \214rst line)Tj
+/R13 10 Tf
+0.75 0 0 1 341.6 528 Tm
+(#!/bin/sh -x)Tj
+/R8 10 Tf
+1 0 0 1 341.6 516 Tm
+(and it is e)Tj
+-0.15 Tc
+38.4598 0 Td
+(xe)Tj
+0 Tc
+9.28984 0 Td
+(cuted with the command)Tj
+/R13 10 Tf
+0.75 0 0 1 341.6 504 Tm
+(foo.sh -bar baz)Tj
+/R8 10 Tf
+1 0 0 1 341.6 492 Tm
+1.53 Tw
+(then, when the e)Tj
+-0.15 Tc
+69.9797 0 Td
+(xe)Tj
+0 Tc
+9.28984 0 Td
+(cutable binary)Tj
+/R13 10 Tf
+0.75 0 0 1 483.359 492 Tm
+(/bin/sh)Tj
+/R8 10 Tf
+1 0 0 1 518.889 492 Tm
+(starts)Tj
+-177.289 -12 Td
+0 Tw
+[(up, the name of the script will be found in)-166.538(:)]TJ
+1.11992 -12 Td
+(\(A\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 468 Tm
+(argv[0])Tj
+/R8 10 Tf
+1 0 0 1 343.27 456 Tm
+(\(B\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 456 Tm
+(argv[1])Tj
+/R8 10 Tf
+1 0 0 1 343.27 444 Tm
+(\(C\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 444 Tm
+(argv[2])Tj
+/R8 10 Tf
+1 0 0 1 342.72 432 Tm
+(\(D\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 432 Tm
+(argv[3])Tj
+/R8 10 Tf
+1 0 0 1 329.1 414 Tm
+2.5 Tw
+(8. If)Tj
+3.805 Tc
+22.9645 0 Td
+(as)Tj
+0 Tc
+12.1352 0 Td
+1.305 Tw
+(tring is used to subscript an array in Ja)Tj
+-0.25 Tc
+164.11 0 Td
+(va)Tj
+0 Tc
+9.18984 0 Td
+(,)Tj
+-195.899 -12 Td
+(ho)Tj
+2.5 Tc
+9.75 0 Td
+(ww)Tj
+0 Tc
+16.9398 0 Td
+0 Tw
+[(ill that error be detected)-166.533(?)]TJ
+-25.5699 -12 Td
+2.5 Tw
+(\(A\) by)Tj
+31.3797 0 Td
+0 Tw
+(the scanner)Tj
+-30.8297 -12 Td
+2.5 Tw
+(\(B\) by)Tj
+30.8297 0 Td
+0 Tw
+(the parser)Tj
+-30.8297 -12 Td
+2.5 Tw
+(\(C\) by)Tj
+30.8297 0 Td
+0 Tw
+(the semantic analyzer)Tj
+-31.3797 -12 Td
+2.5 Tw
+(\(D\) when)Tj
+43.0398 0 Td
+0 Tw
+(the program is run)Tj
+-56.6598 -18 Td
+2.5 Tw
+(9. In)Tj
+2.5 Tc
+23.3297 0 Td
+(al)Tj
+0 Tc
+9.71992 0 Td
+0 Tw
+[(ocal stack frame, the static link points at)-166.548(:)]TJ
+-19.4297 -12 Td
+2.5 Tw
+(\(A\) the)Tj
+37.9937 0 Td
+4.394 Tw
+(call instruction which acti)Tj
+-0.25 Tc
+116.532 0 Td
+(va)Tj
+0 Tc
+9.18984 0 Td
+(ted this)Tj
+-144.835 -12 Td
+(function)Tj
+-18.3301 -12 Td
+2.5 Tw
+(\(B\) the)Tj
+33.05 0 Td
+0 Tw
+(local frame of the caller)Tj
+-33.05 -12 Td
+2.5 Tw
+(\(C\) the)Tj
+33.6867 0 Td
+0.638 Tw
+(local frame of the function in which the)Tj
+-15.3566 -12 Td
+0 Tw
+(current function is nested)Tj
+-18.8801 -12 Td
+2.5 Tw
+(\(D\) the)Tj
+35.6566 0 Td
+2.056 Tw
+(object referred to as)Tj
+/R13 10 Tf
+0.75 0 0 1 468.79 264 Tm
+(this)Tj
+/R8 10 Tf
+1 0 0 1 491.346 264 Tm
+(in Ja)Tj
+-0.25 Tc
+20.4656 0 Td
+2.556 Tw
+(va a)Tj
+0 Tc
+18.1859 0 Td
+(nd)Tj
+-168.398 -12 Td
+(C++)Tj
+-37.5 -18 Td
+2.5 Tw
+(10. Which)Tj
+/R13 10 Tf
+0.75 0 0 1 370.804 234 Tm
+(flex)Tj
+/R8 10 Tf
+1 0 0 1 391.347 234 Tm
+[(re)15.0073(ge)]TJ
+2.544 Tc
+16.9098 0 Td
+(xw)Tj
+0 Tc
+14.7641 0 Td
+0.044 Tw
+(ill match one or more)Tj
+/R13 10 Tf
+0.75 0 0 1 511.842 234 Tm
+(a)Tj
+-0.55 Tc
+/R8 10 Tf
+1 0 0 1 516.342 234 Tm
+1.145 Tw
+('s f)Tj
+0 Tc
+12.5449 0 Td
+(ol-)Tj
+-187.287 -12 Td
+0 Tw
+[(lo)25.0317(wed by one or more)]TJ
+/R13 10 Tf
+0.75 0 0 1 431.609 222 Tm
+(b)Tj
+-0.55 Tc
+/R8 10 Tf
+1 0 0 1 436.109 222 Tm
+0.266 Tw
+('s ?)Tj
+0 Tc
+-93.3895 -12 Td
+(\(A\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 210 Tm
+(\(a|b\)+)Tj
+/R8 10 Tf
+1 0 0 1 343.27 198 Tm
+(\(B\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 198 Tm
+(a*b*)Tj
+/R8 10 Tf
+1 0 0 1 343.27 186 Tm
+(\(C\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 186 Tm
+(a+b+)Tj
+/R8 10 Tf
+1 0 0 1 342.72 174 Tm
+(\(D\))Tj
+/R13 10 Tf
+0.75 0 0 1 361.6 174 Tm
+(a+|b+)Tj
+/R8 10 Tf
+1 0 0 1 324.1 156 Tm
+2.5 Tw
+(11. What)Tj
+42.6035 0 Td
+0.943 Tw
+(parsing action pushes the scanner')Tj
+3.443 Tc
+140.412 0 Td
+(sl)Tj
+0 Tc
+10.1129 0 Td
+(ooka-)Tj
+-175.628 -12 Td
+0.636 Tw
+(head symbol onto the parsing stack and calls the)Tj
+0 Tw
+T*[(scanner to replenish that symbol)-166.528(?)]TJ
+1.11992 -12 Td
+2.5 Tw
+(\(A\) accept)Tj
+0.55 -12 Td
+(\(B\) error)Tj
+(\(C\) reduce)'
+-0.55 -12 Td
+(\(D\) shift)Tj
+ET
+Q
+Q
+endstream
+endobj
+31 0 obj
+11706
+endobj
+4 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 16 0 R
+>>
+/Contents 5 0 R
+>>
+endobj
+17 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 20 0 R
+>>
+/Contents 18 0 R
+>>
+endobj
+21 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 24 0 R
+>>
+/Contents 22 0 R
+>>
+endobj
+25 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 28 0 R
+>>
+/Contents 26 0 R
+>>
+endobj
+29 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/Font 32 0 R
+>>
+/Contents 30 0 R
+>>
+endobj
+3 0 obj
+<< /Type /Pages /Kids [
+4 0 R
+17 0 R
+21 0 R
+25 0 R
+29 0 R
+] /Count 5
+>>
+endobj
+1 0 obj
+<</Type /Catalog /Pages 3 0 R
+>>
+endobj
+16 0 obj
+<</R14
+14 0 R/R10
+10 0 R/R15
+15 0 R/R9
+9 0 R/R13
+13 0 R/R8
+8 0 R/R12
+12 0 R/R7
+7 0 R/R11
+11 0 R>>
+endobj
+20 0 obj
+<</R14
+14 0 R/R10
+10 0 R/R13
+13 0 R/R8
+8 0 R/R7
+7 0 R/R11
+11 0 R>>
+endobj
+24 0 obj
+<</R14
+14 0 R/R10
+10 0 R/R13
+13 0 R/R8
+8 0 R/R7
+7 0 R>>
+endobj
+28 0 obj
+<</R14
+14 0 R/R10
+10 0 R/R15
+15 0 R/R9
+9 0 R/R13
+13 0 R/R8
+8 0 R/R7
+7 0 R/R11
+11 0 R>>
+endobj
+32 0 obj
+<</R14
+14 0 R/R10
+10 0 R/R15
+15 0 R/R9
+9 0 R/R13
+13 0 R/R8
+8 0 R/R7
+7 0 R/R11
+11 0 R>>
+endobj
+14 0 obj
+<</BaseFont/ZapfDingbats/Type/Font
+/Encoding 33 0 R/Subtype/Type1>>
+endobj
+33 0 obj
+<</Type/Encoding/BaseEncoding/WinAnsiEncoding/Differences[
+52/a20]>>
+endobj
+10 0 obj
+<</BaseFont/Helvetica-Bold/Type/Font
+/Subtype/Type1>>
+endobj
+15 0 obj
+<</BaseFont/Symbol/Type/Font
+/Encoding 34 0 R/Subtype/Type1>>
+endobj
+34 0 obj
+<</Type/Encoding/BaseEncoding/WinAnsiEncoding/Differences[
+45/minus
+174/arrowright]>>
+endobj
+9 0 obj
+<</BaseFont/Times-BoldItalic/Type/Font
+/Encoding 35 0 R/Subtype/Type1>>
+endobj
+35 0 obj
+<</Type/Encoding/Differences[
+140/fi]>>
+endobj
+13 0 obj
+<</BaseFont/Courier-Bold/Type/Font
+/Encoding 36 0 R/Subtype/Type1>>
+endobj
+36 0 obj
+<</Type/Encoding/Differences[
+0/asciicircum]>>
+endobj
+8 0 obj
+<</BaseFont/Times-Roman/Type/Font
+/Encoding 37 0 R/Subtype/Type1>>
+endobj
+37 0 obj
+<</Type/Encoding/Differences[
+131/bullet
+140/fi/fl
+189/onehalf
+215/multiply]>>
+endobj
+12 0 obj
+<</BaseFont/Courier/Type/Font
+/Subtype/Type1>>
+endobj
+7 0 obj
+<</BaseFont/Times-Bold/Type/Font
+/Encoding 38 0 R/Subtype/Type1>>
+endobj
+38 0 obj
+<</Type/Encoding/Differences[
+131/bullet]>>
+endobj
+11 0 obj
+<</BaseFont/Times-Italic/Type/Font
+/Encoding 39 0 R/Subtype/Type1>>
+endobj
+39 0 obj
+<</Type/Encoding/Differences[
+140/fi]>>
+endobj
+2 0 obj
+<</Producer(ESP Ghostscript 815.04)
+/CreationDate(D:20091203190016)
+/ModDate(D:20091203190016)>>endobj
+xref
+0 40
+0000000000 65535 f 
+0000040526 00000 n 
+0000042279 00000 n 
+0000040439 00000 n 
+0000039766 00000 n 
+0000000009 00000 n 
+0000007430 00000 n 
+0000041998 00000 n 
+0000041758 00000 n 
+0000041468 00000 n 
+0000041218 00000 n 
+0000042139 00000 n 
+0000041935 00000 n 
+0000041611 00000 n 
+0000041049 00000 n 
+0000041288 00000 n 
+0000040574 00000 n 
+0000039899 00000 n 
+0000007450 00000 n 
+0000013843 00000 n 
+0000040688 00000 n 
+0000040034 00000 n 
+0000013864 00000 n 
+0000016723 00000 n 
+0000040771 00000 n 
+0000040169 00000 n 
+0000016744 00000 n 
+0000027964 00000 n 
+0000040843 00000 n 
+0000040304 00000 n 
+0000027986 00000 n 
+0000039744 00000 n 
+0000040946 00000 n 
+0000041133 00000 n 
+0000041366 00000 n 
+0000041555 00000 n 
+0000041695 00000 n 
+0000041840 00000 n 
+0000042079 00000 n 
+0000042223 00000 n 
+trailer
+<< /Size 40 /Root 1 0 R /Info 2 0 R
+/ID [<34553579AE446634C1157F715335AFC3><34553579AE446634C1157F715335AFC3>]
+>>
+startxref
+42390
+%%EOF

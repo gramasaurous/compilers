@@ -1,0 +1,342 @@
+CMPS-104A · Compiler Design I · Fall 2009 · Final Exam     page 1 of 1
+$Id: cmps104a-2009q4-exam3.mm,v 1.47 2009-12-03 18:59:17-08 - - $
+
+.PS
+examboxes(5)
+.PE
+
+No books;  No calculator;  No computer;  No email;  No internet;  No
+notes;  No phone.  Neatness counts!  Do your scratch work elsewhere
+and enter only your final answer into the spaces provided.
+
+.EQ
+delim $$
+.EN
+
+ 1. Given the grammar presented here, and using the style from the
+    LALR(1) handout:
+     (a) Construct the characteristic finite state machine (CFSM),
+         sets of items and transition diagram, showing shifts,
+         reductions, and acceptance.  [6pt]
+     (b) Construct the FOLLOW sets.  [3pt]
+     (c) Answer yes or no to each of the following questions:  [1pt]
+
+         Is the grammar LR(0)?  __________    Is the grammar SLR(1)?
+         __________
+
+    +---------------+
+    |0.  S -> $ M $ |
+    |1.  M -> M E   |
+    |2.  M ->       |
+    |3.  E -> ( M ) |
+    |4.  E -> * E   |
+    |5.  E -> x     |
+    +---------------+
+
+ 2. Translate the C code on the left into icode as per the project 5
+    specs.  Do not write any declarations for temporaries, just use
+    them and assume they are of the correct type.  As far as is
+    possible, write the icode in the right box parallel to the C code.
+    Note:  we are using some constructs not available in c0.  [7pt]
+
+    +----+------------------------------+---------------------------------------+
+    |    | int compare (int, int);      | (Do not translate this line.)         |
+    +----+------------------------------+---------------------------------------+
+    | 1. | int shift (                  |                                       |
+    | 2. |    int *array,               |                                       |
+    | 3. |    int slot,                 |                                       |
+    | 4. |    int saved                 |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+    | 5. | ) {                          |                                       |
+    +----+------------------------------+---------------------------------------+
+    | 6. |    while (slot > 0) {        |                                       |
+    |    |                              |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+    | 7. |       if (compare (          |                                       |
+    | 8. |           array [slot - 1],  |                                       |
+    | 9. |           saved) <= 0)       |                                       |
+    |    |                              |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+    |10. |             break;           |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+    |11. |       array[slot] =          |                                       |
+    |12. |             array[slot - 1]; |                                       |
+    |    |                              |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+    |13. |       --slot;                |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+    |14. |    }                         |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+    |15. |    return slot;              |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+    |16. | }                            |                                       |
+    |    |                              |                                       |
+    +----+------------------------------+---------------------------------------+
+
+ 3. In the following table, assuming the function shift owns block 4,
+    write the mangled names of all identifiers in the program under
+    the heading Identifier and the associated attributes in the
+    adjacent box labelled Attributes.  Choose some combination of
+    attributes from the following list:  int, char, void, array[$n$],
+    ptr($n$), function, lvalue, global, local, param.  For pointers,
+    $n$ is the number of levels, and for arrays, $n$ is the dimension.
+    [3pt]
+
+    +-----------+---------------------+   +------------+-------------------+
+    |Identifier | Attributes          |   |Identifier  |Attributes         |
+    +-----------+---------------------+   +------------+-------------------+
+    |           |                     |   |            |                   |
+    |           |                     |   |            |                   |
+    |           |                     |   |            |                   |
+    +-----------+---------------------+   +------------+-------------------+
+    |           |                     |   |            |                   |
+    |           |                     |   |            |                   |
+    |           |                     |   |            |                   |
+    +-----------+---------------------+   +------------+-------------------+
+    |           |                     |   |            |                   |
+    |           |                     |   |            |                   |
+    |           |                     |   |            |                   |
+    +-----------+---------------------+   +------------+-------------------+
+
+ 4. For the program on the previous page:
+     (a) Draw a graph of basic blocks.  Draw a circle for each basic
+         block in the program, and inside the circle write the numbers
+         in the left column which refer to lines of code belonging to
+         that basic block.  Using the capital letters A, B, C, ...,
+         write one letter in each circle.  [2pt]
+     (b) Draw a depth first spanning tree using the letters from the
+         first diagram, not the numbers.  [1pt]
+     (c) Draw a dominator tree and write an asterisk next to the head
+         of the natural loop.  Inside each circle, write the letters
+         used in the previous question.  [2pt]
+     (d) Using the letters, what blocks are part of the natural loop?
+         [1pt]
+
+ 5. Using the general rules of project 3, draw an abstract syntax tree
+    of that part of the AST for the previous question which is rooted
+    at while.  That is, ignore everything except for the while node
+    and all of its descendants..  Make a reasonable choice for those
+    elements not part of c0.  [4pt]
+
+Multiple choice.  To the left of each question, write the letter that
+indicates your answer.  Write Z if you don't want to risk a wrong
+answer.  Wrong answers are worth negative points.  [11pt]
+
++--------------------------+------+------+------------+
+|number of                 |      |× 1 = |      $= a$ |
+|correct answers           |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× ½ = |      $= b$ |
+|wrong answers             |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× 0 = |  0         |
+|missing answers           |      |      |            |
++--------------------------+------+------+------------+
+|column total              |   11 |      |      $= c$ |
+|$ c = max ( a - b , 0 ) $ |      |      |            |
++--------------------------+------+------+------------+
+
+ 1. Which of the following items will cause a reduction action to be
+    added to the state?
+    (A) $ E ~ -> ~ · ~ E + T $
+    (B) $ E ~ -> ~ E ~ · ~ + T $
+    (C) $ E ~ -> ~ E + ~ · ~ T $
+    (D) $ E ~ -> ~ E + T ~ · $
+
+ 2. The flex regex ``dot star'' (.*) is equivalent to:
+    (A) [/n^]*
+    (B) [\n^]*
+    (C) [^/n]*
+    (D) [^\n]*
+
+ 3. Which statement is true?
+    (A) All LR(k) languages are unambiguous.
+    (B) All context free languages are LR(k).
+    (C) Some LR(k) languages are ambiguous.
+    (D) Some regular languages are not LR(k).
+
+ 4. The grammar:
+       $A~->~x$
+       $A~->~y$
+    (A) is both LR(0) and SLR(1).
+    (B) is LR(0) but not SLR(1).
+    (C) is not LR(0) but is SLR(1).
+    (D) is neither LR(0) nor SLR(1).
+
+ 5. Which bison grammar is ambiguous?
+    (A) e : I X I | I ;
+    (B) e : I X e | I ;
+    (C) e : e X I | I ;
+    (D) e : e X e | I ;
+
+ 6. Which bison grammar is unambiguous, allows an arbitrary number of
+    occurrences of I, and makes X right associative?
+    (A) e : I X I | I ;
+    (B) e : I X e | I ;
+    (C) e : e X I | I ;
+    (D) e : e X e | I ;
+
+ 7. The string $yxxxxxxxx$ is a sentence in the language defined by
+    which grammar?
+    (A) $ A -> A ~ x $
+        $ A -> y $
+    (B) $ A -> A ~ y $
+        $ A -> x $
+    (C) $ A -> x ~ A $
+        $ A -> y $
+    (D) $ A -> y ~ A $
+        $ A -> x $
+
+ 8. Which answer has only one basic block?
+    (A) a = b + f(x); g(h(y)); m = n;
+    (B) a = b < c ? d > e : f == g;
+    (C) for (i = 0; i < n; ++i) s += a[i];
+    (D) if (a[i] > 3) t = false;
+
+ 9. An AST node with what keyword will require data associated with
+    code generation of a jump target using information not in the node
+    being considered?
+    (A) continue
+    (B) if
+    (C) return
+    (D) while
+
+10. How many tokens are there in the following line of Java code?
+    out.printf ("Hello%n"); // Say hello.
+    (A)  7
+    (B)  8
+    (C)  9
+    (D) 10
+
+11. Which bison grammar will parse input that causes this program to
+    return success?  Assume yylex returns all non-whitespace
+    characters as themselves.
+    int main () { int n = 0; int c;
+      while ((c = getchar()) != EOF) {
+        if (isspace (c)) continue;
+        switch (c) {
+          case'(': ++n; break;
+          case')': if (--n<0) return 1; break;
+          default: return 1;
+        }
+      }
+      return 0;
+    }
+    (A) b : '(' ')' b | ;
+    (B) b : '(' b ')' b | ;
+    (C) b : '(' b ')' | ;
+    (D) b : '(' b | b ')' | ;
+
+Multiple choice.  To the left of each question, write the letter that
+indicates your answer.  Write Z if you don't want to risk a wrong
+answer.  Wrong answers are worth negative points.  [11pt]
+
++--------------------------+------+------+------------+
+|number of                 |      |× 1 = |      $= a$ |
+|correct answers           |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× ½ = |      $= b$ |
+|wrong answers             |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× 0 = |  0         |
+|missing answers           |      |      |            |
++--------------------------+------+------+------------+
+|column total              |   11 |      |      $= c$ |
+|$ c = max ( a - b , 0 ) $ |      |      |            |
++--------------------------+------+------+------------+
+
+ 1. Which kind of storage management provides for the fastest version
+    of malloc?
+    (A) copying collector with semispaces
+    (B) mark and sweep collector
+    (C) reference counting collector
+    (D) using free explicitly
+
+ 2. Which grammar is unambiguous, recognizes an arbitrarily large
+    number of occurrences of X, and uses the smallest amount of
+    parsing stack space?
+    (A) e : X X | X ;
+    (B) e : X e | X ;
+    (C) e : e X | X ;
+    (D) e : e e | X ;
+
+ 3. In Java, genericity with primitive data types is accomplished by:
+    (A) automatic boxing and unboxing.
+    (B) determining all types at runtime.
+    (C) recompilation for each generic instantiation.
+    (D) tagging integers and pointers.
+
+ 4. What is the appropriate semantic action to attach to the bison
+    rule
+    expr : '(' expr ')'
+    (A) { $$ = $1; }
+    (B) { $$ = $2; }
+    (C) { $1 = $$; }
+    (D) { $2 = $1; }
+
+ 5. Given an NFA constructed via Thompson's construction, which is
+    then converted into a DFA using the subset construction, but not
+    mimimized, the NFA will likely be [x] than the DFA, and when used
+    in scanning, the NFA will likely run more [y] than the DFA.
+    (A) [x] = larger, [y] = quickly
+    (B) [x] = larger, [y] = slowly
+    (C) [x] = smaller, [y] = quickly
+    (D) [x] = smaller, [y] = slowly
+
+ 6. An LALR(1) shift/reduce conflict occurs when there is:
+    (A) a reduction action whose lookahead set contains a nonterminal
+        symbol which also labels an outgoing transition.
+    (B) a reduction action whose lookahead set contains a terminal
+        symbol which also labels an outgoing transition.
+    (C) more than one reduction action in the same state and their
+        lookahead sets are not disjoint.
+    (D) no reduction action in a state and the symbol produced by the
+        scanner does not appear on any outgoing transition.
+
+ 7. If the file foo.sh has as its first line
+    #!/bin/sh -x
+    and it is executed with the command
+    foo.sh -bar baz
+    then, when the executable binary /bin/sh starts up, the name of
+    the script will be found in:
+    (A) argv[0]
+    (B) argv[1]
+    (C) argv[2]
+    (D) argv[3]
+
+ 8. If a string is used to subscript an array in Java, how will that
+    error be detected?
+    (A) by the scanner
+    (B) by the parser
+    (C) by the semantic analyzer
+    (D) when the program is run
+
+ 9. In a local stack frame, the static link points at:
+    (A) the call instruction which activated this function
+    (B) the local frame of the caller
+    (C) the local frame of the function in which the current function
+        is nested
+    (D) the object referred to as this in Java and C++
+
+10. Which flex regex will match one or more a's followed by one or
+    more b's?
+    (A) (a|b)+
+    (B) a*b*
+    (C) a+b+
+    (D) a+|b+
+
+11. What parsing action pushes the scanner's lookahead symbol onto the
+    parsing stack and calls the scanner to replenish that symbol?
+    (A) accept
+    (B) error
+    (C) reduce
+    (D) shift
+

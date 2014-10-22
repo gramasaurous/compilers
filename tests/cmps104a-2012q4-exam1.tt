@@ -1,0 +1,193 @@
+CMPS-104A · Compiler Design I · Fall 2012 · Test #1        page 1 of 1
+$Id: cmps104a-2012q4-exam1.mm,v 1.29 2012-10-19 11:32:28-07 - - $
+
+.PS
+examboxes(3)
+.PE
+
+No books;  No calculator;  No computer;  No email;  No internet;  No
+notes;  No phone.  Neatness counts!  Do your scratch work elsewhere
+and enter only your final answer into the spaces provided.
+
+.EQ
+delim $$
+.EN
+
+ 1. For each of the following flex regular expressions, draw an
+    equivalent deterministic finite automaton, using the minimum
+    possible number of states.  Do not show garbage states.  [5pt]
+
+     (i) ab*c+
+
+    (ii) ab+|c*d
+
+    (iii) a*b*c*
+
+    (iv) a+b+c+
+
+     (v) (a|b|c)*
+
+ 2. Express each of the following flex expressions as flex
+    expressions, but your answer may use only the Kleene closure (*),
+    concatenation, alternation (|), and parentheses as metacharacters.
+    [2pt]
+
+     (i) [1-4]+
+
+    (ii) x{2,4}
+
+ 3. Use Thompson's construction exactly as in the textbook to convert
+    the following regular expression into a non-deterministic finite
+    automaton.  [3pt]
+
+    xy|(cd)*
+
+ 4. Write two files, export.c, which declares an external int foo
+    variable and exports it, and import.c, which makes use of the
+    external variable and declares it as having been created in a
+    different module.  Show only declarations.  [1pt]
+
+    +-------------------------------+-------------------------------+
+    |          export.c             |           import.c            |
+    +-------------------------------+-------------------------------+
+    |                               |                               |
+    |                               |                               |
+    |                               |                               |
+    |                               |                               |
+    +-------------------------------+-------------------------------+
+
+ 5. Draw abstract syntax trees for each of the following C
+    expressions.  [3pt]
+
+    +--------------------+---------------------+---------------------+
+    |   a + b + c + d    |    a + b / c + d    |    a * b / c * d    |
+    +--------------------+---------------------+---------------------+
+    |                    |                     |                     |
+    |                    |                     |                     |
+    |                    |                     |                     |
+    |                    |                     |                     |
+    |                    |                     |                     |
+    |                    |                     |                     |
+    |                    |                     |                     |
+    |                    |                     |                     |
+    |                    |                     |                     |
+    +--------------------+---------------------+---------------------+
+
+ 6. Draw the deterministic finite automaton for a scanner for the
+    following language.  You may use set notation to label
+    transitions.  Draw an arrow into the initial state, and label each
+    final state with two circles.  For each final state that returns
+    from the scanner, write ``R'' next to it, and for each final state
+    that continues scanning, write ``C''.  Ignore invalid or jamming
+    states.  Do not show garbage states.  [3pt]
+     (i) An identifier starts with a lower case letter and is followed
+         by any number of digits and lower case letters.
+    (ii) An integer is one ore more digits.
+    (iii) An operator is any one of the characters add (+), subtract
+         (-), multiply (*), or divide (/).
+    (iv) A comment is two slashes (//) followed by all characters up
+         to but not including a newline.
+     (v) White space consists of spaces tabs and newlines.
+
+ 7. Using the specifications for the language above, write a grammar
+    using flex, showing only what goes in the second section (between
+    the %% symbols.  Use regular expressions, but no macros.  For
+    semantic actions on each, write return or continue.  [3pt]
+
+Multiple choice.  To the left of each question, write the letter that
+indicates your answer.  Write Z if you don't want to risk a wrong
+answer.  Wrong answers are worth negative points.  [11pt]
+
++--------------------------+------+------+------------+
+|number of                 |      |× 1 = |      $= a$ |
+|correct answers           |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× ½ = |      $= b$ |
+|wrong answers             |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× 0 = |  0         |
+|missing answers           |      |      |            |
++--------------------------+------+------+------------+
+|column total              |   11 |      |      $= c$ |
+|$ c = max ( a - b , 0 ) $ |      |      |            |
++--------------------------+------+------+------------+
+
+ 1. What external variable should be set to make yylex produce debug
+    output?
+    (A) yy_debug
+    (B) yy_flex_debug
+    (C) yy_set_interactive
+    (D) yy_stack_print
+
+ 2. The flex expression a|bc* means:
+    (A) (a|(bc))*
+    (B) (a|b)(c*)
+    (C) a|((bc)*)
+    (D) a|(b(c*))
+
+ 3. The bison generated parser makes use of a deterministic finite
+    automaton, plus what data structure?
+    (A) hash
+    (B) queue
+    (C) stack
+    (D) tree
+
+ 4. The machine generated by flex comes from a language of what type
+    in the Chomsky hierarchy?
+    (A) type 0
+    (B) type 1
+    (C) type 2
+    (D) type 3
+
+ 5. In your compiler project, how is a node pointed at by a hash table
+    array element allocated?
+    (A) malloc (sizeof (struct node *));
+    (B) malloc (sizeof (struct node));
+    (C) malloc (struct node);
+    (D) new node();
+
+ 6. A deterministic finite automaton with $ O ( s ) $ states will read
+    an input string of length $ O ( n ) $ in how much time?
+    (A) $ O ( log n times s ) $
+    (B) $ O ( n ) $
+    (C) $ O ( s ) $
+    (D) $ O ( s times n ) $
+
+ 7. A hash table that uses collision resolution by linear probing
+    should be doubled when the loading factor exceeds what?  (Choose
+    the best of these answers.)
+    (A) 0.02
+    (B) 0.30
+    (C) 0.90
+    (D) 1.20
+
+ 8. Which flex semantic action is clearly incorrect?
+    (A) return "*";
+    (B) return '*';
+    (C) return 42;
+    (D) return STAR;
+
+ 9. What kind of grammar does bison use?
+    (A) context-free
+    (B) context-sensitive
+    (C) regular
+    (D) unrestricted
+
+10. For a grammar $G = < V sub N , V sub T , P , S > $, the left hand
+    side of a rule in the set of productions $P$ consists of one
+    symbol from the set:
+    (A) $ V sub N $
+    (B) $ V sub N inter V sub T $
+    (C) $ V sub N union V sub T $
+    (D) $ V sub T $
+
+11. Comments in oc are stripped off by the:
+    (A) parser
+    (B) preprocessor
+    (C) scanner
+    (D) string table
+The Antikythera mechanism, built ca. 150-100 BCE, is the oldest known
+complex scientific calculator, and is sometimes called the first known
+analog computer, with operational instructions written in Greek.
+[http://en.wikipedia.org/wiki/Antikythera_mechanism]
+

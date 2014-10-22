@@ -1,0 +1,260 @@
+CMPS-104A · Compiler Design I · Fall 2009 · Test #1             page 1
+$Id: cmps104a-2009q4-exam1.mm,v 9.64 2009-11-03 17:22:19-08 - - $
+
+.PS
+examboxes(3,30)
+.PE
+
+No books;  No calculator;  No computer;  No email;  No internet;  No
+notes;  No phone.  Neatness counts!  Do your scratch work elsewhere
+and enter only your final answer into the spaces provided.
+
+.EQ
+delim $$
+.EN
+
+ 1. Given the following NFA:
+
+     (a) Compute the $\epsilon$-closure of each state and fill in the
+         table.  [2pt]
+
+     (b) Then use the Subset Construction to convert the NFA to a DFA.
+         Do your scratch work elsewhere and show only the final DFA.
+         Use the Subset Construction exactly and do not minimize.  Do
+         not show trap (garbage) states.  [3pt]
+
+    .PS 2.25i
+    arrowwid = 0.1
+    arrowht = 0.2
+    S0: circle invis; move right movewid
+    S1: circle "1"; move right 2*movewid
+    S3: circle "3"; move right 2*movewid
+    S6: circle "6"; move right 2*movewid
+    S8: circle "8"; circle rad circlerad-.075 at S8
+    move up 2*moveht from S3; S2: circle "2"
+    move up 2*moveht from S6; S5: circle "5"
+    move down 2*moveht from S3; S4: circle "4"
+    move down 2*moveht from S6; S7: circle "7"
+    arrow from S0 to S1 chop
+    arrow "\[*e]" above from S1 to S2 chop
+    arrow "\[*e]" above from S1 to S3 chop
+    arrow "\[*e]" above from S1 to S4 chop
+    arrow "a" below from S2 to S5 chop
+    arrow "b" above from S3 to S6 chop
+    arrow "c" above from S4 to S7 chop
+    arrow "\[*e]" above from S5 to S8 chop
+    arrow "\[*e]" above from S6 to S8 chop
+    arrow "x" above from S7 to S8 chop
+    arrow "b" above from S3 to S7 chop
+    SX: circle invis at 1/2 between S2 and S5
+    spline from S5.nw then to SX.n+(0,moveht/2) then to S2.ne ->
+    "\[*e]" at SX+(0,moveht)
+    .PE
+
+    +----------+-------------------------+
+    |state $s$ | $\epsilon$-closure($s$) |
+    +----------+-------------------------+
+    |    1     |                         |
+    +----------+-------------------------+
+    |    2     |                         |
+    +----------+-------------------------+
+    |    3     |                         |
+    +----------+-------------------------+
+    |    4     |                         |
+    +----------+-------------------------+
+    |    5     |                         |
+    +----------+-------------------------+
+    |    6     |                         |
+    +----------+-------------------------+
+    |    7     |                         |
+    +----------+-------------------------+
+    |    8     |                         |
+    +----------+-------------------------+
+
+ 2. Using as few states as possible, draw deterministic finite
+    automata for each of the following flex regexes.  Use any method
+    you like and show only the final answer.  [5pt]
+
+     (i) a+|b+
+
+    (ii) a+b|c
+
+    (iii) ab+cd
+
+    (iv) a*b*c
+
+     (v) a?b+c*
+
+ 3. Write flex regular expressions for each of the following.  [3pt]
+
+     (i) A string literal which starts and ends with a quote (") and
+         may have zero or more characters between them.  A character
+         may be any character except for a newline, quote, or
+         backslash (\).  Alternately, it may contain one of the escape
+         sequences \", \n, or \\.
+
+    (ii) A floating point literal which consists of a decimal point
+         with one or more digits in front of it and one or more digits
+         after it.  An exponent is optional, and consists of an upper-
+         or lower-case letter E, followed optionally by a plus or
+         minus sign, followed by one or more digits.
+
+    (iii) A Perl identifier, which starts with a dollar sign ($), an
+         at sign (@), or a percent sign, (%), followed by any sequence
+         of upper- and lower-case letters, digits, and underscores.
+
+ 4. Consider a grammar similar to ETF, but with different precedence
+    and associativity.
+
+     (a) Define an unambiguous grammar with the start symbol A.  An A
+         is a sequence of one or more Bs each separated from the next
+         by an asterisk (*), binary operator, which is right
+         associative.  A B is a sequence of one or more Cs connected
+         by the binary operator slash (/), which is left associative,
+         and has a higher precedence than *.  A C is either an
+         identifier or an A inside of parentheses.  [3pt]
+
+     (b) For each of two expressions presented here, draw the abstract
+         syntax tree and the parse tree.  Use the grammar specified
+         above, not ETF and not any grammar obvious to a C programmer.
+         [4pt]
+
+         +----------------------------------+------------------------------+
+         |expression:   a/b/c*d             | (a*b)/e                      |
+         +----------------------------------+------------------------------+
+         |AST:                              |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         +----------------------------------+------------------------------+
+         |parse tree:                       |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         |                                  |                              |
+         +----------------------------------+------------------------------+
+
+Multiple choice.  To the left of each question, write the letter that
+indicates your answer.  Write `Z' if you don't want to risk a wrong
+answer.  Wrong answers are worth negative points.  [11pt]
+
++--------------------------+------+------+------------+
+|number of                 |      |× 1 = |      $= a$ |
+|correct answers           |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× ½ = |      $= b$ |
+|wrong answers             |      |      |            |
++--------------------------+------+------+------------+
+|number of                 |      |× 0 = |  0         |
+|missing answers           |      |      |            |
++--------------------------+------+------+------------+
+|column total              |   11 |      |      $= c$ |
+|$ c = max ( a - b , 0 ) $ |      |      |            |
++--------------------------+------+------+------------+
+
+ 1. If an NFA is constructed from a regex $r$ and is used to scan a
+    string $s$, then its memory requirement $M$ and running time $T$
+    are:
+    (A) $ M = O ( 2 sup { left | r right | } ) ~ ; ~ ~ T = O ( left |
+        s right | ) $
+    (B) $ M = O ( left | r right | ) ~ ; ~ ~ T = O ( left | r right |
+        times left | s right | ) $
+    (C) $ M = O ( left | r right | times left | s right | ) ~ ; ~ ~ T
+        = O ( left | r right | ) $
+    (D) $ M = O ( left | s right | ) ~ ; ~ ~ T = O ( 2 sup { left | r
+        right | } ) $
+
+ 2. Which flex pattern will match the following string?
+    aaaaaabaababab
+    (A) a*b*
+    (B) a+b+
+    (C) (a+b)*
+    (D) (ab)+
+
+ 3. The variable that is used to send semantic information from yylex
+    to yyparse is:
+    (A) yydebug
+    (B) yylval
+    (C) yytext
+    (D) yywrap
+
+ 4. For a grammar $ G = < V sub N , V sub T , P , S > $, $P$ is a set
+    of productions of the form $A -> beta$, where:
+    (A) $ A elem S sup * ~ ; ~ ~ beta elem V sub T sup * $
+    (B) $ A elem V sub N ~ ; ~ ~ beta elem ( V sub N union V sub T )
+        sup * $
+    (C) $ A elem V sub T ~ ; ~ ~ beta elem ( V sub N inter V sub T )
+        sup + $
+    (D) $ A elem V sub N sup + ~ ; ~ ~ beta elem V sub T sup * $
+
+ 5. In case of ambiguity, and assuming that the rule at the top of the
+    stack and the lookahead symbol both have precedence and
+    associativity, then the parser should shift if the rule has a [x]
+    precedence than the incoming symbol, or if both precedences are
+    the same and they are [y] associative.
+    (A) [x] = higher;  [y] = left
+    (B) [x] = higher;  [y] = right
+    (C) [x] = lower;  [y] = left
+    (D) [x] = lower;  [y] = right
+
+ 6. If a minimized DFA is constructed from each of the following flex
+    regexes, which will have the fewest states?
+    (A) x
+    (B) x*
+    (C) x+
+    (D) x?
+
+ 7. The flex expression ab|c* is equivalent to:
+    (A) (((ab)|c)*)
+    (B) ((a(b|c))*)
+    (C) ((ab)|(c*))
+    (D) (a((b|c)*))
+
+ 8. Which of the following flex regexes will match an ANSI C
+    identifier?
+    (A) [A-Za-z]_[A-Za-z_0-9]*
+    (B) [A-Za-z_0-9]*[A-Za-z_]
+    (C) [A-Za-z_][A-Za-z_0-9]*
+    (D) [_A-z][A-z0-9_]+
+
+ 9. Which is the weakest set of grammars in the Chomsky hierarchy that
+    is capable of determining whether or not parentheses are matched?
+    (A) unrestricted
+    (B) context-sensitive
+    (C) context-free
+    (D) regular
+
+10. What kind of analysis does bison perform on a grammar?
+    (A) LR(0)
+    (B) SLR(1)
+    (C) LALR(1)
+    (D) LR(1)
+
+11. The ``__ book'' is a name commonly used to refer to the textbook
+    used in this course.
+    (A) Camel
+    (B) Daemon
+    (C) Dragon
+    (D) Raccoon
+The Antikythera mechanism, built ca. 150-100 BCE, is the oldest known
+complex scientific calculator, and is sometimes called the first known
+analog computer, with operational instructions written in Greek.
+http://en.wikipedia.org/wiki/Antikythera_mechanism
+
+____________________
+
+   Total:  31 *
+
