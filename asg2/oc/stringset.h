@@ -1,6 +1,6 @@
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg1: stringset.h
+// CMPS104a: asg2: stringset.h
 
 #ifndef __STRINGSET__
 #define __STRINGSET__

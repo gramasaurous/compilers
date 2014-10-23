@@ -1,6 +1,6 @@
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg1: main.cpp
+// CMPS104a: asg2: main.cpp
 
 // Use cpp to scan a file and print line numbers.
 // Print out each input line read in, then strtok it for
@@ -118,6 +118,8 @@ int main (int argc, char** argv) {
          return (get_exitstatus());
       }
       string command = CPP + " " + filename;
+      // Change to yyin = popen()
+      // Remove following loop and call yylex()
       FILE* pipe = popen (command.c_str(), "r");
       if (pipe == NULL) {
          syserrprintf (command.c_str());
