@@ -1,14 +1,15 @@
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg1: main.cpp
+// CMPS104a: asg2: main.cpp
 
 // Use cpp to scan a file and print line numbers.
-// Print out each input line read in, then strtok it for
-// tokens.
+// Generate and intern tokens with a flex scanner.
 
-#include <string>
+// Remove need for BS std::nonsense
 using namespace std;
 
+// Global C++/C Modules
+#include <string>
 #include <errno.h>
 #include <libgen.h>
 #include <stdio.h>
@@ -17,8 +18,11 @@ using namespace std;
 #include <wait.h>
 #include <unistd.h>
 
+// Local Modules
 #include "auxlib.h"
 #include "stringset.h"
+
+extern FILE *yyin;
 
 string CPP = "/usr/bin/cpp";
 const size_t LINESIZE = 1024;
@@ -35,33 +39,34 @@ void chomp (char* string, char delim) {
 
 // Run cpp against the lines of the file.
 void cpplines (FILE* pipe, char* filename) {
-   int linenr = 1;
-   char inputname[LINESIZE];
-   strcpy (inputname, filename);
-   for (;;) {
-      char buffer[LINESIZE];
-      char* fgets_rc = fgets (buffer, LINESIZE, pipe);
-      if (fgets_rc == NULL) break;
-      chomp (buffer, '\n');
-      //printf ("%s:line %d: [%s]\n", filename, linenr, buffer);
-      // http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html
-      int sscanf_rc = sscanf (buffer, "# %d \"%[^\"]\"",
-                              &linenr, filename);
-      if (sscanf_rc == 2) {
-         continue;
-      }
-      char* savepos = NULL;
-      char* bufptr = buffer;
-      for (int tokenct = 1;; ++tokenct) {
-         char* token = strtok_r (bufptr, " \t\n", &savepos);
-         bufptr = NULL;
-         if (token == NULL) break;
-         //printf ("token %d.%d: [%s]\n",linenr, tokenct, token);
-         //const string* str = intern_stringset (token);
-         intern_stringset(token);
-      }
-      ++linenr;
-   }
+   // ASG1 STUFF
+   // int linenr = 1;
+   // char inputname[LINESIZE];
+   // strcpy (inputname, filename);
+   // for (;;) {
+   //    char buffer[LINESIZE];
+   //    char* fgets_rc = fgets (buffer, LINESIZE, pipe);
+   //    if (fgets_rc == NULL) break;
+   //    chomp (buffer, '\n');
+   //    //printf ("%s:line %d: [%s]\n", filename, linenr, buffer);
+   //    // http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html
+   //    int sscanf_rc = sscanf (buffer, "# %d \"%[^\"]\"",
+   //                            &linenr, filename);
+   //    if (sscanf_rc == 2) {
+   //       continue;
+   //    }
+   //    char* savepos = NULL;
+   //    char* bufptr = buffer;
+   //    for (int tokenct = 1;; ++tokenct) {
+   //       char* token = strtok_r (bufptr, " \t\n", &savepos);
+   //       bufptr = NULL;
+   //       if (token == NULL) break;
+   //       //printf ("token %d.%d: [%s]\n",linenr, tokenct, token);
+   //       //const string* str = intern_stringset (token);
+   //       intern_stringset(token);
+   //    }
+   //    ++linenr;
+   // }
 }
 
 //
@@ -118,12 +123,13 @@ int main (int argc, char** argv) {
          return (get_exitstatus());
       }
       string command = CPP + " " + filename;
-      FILE* pipe = popen (command.c_str(), "r");
-      if (pipe == NULL) {
+      //FILE* pipe = popen (command.c_str(), "r");
+      yyin = popen(command.c_str(), "r");
+      if (yyin == NULL) {
          syserrprintf (command.c_str());
       }else {
-         cpplines (pipe, filename);
-         int pclose_rc = pclose (pipe);
+         cpplines (yyin, filename);
+         int pclose_rc = pclose (yyin);
          eprint_status (command.c_str(), pclose_rc);
       }
       // Strip the filebname to it's basename
