@@ -22,6 +22,7 @@ using namespace std;
 #include "auxlib.h"
 #include "stringset.h"
 
+// External + Global Variables
 extern FILE *yyin;
 
 string CPP = "/usr/bin/cpp";

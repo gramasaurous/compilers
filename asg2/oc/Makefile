@@ -1,6 +1,6 @@
 # Graham Greving
 # ggreving@ucsc.edu
-# asg4: Makefile
+# CMPS104a: asg2: Makefile
 
 MKFILE      = Makefile
 DEPFILE     = ${MKFILE}.dep
@@ -10,59 +10,76 @@ GMAKE       = ${MAKE} --no-print-directory
 COMPILECPP  = g++ -g -O0 -Wall -Wextra -std=gnu++11
 MAKEDEPCPP  = g++ -MM -std=gnu++11
 
+## PARSE AND SCANNER ##
+LSOURCES	= scanner.l
+YSOURCES	= parser.y
+CLGEN		= yylex.cpp
+HYGEN 		= yyparse.h
+CYGEN 		= yyparse.cpp
+LREPORT 	= yylex.output
+YREPORT 	= yyparse.output
+
 MODULES     = auxlib stringset
 CPPHEADER   = ${MODULES:=.h}
 CPPSOURCE   = ${MODULES:=.cpp} main.cpp
 OTHERS      = ${MKFILE} README
-ALLSOURCES  = ${CPPHEADER} ${TEMPLATES} ${CPPSOURCE} ${OTHERS}
+ALLSOURCES  = ${CPPHEADER} ${CPPSOURCE} ${OTHERS} ${LSOURCES} ${YSOURCES}
 EXECBIN     = oc
 OBJECTS     = ${CPPSOURCE:.cpp=.o}
-LINKLIBS    =
+LINKLIBS    = 
 
 HOST 		= $(findstring ucsc,$(shell hostname))
 CLASS       = cmps104a-wm.f14
-PROJECT     = asg1
+PROJECT     = asg2
 TEST_DIR    = ../../grading/${PROJECT}_test
 
-all : ${EXECBIN} 
+all: ${EXECBIN} 
 ifeq ($(HOST),ucsc)
 	- checksource ${ALLSOURCES}
 endif
 
-${EXECBIN} : ${OBJECTS}
+${EXECBIN}: ${CLGEN} ${CYGEN} ${OBJECTS}
 	${COMPILECPP} -o $@ ${OBJECTS} ${LINKLIBS}
 
-%.o : %.cpp
+%.o: %.cpp
 	${COMPILECPP} -c $<
 
-clean :
+${CLGEN}: ${LSOURCES}
+	flex --outfile=${CLGEN} ${LSOURCES} 2>${LREPORT}
+	- grep -v '^ ' ${LREPORT}
+
+${CYGEN} ${HYGEN}: ${YSOURCES}
+	bison --defines=${HYGEN} --output=${CYGEN} ${YSOURCES}
+
+clean:
 	- rm ${OBJECTS} ${DEPFILE}
 
-spotless : clean
+spotless: clean
+	- rm 
 	- rm ${EXECBIN}
 
-submit : ${ALLSOURCES}
+submit: ${ALLSOURCES}
 ifeq ($(HOST),ucsc)
 	- checksource ${ALLSOURCES}
 	submit ${CLASS} ${PROJECT} ${ALLSOURCES}
 endif
 
-git :
+git:
 	#git commit -a -m "gmake auto commit: `LC_TIME=C date`"
 	git commit -a
 
-dep : ${CPPSOURCE} ${CPPHEADER} ${GENFILES}
+dep: ${CPPSOURCE} ${CPPHEADER} ${GENFILES}
 	@ echo "# ${DEPFILE} created `LC_TIME=C date`" >${DEPFILE}
 	${MAKEDEPCPP} ${CPPSOURCE} >>${DEPFILE}
 
-${DEPFILE} :
+${DEPFILE}:
 	@ touch ${DEPFILE}
 	${GMAKE} dep
 
-again :
+again:
 	${GMAKE} spotless dep all
 
-testsubmit :
+testsubmit:
 	- rm ${TEST_DIR}/*
 	cp ${ALLSOURCES} ${TEST_DIR}/
 	cp ../../grading/mk* ${TEST_DIR}/
