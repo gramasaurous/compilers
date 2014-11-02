@@ -10,7 +10,7 @@ GMAKE       = ${MAKE} --no-print-directory
 COMPILECPP  = g++ -g -O0 -Wall -Wextra -std=gnu++11
 MAKEDEPCPP  = g++ -MM -std=gnu++11
 
-## PARSE AND SCANNER ##
+## PARSER AND SCANNER ##
 LSOURCES	= scanner.l
 YSOURCES	= parser.y
 CLGEN		= yylex.cpp
@@ -19,13 +19,14 @@ CYGEN 		= yyparse.cpp
 LREPORT 	= yylex.output
 YREPORT 	= yyparse.output
 
-MODULES     = auxlib stringset
+MODULES     = auxlib stringset lyutils
 CPPHEADER   = ${MODULES:=.h}
 CPPSOURCE   = ${MODULES:=.cpp} main.cpp
 OTHERS      = ${MKFILE} README
+GEN 		= ${CYGEN} ${HYGEN} ${CLGEN}
 ALLSOURCES  = ${CPPHEADER} ${CPPSOURCE} ${OTHERS} ${LSOURCES} ${YSOURCES}
 EXECBIN     = oc
-OBJECTS     = ${CPPSOURCE:.cpp=.o}
+OBJECTS     = ${CPPSOURCE:.cpp=.o} ${CLGEN:.cpp=.o} ${CYGEN:.cpp=.o}
 LINKLIBS    = 
 
 HOST 		= $(findstring ucsc,$(shell hostname))
@@ -55,16 +56,18 @@ clean:
 	- rm ${OBJECTS} ${DEPFILE}
 
 spotless: clean
-	- rm 
+	- rm ${GEN}
+	- rm *.output
 	- rm ${EXECBIN}
+	- rm -rf ${TEST_DIR}
 
-submit: ${ALLSOURCES}
+submit: ${ALLSOURCES} spotless
 ifeq ($(HOST),ucsc)
 	- checksource ${ALLSOURCES}
 	submit ${CLASS} ${PROJECT} ${ALLSOURCES}
 endif
 
-git:
+git: spotless
 	#git commit -a -m "gmake auto commit: `LC_TIME=C date`"
 	git commit -a
 

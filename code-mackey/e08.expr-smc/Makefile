@@ -47,7 +47,7 @@ all : ${EXECBIN}
 #
 ${EXECBIN} : ${OBJECTS}
 	${GCC} -o${EXECBIN} ${OBJECTS}
-	ident ${OBJECTS} ${EXECBIN} >${IREPORT}
+	- ident ${OBJECTS} ${EXECBIN} >${IREPORT}
 
 #
 # Build an object file form a C source file.

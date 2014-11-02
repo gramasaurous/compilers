@@ -80,13 +80,16 @@ int main (int argc, char** argv) {
    );
    scan_opts (argc, argv);
    scanner_setecho (want_echo());
-   parsecode = yyparse();
-   if (parsecode) {
-      errprintf ("%:parse failed (%d)\n", parsecode);
-   }else {
-      DEBUGSTMT ('a', dump_astree (stderr, yyparse_astree); );
-      emit_sm_code (yyparse_astree);
+   //parsecode = yyparse();
+   while (yylex() != YYEOF) {
+      
    }
+   // if (parsecode) {
+   //    errprintf ("%:parse failed (%d)\n", parsecode);
+   // }else {
+   //    DEBUGSTMT ('a', dump_astree (stderr, yyparse_astree); );
+   //    emit_sm_code (yyparse_astree);
+   // }
    free_ast (yyparse_astree);
    yyin_cpp_pclose();
    DEBUGSTMT ('s', dump_stringset (stderr); );

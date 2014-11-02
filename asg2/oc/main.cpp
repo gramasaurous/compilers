@@ -21,14 +21,36 @@ using namespace std;
 // Local Modules
 #include "auxlib.h"
 #include "stringset.h"
+#include "lyutils.h"
 
-// External + Global Variables
-extern FILE *yyin;
 
-string CPP = "/usr/bin/cpp";
+const string cpp_name = "/usr/bin/cpp";
+string yyin_cpp_command;
 const size_t LINESIZE = 1024;
+int oc_include = 0;
 int yydebug = 0;
 int yy_flex_debug = 0;
+
+// Open a pipe from the C preprocessor.
+// Exit failure if can't.
+// Assignes opened pipe to FILE* yyin.
+void yyin_cpp_popen (const char* filename) {
+   if (oc_include == 0) {
+      yyin_cpp_command += cpp_name;
+      yyin_cpp_command += " ";
+   }
+   yyin_cpp_command += filename;
+   yyin = popen (yyin_cpp_command.c_str(), "r");
+   if (yyin == NULL) {
+      syserrprintf (yyin_cpp_command.c_str());
+      exit (get_exitstatus());
+   }
+}
+void yyin_cpp_pclose (void) {
+   int pclose_rc = pclose (yyin);
+   eprint_status (yyin_cpp_command.c_str(), pclose_rc);
+   if (pclose_rc != 0) set_exitstatus (EXIT_FAILURE);
+}
 
 // Chomp the last character from a buffer if it is delim.
 void chomp (char* string, char delim) {
@@ -39,7 +61,7 @@ void chomp (char* string, char delim) {
 }
 
 // Run cpp against the lines of the file.
-void cpplines (FILE* pipe, char* filename) {
+//void cpplines (FILE* pipe, char* filename) {
    // ASG1 STUFF
    // int linenr = 1;
    // char inputname[LINESIZE];
@@ -68,12 +90,11 @@ void cpplines (FILE* pipe, char* filename) {
    //    }
    //    ++linenr;
    // }
-}
+//}
 
 //
 // Scan the options, -D -y -l -@ and check for operands.
 //
-
 void scan_options (int argc, char** argv) {
    opterr = 0;
    for (;;) {
@@ -85,9 +106,11 @@ void scan_options (int argc, char** argv) {
             break;
          case 'D':
             // Pass 'string' to cpp
-            CPP += " -D";
-            CPP += optarg;
-            CPP += " ";
+            yyin_cpp_command = cpp_name;
+            yyin_cpp_command += " -D";
+            yyin_cpp_command += optarg;
+            yyin_cpp_command += " ";
+            oc_include = 1;
             DEBUGF('o', "Opt D set with flag: %c", optarg);
             break;
          case 'l':
@@ -105,43 +128,35 @@ void scan_options (int argc, char** argv) {
             break;
       }
    }
+   if (optind >= argc) {
+      errprintf ("Usage: %s [-ly] [filename]\n", get_execname());
+      exit (get_exitstatus());
+   }
 }
 
+void write_str(char *filename) {   
+   // Strip the filename to it's basename
+   // Remove it's suffix and replace with .str
+   string outfile = basename(filename);
+   size_t i = outfile.find_last_of('.');
+   outfile.erase(i+1, 2);
+   outfile.append("str");
+   FILE *out = fopen(outfile.c_str(), "w");
+   dump_stringset(out);
+   fclose(out);
+}
 
 int main (int argc, char** argv) {
    set_execname (argv[0]);
    scan_options(argc, argv);
-
    DEBUGF('c', "argc: %d optind: %d\n", argc, optind);
-   if (optind >= argc) {
-      errprintf("%s %s %s %s", "Usage: ", "[-ly] [-@ flag ...]",
-         " [-D string] filename.oc\n", get_execname());
-   } else {
-      char *filename = argv[optind];
-      char *ext = strrchr(filename, '.');
-      if (ext == NULL || strcmp(ext, ".oc") != 0) {
-         errprintf("Error: bad file. oc requires oc files.\n");
-         return (get_exitstatus());
-      }
-      string command = CPP + " " + filename;
-      //FILE* pipe = popen (command.c_str(), "r");
-      yyin = popen(command.c_str(), "r");
-      if (yyin == NULL) {
-         syserrprintf (command.c_str());
-      }else {
-         cpplines (yyin, filename);
-         int pclose_rc = pclose (yyin);
-         eprint_status (command.c_str(), pclose_rc);
-      }
-      // Strip the filebname to it's basename
-      // Remove it's suffix and replace with .str
-      string outfile = basename(filename);
-      size_t i = outfile.find_last_of('.');
-      outfile.erase(i+1, 2);
-      outfile.append("str");
-      FILE *out = fopen(outfile.c_str(), "w");
-      dump_stringset(out);
-      fclose(out);
+   char *filename = argv[optind];
+   char *ext = strrchr(filename, '.');
+   if (ext == NULL || strcmp(ext, ".oc") != 0) {
+      errprintf("Error: bad file. oc requires oc files.\n");
+      return (get_exitstatus());
    }
+   yyin_cpp_pclose();
+   write_str(filename);
    return get_exitstatus();
 }
