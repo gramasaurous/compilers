@@ -16,7 +16,7 @@ extern int yyin_linenr;
 extern char* yytext;
 extern int yy_flex_debug;
 extern int yydebug;
-extern size_t yyleng;
+extern int yyleng;
 
 int yylex (void);
 int yyparse (void);
@@ -35,7 +35,6 @@ void scanner_useraction (void);
 
 astree* new_parseroot (void);
 int yylval_token (int symbol);
-void error_destructor (astree*);
 
 void scanner_include (void);
 
@@ -43,5 +42,5 @@ typedef astree* astree_pointer;
 #define YYSTYPE astree_pointer
 #include "yyparse.h"
 
-RCSH("$Id: lyutils.h,v 1.5 2013-10-10 18:17:45-07 - - $")
+RCSH("$Id: lyutils.h,v 1.2 2013-10-11 18:53:00-07 - - $")
 #endif

@@ -47,19 +47,22 @@ void scanner_useraction (void) {
 void yyerror (const char* message) {
    assert (not included_filenames.empty());
    errprintf ("%:%s: %d: %s\n",
-              included_filenames.back().c_str(), scan_linenr, message);
+              included_filenames.back().c_str(),
+              scan_linenr, message);
 }
 
 void scanner_badchar (unsigned char bad) {
    char char_rep[16];
-   sprintf (char_rep, isgraph ((int) bad) ? "%c" : "\\%03o", bad);
+   sprintf (char_rep, isgraph (bad) ? "%c" : "\\%03o", bad);
    errprintf ("%:%s: %d: invalid source character (%s)\n",
-              included_filenames.back().c_str(), scan_linenr, char_rep);
+              included_filenames.back().c_str(),
+              scan_linenr, char_rep);
 }
 
 void scanner_badtoken (char* lexeme) {
    errprintf ("%:%s: %d: invalid token (%s)\n",
-              included_filenames.back().c_str(), scan_linenr, lexeme);
+              included_filenames.back().c_str(),
+              scan_linenr, lexeme);
 }
 
 int yylval_token (int symbol) {
@@ -67,12 +70,6 @@ int yylval_token (int symbol) {
    yylval = new_astree (symbol, included_filenames.size() - 1,
                         scan_linenr, offset, yytext);
    return symbol;
-}
-
-void error_destructor (astree* tree) {
-   if (tree == yyparse_astree) return;
-   DEBUGSTMT ('a', dump_astree (stderr, tree); );
-   free_ast (tree);
 }
 
 astree* new_parseroot (void) {
@@ -85,7 +82,8 @@ void scanner_include (void) {
    scanner_newline();
    char filename[strlen (yytext) + 1];
    int linenr;
-   int scan_rc = sscanf (yytext, "# %d \"%[^\"]\"", &linenr, filename);
+   int scan_rc = sscanf (yytext, "# %d \"%[^\"]\"",
+                         &linenr, filename);
    if (scan_rc != 2) {
       errprintf ("%: %d: [%s]: invalid directive, ignored\n",
                  scan_rc, yytext);
@@ -98,5 +96,5 @@ void scanner_include (void) {
    }
 }
 
-RCSC("$Id: lyutils.cc,v 1.3 2013-10-10 18:17:45-07 - - $")
+RCSC("$Id: lyutils.cpp,v 1.1 2014-10-03 18:22:05-07 - - $")
 
