@@ -56,12 +56,12 @@ all: ${EXECBIN}
 # Build the executable image from the object files.
 #
 ${EXECBIN}: ${OBJECTS}
-	${GCC} -o${EXECBIN} ${OBJECTS}
+	${GCC} -o ${EXECBIN} ${OBJECTS}
 
 #
 # Build an object file form a C source file.
 #
-%.o: %.cc
+%.o: %.cpp
 	${GCC} -c $<
 
 #

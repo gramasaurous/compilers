@@ -28,8 +28,8 @@ const string cpp_name = "/usr/bin/cpp";
 string yyin_cpp_command;
 const size_t LINESIZE = 1024;
 int oc_include = 0;
-int yydebug = 0;
-int yy_flex_debug = 0;
+extern int yydebug = 0;
+extern int yy_flex_debug = 0;
 
 // Open a pipe from the C preprocessor.
 // Exit failure if can't.
