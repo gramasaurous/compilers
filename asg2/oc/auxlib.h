@@ -1,6 +1,6 @@
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg2: auxlib.h
+// CMPS104a: asg1: auxlib.h
 
 #ifndef __AUXLIB_H__
 #define __AUXLIB_H__
@@ -45,6 +45,7 @@ void set_exitstatus (int);
    // Sets the exit status.  Remebers only the largest value passed in.
    //
 
+
 void veprintf (const char* format, va_list args);
    //
    // Prints a message to stderr using the vector form of 
@@ -73,6 +74,7 @@ void syserrprintf (const char* object);
    // Sets the exit status to EXIT_FAILURE.
    //
 
+
 //
 // Support for stub messages.
 //

@@ -2,92 +2,133 @@
 # ggreving@ucsc.edu
 # CMPS104a: asg2: Makefile
 
-MKFILE      = Makefile
-DEPFILE     = ${MKFILE}.dep
-NOINCL      = git clean spotless
-NEEDINCL    = ${filter ${NOINCL}, ${MAKECMDGOALS}}
-GMAKE       = ${MAKE} --no-print-directory
-COMPILECPP  = g++ -g -O0 -Wall -Wextra -std=gnu++11
-MAKEDEPCPP  = g++ -MM -std=gnu++11
+MKFILE    = Makefile
+DEPSFILE  = ${MKFILE}.deps
+NOINCLUDE = git submit testsubmit clean spotless
+NEEDINCL  = ${filter ${NOINCLUDE}, ${MAKECMDGOALS}}
+VALGRIND  = valgrind --leak-check=full --show-reachable=yes
 
-## PARSER AND SCANNER ##
-LSOURCES	= scanner.l
-YSOURCES	= parser.y
-CLGEN		= yylex.cpp
-HYGEN 		= yyparse.h
-CYGEN 		= yyparse.cpp
-LREPORT 	= yylex.output
-YREPORT 	= yyparse.output
+#
+# Definitions of list of files:
+#
+HSOURCES  = astree.h  lyutils.h  auxlib.h  stringset.h
+CSOURCES  = astree.cpp lyutils.cpp auxlib.cpp stringset.cpp main.cpp
+LSOURCES  = scanner.l
+YSOURCES  = parser.y
+ETCSRC    = README ${MKFILE} ${DEPSFILE}
+CLGEN     = yylex.cpp
+HYGEN     = yyparse.h
+CYGEN     = yyparse.cpp
+CGENS     = ${CLGEN} ${CYGEN}
+ALLGENS   = ${HYGEN} ${CGENS}
+EXECBIN   = oc
+ALLCSRC   = ${CSOURCES} ${CGENS}
+OBJECTS   = ${ALLCSRC:.cpp=.o}
+LREPORT   = yylex.output
+YREPORT   = yyparse.output
+REPORTS   = ${LREPORT} ${YREPORT}
+ALLSRC    = ${ETCSRC} ${YSOURCES} ${LSOURCES} ${HSOURCES} ${CSOURCES}
+SUBSRC 	  = ${MKFILE} README ${LSOURCES} ${YSOURCES} ${CSOURCES} ${HSOURCES}
 
-MODULES     = auxlib stringset lyutils
-CPPHEADER   = ${MODULES:=.h}
-CPPSOURCE   = ${MODULES:=.cpp} main.cpp
-OTHERS      = ${MKFILE} README
-GEN 		= ${CYGEN} ${HYGEN} ${CLGEN}
-ALLSOURCES  = ${CPPHEADER} ${CPPSOURCE} ${OTHERS} ${LSOURCES} ${YSOURCES}
-EXECBIN     = oc
-OBJECTS     = ${CPPSOURCE:.cpp=.o} ${CLGEN:.cpp=.o} ${CYGEN:.cpp=.o}
-LINKLIBS    = 
+#
+# Definitions of the compiler and compilation options:
+#
+GCC       = g++ -g -O0 -Wall -Wextra -std=gnu++11
+MKDEPS    = g++ -MM -std=gnu++11
 
-HOST 		= $(findstring ucsc,$(shell hostname))
+#
+# Definitions of various other things
+#
+HOST        = $(findstring ucsc,$(shell hostname))
 CLASS       = cmps104a-wm.f14
 PROJECT     = asg2
-TEST_DIR    = ../../grading/${PROJECT}_test
+TESTDIR    = ../../grading/${PROJECT}_test/
 
-all: ${EXECBIN} 
-ifeq ($(HOST),ucsc)
-	- checksource ${ALLSOURCES}
-endif
+#
+# The first target is always ``all'', and hence the default,
+# and builds the executable images
+#
+all: ${EXECBIN}
+	ifeq ($(HOST),ucsc)
+		- checksource ${ALLSOURCES}
+	endif
+#
+# Build the executable image from the object files.
+#
+${EXECBIN}: ${OBJECTS}
+	${GCC} -o${EXECBIN} ${OBJECTS}
 
-${EXECBIN}: ${CLGEN} ${CYGEN} ${OBJECTS}
-	${COMPILECPP} -o $@ ${OBJECTS} ${LINKLIBS}
+#
+# Build an object file form a C source file.
+#
+%.o: %.cc
+	${GCC} -c $<
 
-%.o: %.cpp
-	${COMPILECPP} -c $<
-
+#
+# Build the scanner.
+#
 ${CLGEN}: ${LSOURCES}
 	flex --outfile=${CLGEN} ${LSOURCES} 2>${LREPORT}
-	- grep -v '^ ' ${LREPORT}
+	- grep -v '^  ' ${LREPORT}
 
+#
+# Build the parser.
+#
 ${CYGEN} ${HYGEN}: ${YSOURCES}
 	bison --defines=${HYGEN} --output=${CYGEN} ${YSOURCES}
 
+#
+# Clean and spotless remove generated files.
+#
 clean:
-	- rm ${OBJECTS} ${DEPFILE}
+	- rm ${OBJECTS} ${ALLGENS} ${REPORTS} ${DEPSFILE}
 
 spotless: clean
-	- rm ${GEN}
-	- rm *.output
 	- rm ${EXECBIN}
-	- rm -rf ${TEST_DIR}
+	- rm -r ${TESTDIR}
 
-submit: ${ALLSOURCES} spotless
-ifeq ($(HOST),ucsc)
-	- checksource ${ALLSOURCES}
-	submit ${CLASS} ${PROJECT} ${ALLSOURCES}
-endif
+#
+# Build the dependencies file using the C preprocessor
+#
+deps: ${ALLCSRC}
+	@ echo "# ${DEPSFILE} created `date` by ${MAKE}" >${DEPSFILE}
+	${MKDEPS} ${ALLCSRC} >>${DEPSFILE}
 
-git: spotless
-	#git commit -a -m "gmake auto commit: `LC_TIME=C date`"
+${DEPSFILE}:
+	@ touch ${DEPSFILE}
+	${MAKE} --no-print-directory deps
+
+#
+# Test Submission (dry run)
+#
+testsubmit: ${SUBSRC} spotless
+	- rm ${TESTDIR}/*
+	cp ${ALLSOURCES} ${TESTDIR}/
+	cp ../../grading/mk* ${TESTDIR}/
+
+#
+# Commit to git repo
+#
+git:
 	git commit -a
 
-dep: ${CPPSOURCE} ${CPPHEADER} ${GENFILES}
-	@ echo "# ${DEPFILE} created `LC_TIME=C date`" >${DEPFILE}
-	${MAKEDEPCPP} ${CPPSOURCE} >>${DEPFILE}
+#
+# Real Submission (will fail if not on unix.ucsc.edu)
+#
+submit: ${SUBSRC} spotless
+ifeq ($(HOST),ucsc)
+	- checksource ${SUBSRC}
+	- git commit -a -m "gmake submission commit: `LC_TIME=C date`"
+	submit ${CLASS} ${PROJECT} ${SUBSRC}
+endif
 
-${DEPFILE}:
-	@ touch ${DEPFILE}
-	${GMAKE} dep
-
-again:
-	${GMAKE} spotless dep all
-
-testsubmit:
-	- rm ${TEST_DIR}/*
-	cp ${ALLSOURCES} ${TEST_DIR}/
-	cp ../../grading/mk* ${TEST_DIR}/
-
-ifeq (${NEEDINCL}, )
-include ${DEPFILE}
+#
+# Everything
+#
+again :
+	gmake --no-print-directory spotless deps all
+	
+ifeq "${NEEDINCL}" ""
+include ${DEPSFILE}
 endif
 

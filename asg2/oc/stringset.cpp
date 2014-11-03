@@ -1,6 +1,6 @@
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg2: stringset.cpp
+// CMPS104a: asg1: stringset.cpp
 
 #include "stringset.h"
 

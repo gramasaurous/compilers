@@ -1,130 +1,132 @@
-# $Id: Makefile,v 1.11 2013-10-15 16:37:56-07 - - $
+# Graham Greving
+# ggreving@ucsc.edu
+# CMPS104a: asg2: Makefile
 
 MKFILE    = Makefile
 DEPSFILE  = ${MKFILE}.deps
-NOINCLUDE = ci clean spotless
+NOINCLUDE = git submit testsubmit clean spotless
 NEEDINCL  = ${filter ${NOINCLUDE}, ${MAKECMDGOALS}}
 VALGRIND  = valgrind --leak-check=full --show-reachable=yes
 
 #
 # Definitions of list of files:
 #
-HSOURCES  = astree.h  emit.h  lyutils.h  auxlib.h  stringset.h
-CSOURCES  = astree.cc emit.cc lyutils.cc auxlib.cc stringset.cc main.cc
+HSOURCES  = astree.h  lyutils.h  auxlib.h  stringset.h
+CSOURCES  = astree.cpp lyutils.cpp auxlib.cpp stringset.cpp main.cpp
 LSOURCES  = scanner.l
 YSOURCES  = parser.y
 ETCSRC    = README ${MKFILE} ${DEPSFILE}
-CLGEN     = yylex.cc
+CLGEN     = yylex.cpp
 HYGEN     = yyparse.h
-CYGEN     = yyparse.cc
+CYGEN     = yyparse.cpp
 CGENS     = ${CLGEN} ${CYGEN}
 ALLGENS   = ${HYGEN} ${CGENS}
-EXECBIN   = zexprsm
+EXECBIN   = oc
 ALLCSRC   = ${CSOURCES} ${CGENS}
 OBJECTS   = ${ALLCSRC:.cc=.o}
 LREPORT   = yylex.output
 YREPORT   = yyparse.output
-IREPORT   = ident.output
-REPORTS   = ${LREPORT} ${YREPORT} ${IREPORT}
+REPORTS   = ${LREPORT} ${YREPORT}
 ALLSRC    = ${ETCSRC} ${YSOURCES} ${LSOURCES} ${HSOURCES} ${CSOURCES}
-TESTINS   = ${wildcard test?.in}
-LISTSRC   = ${ALLSRC} ${HYGEN}
+SUBSRC 	  = ${MKFILE} README ${LSOURCES} ${YSOURCES} ${CSOURCES} ${HSOURCES}
 
 #
 # Definitions of the compiler and compilation options:
 #
-GCC       = g++ -g -O0 -Wall -Wextra -std=gnu++0x
-MKDEPS    = g++ -MM -std=gnu++0x
+GCC       = g++ -g -O0 -Wall -Wextra -std=gnu++11
+MKDEPS    = g++ -MM -std=gnu++11
+
+#
+# Definitions of various other things
+#
+HOST        = $(findstring ucsc,$(shell hostname))
+CLASS       = cmps104a-wm.f14
+PROJECT     = asg2
+TESTDIR    = ../../grading/${PROJECT}_test/
 
 #
 # The first target is always ``all'', and hence the default,
 # and builds the executable images
 #
-all : ${EXECBIN}
-
+all: ${EXECBIN}
+	ifeq ($(HOST),ucsc)
+		- checksource ${ALLSOURCES}
+	endif
 #
 # Build the executable image from the object files.
 #
-${EXECBIN} : ${OBJECTS}
+${EXECBIN}: ${OBJECTS}
 	${GCC} -o${EXECBIN} ${OBJECTS}
-	- ident ${OBJECTS} ${EXECBIN} >${IREPORT}
 
 #
 # Build an object file form a C source file.
 #
-%.o : %.cc
+%.o: %.cc
 	${GCC} -c $<
 
-
 #
 # Build the scanner.
 #
-${CLGEN} : ${LSOURCES}
+${CLGEN}: ${LSOURCES}
 	flex --outfile=${CLGEN} ${LSOURCES} 2>${LREPORT}
 	- grep -v '^  ' ${LREPORT}
 
 #
 # Build the parser.
 #
-${CYGEN} ${HYGEN} : ${YSOURCES}
+${CYGEN} ${HYGEN}: ${YSOURCES}
 	bison --defines=${HYGEN} --output=${CYGEN} ${YSOURCES}
-
-#
-# Check sources into an RCS subdirectory.
-#
-ci : ${ALLSRC} ${TESTINS}
-	cid + ${ALLSRC} ${TESTINS} test?.inh
-
-#
-# Make a listing from all of the sources
-#
-lis : ${LISTSRC} tests
-	mkpspdf List.source.ps ${LISTSRC}
-	mkpspdf List.output.ps ${REPORTS} \
-		${foreach test, ${TESTINS:.in=}, \
-		${patsubst %, ${test}.%, in out err}}
 
 #
 # Clean and spotless remove generated files.
 #
-clean :
-	- rm ${OBJECTS} ${ALLGENS} ${REPORTS} ${DEPSFILE} core
-	- rm ${foreach test, ${TESTINS:.in=}, \
-		${patsubst %, ${test}.%, out err}}
+clean:
+	- rm ${OBJECTS} ${ALLGENS} ${REPORTS} ${DEPSFILE}
 
-spotless : clean
-	- rm ${EXECBIN} List.*.ps List.*.pdf
+spotless: clean
+	- rm ${EXECBIN}
+	- rm -r ${TESTDIR}
 
-
 #
 # Build the dependencies file using the C preprocessor
 #
-deps : ${ALLCSRC}
+deps: ${ALLCSRC}
 	@ echo "# ${DEPSFILE} created `date` by ${MAKE}" >${DEPSFILE}
 	${MKDEPS} ${ALLCSRC} >>${DEPSFILE}
 
-${DEPSFILE} :
+${DEPSFILE}:
 	@ touch ${DEPSFILE}
 	${MAKE} --no-print-directory deps
 
 #
-# Test
+# Test Submission (dry run)
 #
+testsubmit: ${SUBSRC} spotless
+	- rm ${TESTDIR}/*
+	cp ${ALLSOURCES} ${TESTDIR}/
+	cp ../../grading/mk* ${TESTDIR}/
 
-tests : ${EXECBIN}
-	touch ${TESTINS}
-	make --no-print-directory ${TESTINS:.in=.out}
+#
+# Commit to git repo
+#
+git: spotless
+	git commit -a
 
-%.out %.err : %.in ${EXECBIN}
-	( ${VALGRIND} ${EXECBIN} -ly -@@ $< \
-	;  echo EXIT STATUS $$? 1>&2 \
-	) 1>$*.out 2>$*.err
+#
+# Real Submission (will fail if not on unix.ucsc.edu)
+#
+submit: ${SUBSRC} spotless
+ifeq ($(HOST),ucsc)
+	- checksource ${SUBSRC}
+	- git commit -a -m "gmake submission commit: `LC_TIME=C date`"
+	submit ${CLASS} ${PROJECT} ${SUBSRC}
+endif
 
 #
 # Everything
 #
 again :
-	gmake --no-print-directory spotless deps ci all lis
+	gmake --no-print-directory spotless deps all
 	
 ifeq "${NEEDINCL}" ""
 include ${DEPSFILE}

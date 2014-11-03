@@ -1,6 +1,6 @@
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg2: auxlib.cpp
+// CMPS104a: asg1: auxlib.cpp
 
 #include <assert.h>
 #include <errno.h>

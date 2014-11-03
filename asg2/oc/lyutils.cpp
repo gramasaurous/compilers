@@ -73,7 +73,7 @@ int yylval_token (int symbol) {
 }
 
 astree* new_parseroot (void) {
-   yyparse_astree = new_astree (ROOT, 0, 0, 0, "<<ROOT>>");
+   yyparse_astree = new_astree (TOK_ROOT, 0, 0, 0, "<<ROOT>>");
    return yyparse_astree;
 }
 
