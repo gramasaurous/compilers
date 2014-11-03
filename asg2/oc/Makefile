@@ -105,6 +105,7 @@ ${DEPSFILE}:
 # Test Submission (dry run)
 #
 testsubmit: ${SUBSRC}
+	- rm -r ${TESTDIR}*
 	- rmdir ${TESTDIR}
 	- mkdir ${TESTDIR}
 	cp ${SUBSRC} ${TESTDIR}

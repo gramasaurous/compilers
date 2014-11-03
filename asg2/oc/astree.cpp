@@ -45,7 +45,7 @@ astree* adopt1sym (astree* root, astree* child, int symbol) {
    return root;
 }
 
-
+
 static void dump_node (FILE* outfile, astree* node) {
    fprintf (outfile, "%p->{%s(%d) %ld:%ld.%03ld \"%s\" [",
             node, get_yytname (node->symbol), node->symbol,
