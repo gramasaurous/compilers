@@ -23,7 +23,6 @@ using namespace std;
 #include "stringset.h"
 #include "lyutils.h"
 
-
 const string cpp_name = "/usr/bin/cpp";
 string yyin_cpp_command;
 const size_t LINESIZE = 1024;
