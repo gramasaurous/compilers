@@ -28,8 +28,9 @@ const string cpp_name = "/usr/bin/cpp";
 string yyin_cpp_command;
 const size_t LINESIZE = 1024;
 int oc_include = 0;
-extern int yydebug = 0;
-extern int yy_flex_debug = 0;
+extern int yydebug;
+extern int yy_flex_debug;
+FILE *tok_file;
 
 // Open a pipe from the C preprocessor.
 // Exit failure if can't.
@@ -60,43 +61,12 @@ void chomp (char* string, char delim) {
    if (*nlpos == delim) *nlpos = '\0';
 }
 
-// Run cpp against the lines of the file.
-//void cpplines (FILE* pipe, char* filename) {
-   // ASG1 STUFF
-   // int linenr = 1;
-   // char inputname[LINESIZE];
-   // strcpy (inputname, filename);
-   // for (;;) {
-   //    char buffer[LINESIZE];
-   //    char* fgets_rc = fgets (buffer, LINESIZE, pipe);
-   //    if (fgets_rc == NULL) break;
-   //    chomp (buffer, '\n');
-   //    //printf ("%s:line %d: [%s]\n", filename, linenr, buffer);
-   //    // http://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html
-   //    int sscanf_rc = sscanf (buffer, "# %d \"%[^\"]\"",
-   //                            &linenr, filename);
-   //    if (sscanf_rc == 2) {
-   //       continue;
-   //    }
-   //    char* savepos = NULL;
-   //    char* bufptr = buffer;
-   //    for (int tokenct = 1;; ++tokenct) {
-   //       char* token = strtok_r (bufptr, " \t\n", &savepos);
-   //       bufptr = NULL;
-   //       if (token == NULL) break;
-   //       //printf ("token %d.%d: [%s]\n",linenr, tokenct, token);
-   //       //const string* str = intern_stringset (token);
-   //       intern_stringset(token);
-   //    }
-   //    ++linenr;
-   // }
-//}
-
 //
 // Scan the options, -D -y -l -@ and check for operands.
 //
 void scan_options (int argc, char** argv) {
    opterr = 0;
+   yy_flex_debug = 0;
    for (;;) {
       int option = getopt (argc, argv, "D:yl@:");
       if (option == EOF) break;
@@ -142,10 +112,26 @@ void write_str(char *filename) {
    outfile.erase(i+1, 2);
    outfile.append("str");
    FILE *out = fopen(outfile.c_str(), "w");
+   if (out == NULL) {
+      syserrprintf (outfile.c_str());
+      exit (get_exitstatus());
+   }
    dump_stringset(out);
    fclose(out);
 }
 
+void open_tok_file(char *filename) {
+   string outfile = basename(filename);
+   size_t i = outfile.find_last_of('.');
+   outfile.erase(i+1, 2);
+   outfile.append("tok");
+   tok_file = fopen(outfile.c_str(), "w");
+   if (tok_file == NULL) {
+      syserrprintf (outfile.c_str());
+      exit (get_exitstatus());
+   }
+}
+ 
 int main (int argc, char** argv) {
    set_execname (argv[0]);
    scan_options(argc, argv);
@@ -156,7 +142,18 @@ int main (int argc, char** argv) {
       errprintf("Error: bad file. oc requires oc files.\n");
       return (get_exitstatus());
    }
+   open_tok_file(filename);
+   yyin_cpp_popen(filename);
+   int token;
+   int linenr = 1;
+   while ((token = yylex()) != YYEOF) {
+      if (yy_flex_debug) fflush(NULL);
+      intern_stringset(yytext);
+
+      linenr++;
+   }
    yyin_cpp_pclose();
+   fclose(tok_file);
    write_str(filename);
    return get_exitstatus();
 }

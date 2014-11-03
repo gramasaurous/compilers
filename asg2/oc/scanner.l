@@ -26,12 +26,14 @@ DIGIT		[0-9]
 NUMBER		({DIGIT}+)
 STRINGCON	(\"([^\\"\n]|\\[\\’"0nt])*\")
 CHARCON		(’([^\\’\n]|\\[\\’"0nt])’)
+
 IDENT		({LETTER}({LETTER}|DIGIT)*)
+NOTNUMBER	({DIGIT}({LETTER}|DIGIT)*)
 
 %%
 
 "#".*			{ scanner_include(); }
-"//".*		{ IGNORE (comments) }
+"//".*			{ IGNORE (comments) }
 [ \t]+			{ IGNORE (white space) }
 \n				{ scanner_newline(); }
 
@@ -81,6 +83,6 @@ IDENT		({LETTER}({LETTER}|DIGIT)*)
 {CHARCON}		{ return yylval_token (TOK_CHARCON); }
 {STRINGCON}		{ return yylval_token (TOK_STRINGCON); }
 
-
+.				{ scanner_badchar (*yytext); }
 
 %%

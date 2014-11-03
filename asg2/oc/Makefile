@@ -16,6 +16,7 @@ CSOURCES  = astree.cpp lyutils.cpp auxlib.cpp stringset.cpp main.cpp
 LSOURCES  = scanner.l
 YSOURCES  = parser.y
 ETCSRC    = README ${MKFILE} ${DEPSFILE}
+ETCSUB    = README ${MKFILE}
 CLGEN     = yylex.cpp
 HYGEN     = yyparse.h
 CYGEN     = yyparse.cpp
@@ -28,12 +29,12 @@ LREPORT   = yylex.output
 YREPORT   = yyparse.output
 REPORTS   = ${LREPORT} ${YREPORT}
 ALLSRC    = ${ETCSRC} ${YSOURCES} ${LSOURCES} ${HSOURCES} ${CSOURCES}
-SUBSRC 	  = ${MKFILE} README ${LSOURCES} ${YSOURCES} ${CSOURCES} ${HSOURCES}
+SUBSRC    = ${ETCSUB} ${LSOURCES} ${YSOURCES} ${CSOURCES} ${HSOURCES}
 
 #
 # Definitions of the compiler and compilation options:
 #
-GCC       = g++ -g -O0 -Wall -Wextra -std=gnu++11
+GCC       = g++ -g -O0 -Wall -Wextra -std=gnu++11 -fdiagnostics-color
 MKDEPS    = g++ -MM -std=gnu++11
 
 #
@@ -49,9 +50,9 @@ TESTDIR    = ../../grading/${PROJECT}_test/
 # and builds the executable images
 #
 all: ${EXECBIN}
-	ifeq ($(HOST),ucsc)
-		- checksource ${ALLSOURCES}
-	endif
+ifeq ($(HOST),ucsc)
+	- checksource ${ALLSOURCES}
+endif
 #
 # Build the executable image from the object files.
 #
@@ -86,6 +87,8 @@ clean:
 spotless: clean
 	- rm ${EXECBIN}
 	- rm -r ${TESTDIR}
+	- rm *.str
+	- rm *.tok
 
 #
 # Build the dependencies file using the C preprocessor
@@ -101,10 +104,11 @@ ${DEPSFILE}:
 #
 # Test Submission (dry run)
 #
-testsubmit: ${SUBSRC} spotless
-	- rm ${TESTDIR}/*
-	cp ${ALLSOURCES} ${TESTDIR}/
-	cp ../../grading/mk* ${TESTDIR}/
+testsubmit: ${SUBSRC}
+	- rmdir ${TESTDIR}
+	- mkdir ${TESTDIR}
+	cp ${SUBSRC} ${TESTDIR}
+	cp ../../grading/mk* ${TESTDIR}
 
 #
 # Commit to git repo

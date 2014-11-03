@@ -12,6 +12,7 @@ using namespace std;
 #include "lyutils.h"
 #include "auxlib.h"
 
+extern FILE *tok_file;
 astree* yyparse_astree = NULL;
 int scan_linenr = 1;
 int scan_offset = 0;
@@ -35,7 +36,6 @@ void scanner_setecho (bool echoflag) {
    scan_echo = echoflag;
 }
 
-
 void scanner_useraction (void) {
    if (scan_echo) {
       if (scan_offset == 0) printf (";%5d: ", scan_linenr);
@@ -77,7 +77,6 @@ astree* new_parseroot (void) {
    return yyparse_astree;
 }
 
-
 void scanner_include (void) {
    scanner_newline();
    char filename[strlen (yytext) + 1];
@@ -88,7 +87,7 @@ void scanner_include (void) {
       errprintf ("%: %d: [%s]: invalid directive, ignored\n",
                  scan_rc, yytext);
    }else {
-      printf (";# %d \"%s\"\n", linenr, filename);
+      fprintf (tok_file, "# %d \"%s\"\n", linenr, filename);
       scanner_newfilename (filename);
       scan_linenr = linenr - 1;
       DEBUGF ('m', "filename=%s, scan_linenr=%d\n",

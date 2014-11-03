@@ -63,9 +63,9 @@ again :
 	${GMAKE} spotless dep all
 
 testsubmit :
-	- rm ${TEST_DIR}/*
-	cp ${ALLSOURCES} ${TEST_DIR}/
-	cp ../../grading/mk* ${TEST_DIR}/
+	- rmdir ${TEST_DIR}
+	cp ${ALLSOURCES} ${TEST_DIR}
+	cp ../../grading/mk* ${TEST_DIR}
 
 ifeq (${NEEDINCL}, )
 include ${DEPFILE}

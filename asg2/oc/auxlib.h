@@ -45,7 +45,6 @@ void set_exitstatus (int);
    // Sets the exit status.  Remebers only the largest value passed in.
    //
 
-
 void veprintf (const char* format, va_list args);
    //
    // Prints a message to stderr using the vector form of 
@@ -74,7 +73,6 @@ void syserrprintf (const char* object);
    // Sets the exit status to EXIT_FAILURE.
    //
 
-
 //
 // Support for stub messages.
 //
