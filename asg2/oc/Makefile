@@ -51,7 +51,7 @@ TESTDIR    = ../../grading/${PROJECT}_test/
 #
 all: ${EXECBIN}
 ifeq ($(HOST),ucsc)
-	- checksource ${ALLSOURCES}
+	- checksource ${ALLSRC}
 endif
 #
 # Build the executable image from the object files.
