@@ -16,7 +16,7 @@ extern int yyin_linenr;
 extern char* yytext;
 extern int yy_flex_debug;
 extern int yydebug;
-extern int yyleng;
+extern size_t yyleng;
 
 int yylex (void);
 int yyparse (void);
