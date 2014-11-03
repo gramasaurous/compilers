@@ -16,7 +16,6 @@ CSOURCES  = astree.cpp lyutils.cpp auxlib.cpp stringset.cpp main.cpp
 LSOURCES  = scanner.l
 YSOURCES  = parser.y
 ETCSRC    = README ${MKFILE} ${DEPSFILE}
-ETCSUB    = README ${MKFILE}
 CLGEN     = yylex.cpp
 HYGEN     = yyparse.h
 CYGEN     = yyparse.cpp
@@ -24,17 +23,17 @@ CGENS     = ${CLGEN} ${CYGEN}
 ALLGENS   = ${HYGEN} ${CGENS}
 EXECBIN   = oc
 ALLCSRC   = ${CSOURCES} ${CGENS}
-OBJECTS   = ${ALLCSRC:.cpp=.o}
+OBJECTS   = ${ALLCSRC:.cc=.o}
 LREPORT   = yylex.output
 YREPORT   = yyparse.output
 REPORTS   = ${LREPORT} ${YREPORT}
 ALLSRC    = ${ETCSRC} ${YSOURCES} ${LSOURCES} ${HSOURCES} ${CSOURCES}
-SUBSRC    = ${ETCSUB} ${LSOURCES} ${YSOURCES} ${CSOURCES} ${HSOURCES}
+SUBSRC 	  = ${MKFILE} README ${LSOURCES} ${YSOURCES} ${CSOURCES} ${HSOURCES}
 
 #
 # Definitions of the compiler and compilation options:
 #
-GCC       = g++ -g -O0 -Wall -Wextra -std=gnu++11 -fdiagnostics-color
+GCC       = g++ -g -O0 -Wall -Wextra -std=gnu++11
 MKDEPS    = g++ -MM -std=gnu++11
 
 #
@@ -50,19 +49,19 @@ TESTDIR    = ../../grading/${PROJECT}_test/
 # and builds the executable images
 #
 all: ${EXECBIN}
-ifeq ($(HOST),ucsc)
-	- checksource ${ALLSRC}
-endif
+	ifeq ($(HOST),ucsc)
+		- checksource ${ALLSOURCES}
+	endif
 #
 # Build the executable image from the object files.
 #
 ${EXECBIN}: ${OBJECTS}
-	${GCC} -o ${EXECBIN} ${OBJECTS}
+	${GCC} -o${EXECBIN} ${OBJECTS}
 
 #
 # Build an object file form a C source file.
 #
-%.o: %.cpp
+%.o: %.cc
 	${GCC} -c $<
 
 #
@@ -87,8 +86,6 @@ clean:
 spotless: clean
 	- rm ${EXECBIN}
 	- rm -r ${TESTDIR}
-	- rm *.str
-	- rm *.tok
 
 #
 # Build the dependencies file using the C preprocessor
@@ -104,17 +101,15 @@ ${DEPSFILE}:
 #
 # Test Submission (dry run)
 #
-testsubmit: ${SUBSRC}
-	- rm -r ${TESTDIR}*
-	- rmdir ${TESTDIR}
-	- mkdir ${TESTDIR}
-	cp ${SUBSRC} ${TESTDIR}
-	cp ../../grading/mk* ${TESTDIR}
+testsubmit: ${SUBSRC} spotless
+	- rm ${TESTDIR}/*
+	cp ${ALLSOURCES} ${TESTDIR}/
+	cp ../../grading/mk* ${TESTDIR}/
 
 #
 # Commit to git repo
 #
-git:
+git: spotless
 	git commit -a
 
 #

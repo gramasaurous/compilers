@@ -1,7 +1,3 @@
-// Graham Greving
-// ggreving@ucsc.edu
-// CMPS104a: asg2: auxlib.h
-
 #ifndef __AUXLIB_H__
 #define __AUXLIB_H__
 
@@ -45,6 +41,7 @@ void set_exitstatus (int);
    // Sets the exit status.  Remebers only the largest value passed in.
    //
 
+
 void veprintf (const char* format, va_list args);
    //
    // Prints a message to stderr using the vector form of 
@@ -73,6 +70,7 @@ void syserrprintf (const char* object);
    // Sets the exit status to EXIT_FAILURE.
    //
 
+
 //
 // Support for stub messages.
 //
@@ -122,5 +120,5 @@ void __debugprintf (char flag, const char* file, int line,
 #define RCSH(X) RCS2(__COUNTER__,X)
 #define RCSC(X) RCSH(X \
 "\0$Compiled: " __FILE__ " " __DATE__ " " __TIME__ " $")
-RCSH("$Id: auxlib.h,v 1.1 2013-09-20 19:38:26-07 - - $") 
+RCSH("$Id: auxlib.h,v 1.2 2013-09-19 19:55:32-07 - - $") 
 #endif

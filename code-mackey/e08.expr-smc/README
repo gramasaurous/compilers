@@ -1,0 +1,12 @@
+
+Simple compiler:  Translate exprs to stack machine insns.
+
+Syntax:     the ETF grammar
+Lexical:    identifiers, numbers
+Comments:   // and /**/ C-style
+Directives: #-cpp style
+Activity:   Build AST
+Codegen:    Stack machine code
+
+$Id: README,v 1.1 2013-09-19 16:38:25-07 - - $
+

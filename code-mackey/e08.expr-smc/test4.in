@@ -1,0 +1,4 @@
+ t// $Id: test4.in,v 1.1 2013-09-19 16:38:25-07 - - $
+#include "test4a.inh"
+#include "test4b.inh"
+3*4;
