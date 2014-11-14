@@ -24,7 +24,11 @@ astree* new_astree (int symbol, int filenr, int linenr, int offset,
    return tree;
 }
 
-
+astree* change_sym(astree *root, int symbol) {
+   root->symbol = symbol;
+   return root;
+}
+
 astree* adopt1 (astree* root, astree* child) {
    root->children.push_back (child);
    DEBUGF ('a', "%p (%s) adopting %p (%s)\n",
@@ -39,13 +43,19 @@ astree* adopt2 (astree* root, astree* left, astree* right) {
    return root;
 }
 
+astree* adopt3 (astree* root, astree* left, astree* middle, astree* right) {
+   adopt1 (root, left);
+   adopt1 (root, middle);
+   adopt1 (root, right);
+   return root;
+}
+
 astree* adopt1sym (astree* root, astree* child, int symbol) {
    root = adopt1 (root, child);
    root->symbol = symbol;
    return root;
 }
 
-
 static void dump_node (FILE* outfile, astree* node) {
    fprintf(outfile, "%3ld %ld.%03ld %-3d %-15s (%s)\n",
             node->filenr, node->linenr, node->offset,
