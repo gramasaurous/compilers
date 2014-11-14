@@ -30,6 +30,7 @@ int oc_include = 0;
 extern int yydebug;
 extern int yy_flex_debug;
 FILE *tok_file;
+FILE *ast_file;
 
 // Open a pipe from the C preprocessor.
 // Exit failure if can't.
@@ -50,14 +51,6 @@ void yyin_cpp_pclose (void) {
    int pclose_rc = pclose (yyin);
    eprint_status (yyin_cpp_command.c_str(), pclose_rc);
    if (pclose_rc != 0) set_exitstatus (EXIT_FAILURE);
-}
-
-// Chomp the last character from a buffer if it is delim.
-void chomp (char* string, char delim) {
-   size_t len = strlen (string);
-   if (len == 0) return;
-   char* nlpos = string + len - 1;
-   if (*nlpos == delim) *nlpos = '\0';
 }
 
 //
@@ -103,31 +96,42 @@ void scan_options (int argc, char** argv) {
    }
 }
 
-void write_str(char *filename) {   
+void write_str(string base) {  
    // Strip the filename to it's basename
    // Remove it's suffix and replace with .str
-   string outfile = basename(filename);
-   size_t i = outfile.find_last_of('.');
-   outfile.erase(i+1, 2);
-   outfile.append("str");
-   FILE *out = fopen(outfile.c_str(), "w");
+   base.append("str");
+   FILE *out = fopen(base.c_str(), "w");
    if (out == NULL) {
-      syserrprintf (outfile.c_str());
+      syserrprintf (base.c_str());
       exit (get_exitstatus());
    }
    dump_stringset(out);
    fclose(out);
 }
 
-void open_tok_file(char *filename) {
-   string outfile = basename(filename);
-   size_t i = outfile.find_last_of('.');
-   outfile.erase(i+1, 2);
-   outfile.append("tok");
-   tok_file = fopen(outfile.c_str(), "w");
+void open_tok_file(string base) {
+   base.append("tok");
+   tok_file = fopen(base.c_str(), "w");
    if (tok_file == NULL) {
-      syserrprintf (outfile.c_str());
+      syserrprintf (base.c_str());
       exit (get_exitstatus());
+   }
+}
+
+string get_filebase(char *filename) {
+   string base = basename(filename);
+   size_t i = base.find_last_of('.');
+   // remove oc suffix
+   base.erase(i+1, 2);
+   return base;
+}
+
+void open_ast_file(string base) {
+   base.append("ast");
+   ast_file = fopen(base.c_str(), "w");
+   if (ast_file == NULL) {
+      syserrprintf (base.c_str());
+      exit(get_exitstatus());
    }
 }
  
@@ -141,7 +145,8 @@ int main (int argc, char** argv) {
       errprintf("Error: bad file. oc requires oc files.\n");
       return (get_exitstatus());
    }
-   open_tok_file(filename);
+   string filebase = get_filebase(filename);
+   open_tok_file(filebase);
    yyin_cpp_popen(filename);
    //int token;
    //while ((token = yylex()) != YYEOF) {
@@ -151,6 +156,7 @@ int main (int argc, char** argv) {
    yyparse();
    yyin_cpp_pclose();
    fclose(tok_file);
+   fclose(ast_file);
    write_str(filename);
    return get_exitstatus();
 }
