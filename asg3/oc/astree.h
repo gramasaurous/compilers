@@ -19,9 +19,12 @@ struct astree {
 
 astree* new_astree (int symbol, int filenr, int linenr, int offset,
                     const char* lexinfo);
+astree* change_sym (astree* root, int symbol);
 astree* adopt1 (astree* root, astree* child);
 astree* adopt2 (astree* root, astree* left, astree* right);
+astree* adopt2sym(astree* root, astree*left, astree* right, int symbol);
 astree* adopt1sym (astree* root, astree* child, int symbol);
+astree* adopt3 (astree* root, astree* left, astree* middle, astree* right);
 void dump_astree (FILE* outfile, astree* root);
 void yyprint (FILE* outfile, unsigned short toknum, astree* yyvaluep);
 void free_ast (astree* tree);

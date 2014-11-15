@@ -50,6 +50,12 @@ astree* adopt3 (astree* root, astree* left, astree* middle, astree* right) {
    return root;
 }
 
+astree* adopt2sym (astree* root, astree* left, astree* right, int symbol) {
+   root = adopt2(root, left, right);
+   root->symbol = symbol;
+   return root;
+}
+
 astree* adopt1sym (astree* root, astree* child, int symbol) {
    root = adopt1 (root, child);
    root->symbol = symbol;
