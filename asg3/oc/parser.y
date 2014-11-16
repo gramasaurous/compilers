@@ -128,7 +128,7 @@ identdecl   : basetype TOK_IDENT {
             | basetype TOK_ARRAY TOK_IDENT {
                //free_ast($4);
                $3 = change_sym($3, TOK_DECLID);
-               $$ = adopt2($2, $2, $3);
+               $$ = adopt2($2, $1, $3);
             }
             ;
 
@@ -246,7 +246,8 @@ allocator   : TOK_NEW TOK_IDENT '(' ')' {
 
 call        : TOK_IDENT '(' exprs ')' {
                free_ast($4);
-               $$ = adopt1sym($2, $3, TOK_CALL);
+
+               $$ = adopt2sym($2, $1, $3, TOK_CALL);
             }
             | TOK_IDENT '(' ')' {
                free_ast($3);
