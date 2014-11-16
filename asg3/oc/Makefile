@@ -89,6 +89,7 @@ spotless: clean
 	- rm -r ${TESTDIR}
 	- rm *.str
 	- rm *.tok
+	- rm *.ast
 
 #
 # Build the dependencies file using the C preprocessor
