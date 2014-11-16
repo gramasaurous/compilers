@@ -54,12 +54,12 @@ program     : program structdef { $$ = adopt1 ($1, $2); }
 
 structdef   : TOK_STRUCT TOK_IDENT '{' fielddecls '}' {
                free_ast2($3, $5);
-               change_sym($2, TOK_TYPEID);
+               $2 = change_sym($2, TOK_TYPEID);
                $$ = adopt2($1, $2, $4);
             }
             | TOK_STRUCT TOK_IDENT '{' '}' { 
                free_ast2($3, $4); 
-               change_sym($2, TOK_TYPEID); 
+               $2 = change_sym($2, TOK_TYPEID); 
                $$ = adopt1($1, $2);
             }
             ;
@@ -70,12 +70,12 @@ fielddecls  : fielddecl             { $$ = $1; }
 
 fielddecl   : basetype TOK_IDENT ';' { 
                free_ast($3); 
-               change_sym($2, TOK_FIELD);
+               $2 = change_sym($2, TOK_FIELD);
                $$ = adopt1($1, $2);
             }
             | basetype TOK_ARRAY TOK_IDENT ';' {
                free_ast($4);
-               change_sym($3, TOK_FIELD);
+               $3 = change_sym($3, TOK_FIELD);
                $$ = adopt2($2, $1, $3);
             }
             ;
@@ -90,13 +90,13 @@ basetype    : TOK_VOID        { $$ = $1; }
 
 function    : identdecl '(' identdecls ')' block {
                free_ast($4);
-               adopt1sym($2, $3, TOK_PARAMLIST);
+               $2 = adopt1sym($2, $3, TOK_PARAMLIST);
                $$ = adopt3(new_astree(TOK_FUNCTION, $1->filenr,
                      $1->linenr, $1->offset, ""), $1, $2, $5);
             }
             | identdecl '(' identdecls ')' ';' {
                free_ast($4); free_ast($5);
-               adopt1sym($2, $3, TOK_PARAMLIST);
+               $2 = adopt1sym($2, $3, TOK_PARAMLIST);
                $$ = adopt2(new_astree(TOK_PROTOTYPE, $1->filenr,
                      $1->linenr, $1->offset, ""), $1, $2);   
             }
@@ -122,18 +122,18 @@ identdecls  : identdecl                { $$ = $1; }
 
 identdecl   : basetype TOK_IDENT {
                //free_ast($3);
-               change_sym($2, TOK_DECLID);
+               $2 = change_sym($2, TOK_DECLID);
                $$ = adopt1($1, $2);
             }
             | basetype TOK_ARRAY TOK_IDENT {
                //free_ast($4);
-               change_sym($3, TOK_DECLID);
+               $3 = change_sym($3, TOK_DECLID);
                $$ = adopt2($2, $2, $3);
             }
             ;
 
 block       : '{' statements '}' {
-               change_sym($1, TOK_BLOCK);
+               $1 = change_sym($1, TOK_BLOCK);
                free_ast($3);
                $$ = adopt1($1, $2);
             }
@@ -175,7 +175,7 @@ ifelse      : TOK_IF '(' expr ')' statement TOK_ELSE statement {
                free_ast($2);
                free_ast($4);
                free_ast($6);
-               change_sym($1, TOK_IFELSE);
+               $1 = change_sym($1, TOK_IFELSE);
                $$ = adopt3($1, $3, $5, $7);
             }
             | TOK_IF '(' expr ')' statement %prec TOK_IF {
@@ -250,8 +250,8 @@ call        : TOK_IDENT '(' exprs ')' {
             }
             | TOK_IDENT '(' ')' {
                free_ast($3);
-               change_sym($1, TOK_CALL);
-               adopt1($2, $1);
+               $1 = change_sym($1, TOK_CALL);
+               $$ = adopt1($2, $1);
             }
             ;
 
@@ -265,7 +265,7 @@ variable    : TOK_IDENT             { $$ = $1; }
                $$ = adopt2($1, $2, $3);
             }
             | expr '.' TOK_IDENT {
-               change_sym($3, TOK_FIELD); 
+               $3 = change_sym($3, TOK_FIELD); 
                $$ = adopt2($1, $2, $3);
             }
             ;
