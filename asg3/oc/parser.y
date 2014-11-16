@@ -116,17 +116,17 @@ function    : identdecl '(' identdecls ')' block {
 identdecls  : identdecl                { $$ = $1; }
             | identdecls ',' identdecl {
                free_ast($2);
-               $$ = $1;
+               $$ = adopt1($1, $3);;
             }
             ;
 
-identdecl   : basetype TOK_IDENT ';' {
-               free_ast($3);
+identdecl   : basetype TOK_IDENT {
+               //free_ast($3);
                change_sym($2, TOK_DECLID);
                $$ = adopt1($1, $2);
             }
-            | basetype TOK_ARRAY TOK_IDENT ';' {
-               free_ast($4);
+            | basetype TOK_ARRAY TOK_IDENT {
+               //free_ast($4);
                change_sym($3, TOK_DECLID);
                $$ = adopt2($2, $2, $3);
             }
