@@ -26,6 +26,7 @@ astree* adopt2sym(astree* root, astree*left, astree* right, int symbol);
 astree* adopt1sym (astree* root, astree* child, int symbol);
 astree* adopt3 (astree* root, astree* left, astree* middle, astree* right);
 void dump_astree (FILE* outfile, astree* root);
+void dump_tok (FILE* outfile, astree* node);
 void yyprint (FILE* outfile, unsigned short toknum, astree* yyvaluep);
 void free_ast (astree* tree);
 void free_ast2 (astree* tree1, astree* tree2);

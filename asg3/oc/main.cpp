@@ -30,7 +30,7 @@ int oc_include = 0;
 extern int yydebug;
 extern int yy_flex_debug;
 FILE *tok_file;
-FILE *ast_file;
+extern astree *yyparse_astree;
 
 // Open a pipe from the C preprocessor.
 // Exit failure if can't.
@@ -76,12 +76,12 @@ void scan_options (int argc, char** argv) {
             DEBUGF('o', "Opt D set with flag: %c", optarg);
             break;
          case 'l':
-            // Debug yylex() yy_flex_debug = 1;
+            // Debug yylex()
             yy_flex_debug = 1;
             DEBUGF('o', "opt l set");
             break;
          case 'y':
-            // Debug yyparse() with yydebug = 1; 
+            // Debug yyparse() 
             yydebug = 1;
             DEBUGF('o', "opt y set");
             break;
@@ -97,8 +97,6 @@ void scan_options (int argc, char** argv) {
 }
 
 void write_str(string base) {  
-   // Strip the filename to it's basename
-   // Remove it's suffix and replace with .str
    base.append("str");
    FILE *out = fopen(base.c_str(), "w");
    if (out == NULL) {
@@ -106,6 +104,17 @@ void write_str(string base) {
       exit (get_exitstatus());
    }
    dump_stringset(out);
+   fclose(out);
+}
+
+void write_ast(string base) {  
+   base.append("ast");
+   FILE *out = fopen(base.c_str(), "w");
+   if (out == NULL) {
+      syserrprintf (base.c_str());
+      exit (get_exitstatus());
+   }
+   dump_astree(out, yyparse_astree);
    fclose(out);
 }
 
@@ -126,15 +135,6 @@ string get_filebase(char *filename) {
    return base;
 }
 
-void open_ast_file(string base) {
-   base.append("ast");
-   ast_file = fopen(base.c_str(), "w");
-   if (ast_file == NULL) {
-      syserrprintf (base.c_str());
-      exit(get_exitstatus());
-   }
-}
- 
 int main (int argc, char** argv) {
    set_execname (argv[0]);
    scan_options(argc, argv);
@@ -148,15 +148,10 @@ int main (int argc, char** argv) {
    string filebase = get_filebase(filename);
    open_tok_file(filebase);
    yyin_cpp_popen(filename);
-   //int token;
-   //while ((token = yylex()) != YYEOF) {
-   //   if (yy_flex_debug) fflush(NULL);
-   //   intern_stringset(yytext);
-   //}
    yyparse();
    yyin_cpp_pclose();
    fclose(tok_file);
-   fclose(ast_file);
-   write_str(filename);
+   write_str(filebase);
+   write_ast(filebase);
    return get_exitstatus();
 }
