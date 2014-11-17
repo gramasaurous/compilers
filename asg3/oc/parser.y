@@ -1,5 +1,7 @@
 %{
-// Dummy parser for scanner project.
+// Graham Greving
+// ggreving@ucsc.edu
+// CMPS104A: parser.y
 
 #include "lyutils.h"
 #include "astree.h"
@@ -27,11 +29,11 @@
 
 %right TOK_IF TOK_ELSE
 %right '='
-%left  TOK_EQ TOK_NE '<' TOK_LE '>' TOK_GE
+%left  TOK_EQ TOK_NE TOK_GT TOK_LE TOK_LT TOK_GE
 %left  '+' '-'
 %left  '*' '/' '%'
 %right TOK_NEG TOK_POS '!' TOK_ORD TOK_CHR
-%left  TOK_FUNCTION 
+%left  TOK_ARRAY TOK_FIELD TOK_FUNCTION 
 %left  '[' '.'
 
 %nonassoc TOK_NEW
@@ -65,7 +67,10 @@ structdef   : TOK_STRUCT TOK_IDENT '{' fielddecls '}' {
             ;
 
 fielddecls  : fielddecl             { $$ = $1; }
-            | fielddecls fielddecl  { $$ = $1; }
+            | fielddecls fielddecl { 
+               free_ast($2);
+               $$ = adopt1($1, $2);
+            }
             ;
 
 fielddecl   : basetype TOK_IDENT ';' { 
@@ -144,7 +149,9 @@ block       : '{' statements '}' {
             ;
 
 statements  : statement             { $$ = $1; }
-            | statements statement  { $$ = $1; }
+            | statements statement  { 
+               $$ = adopt1($1, $2);
+            }
             ;
 
 statement   : block     { $$ = $1; }
@@ -156,6 +163,7 @@ statement   : block     { $$ = $1; }
                free_ast($2);
                $$ = $1;
             }
+            | ';'       { $$ = $1; }
             ;
 
 vardecl     : identdecl '=' expr ';' {
@@ -167,7 +175,7 @@ vardecl     : identdecl '=' expr ';' {
 while       : TOK_WHILE '(' expr ')' statement {
                free_ast($2);
                free_ast($4);
-               $$ = adopt2($1, $2, $3);
+               $$ = adopt2($1, $3, $5);
             }
             ;
 
@@ -190,9 +198,13 @@ return      : TOK_RETURN ';' {
                $$ = change_sym($1, TOK_RETURNVOID);
             }
             | TOK_RETURN expr ';'{
-               free_ast($2);
+               free_ast($3);
                $$ = adopt1($1, $2);
             }
+            ;
+
+exprs       : exprs ',' expr { free_ast($2); $$ = adopt1($1, $3); }
+            | expr { $$ = $1; }
             ;
 
 expr        : binop        { $$ = $1; }
@@ -211,8 +223,8 @@ binop       : expr '+' expr      { $$ = adopt2($2, $1, $3); }
             | expr '-' expr      { $$ = adopt2($2, $1, $3); }
             | expr '*' expr      { $$ = adopt2($2, $1, $3); }
             | expr '/' expr      { $$ = adopt2($2, $1, $3); }
-            | expr '<' expr      { $$ = adopt2($2, $1, $3); }
-            | expr '>' expr      { $$ = adopt2($2, $1, $3); }
+            | expr TOK_LT expr   { $$ = adopt2($2, $1, $3); }
+            | expr TOK_GT expr   { $$ = adopt2($2, $1, $3); }
             | expr TOK_LE expr   { $$ = adopt2($2, $1, $3); }
             | expr TOK_GE expr   { $$ = adopt2($2, $1, $3); }
             | expr '=' expr      { $$ = adopt2($2, $1, $3); }
@@ -231,12 +243,13 @@ unop        : '+' expr { $$ = adopt1sym($1, $2, TOK_POS); }
 allocator   : TOK_NEW TOK_IDENT '(' ')' { 
                free_ast($3);
                free_ast($4);
-               $$ = adopt1sym($1, $2, TOK_TYPEID);
+               $2 = change_sym($2, TOK_TYPEID);
+               $$ = adopt1($1, $2);
             }
             | TOK_NEW TOK_STRING '(' expr ')' {
                free_ast($3);
                free_ast($5);
-               $$ = adopt1sym($1, $3, TOK_NEWSTRING);
+               $$ = adopt1sym($1, $4, TOK_NEWSTRING);
             }
             | TOK_NEW basetype '[' expr ']' {
                free_ast($3); free_ast($5);
@@ -246,28 +259,24 @@ allocator   : TOK_NEW TOK_IDENT '(' ')' {
 
 call        : TOK_IDENT '(' exprs ')' {
                free_ast($4);
-
                $$ = adopt2sym($2, $1, $3, TOK_CALL);
             }
             | TOK_IDENT '(' ')' {
                free_ast($3);
-               $1 = change_sym($1, TOK_CALL);
+               $2 = change_sym($2, TOK_CALL);
                $$ = adopt1($2, $1);
             }
             ;
 
-exprs       : exprs ',' expr { free_ast($2); $$ = adopt1($1, $3); }
-            | expr { $$ = $1; }
-            ;
-
-variable    : TOK_IDENT             { $$ = $1; }
+variable    : TOK_IDENT         { $$ = $1; }
             | expr '[' expr ']' { 
-               free_ast($4); 
-               $$ = adopt2($1, $2, $3);
+               free_ast($4);
+               $2 = change_sym($2, TOK_INDEX);
+               $$ = adopt2($2, $1, $3);
             }
             | expr '.' TOK_IDENT {
                $3 = change_sym($3, TOK_FIELD); 
-               $$ = adopt2($1, $2, $3);
+               $$ = adopt2($2, $1, $3);
             }
             ;
 
