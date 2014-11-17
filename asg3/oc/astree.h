@@ -24,12 +24,12 @@ astree* adopt1 (astree* root, astree* child);
 astree* adopt2 (astree* root, astree* left, astree* right);
 astree* adopt2sym(astree* root, astree*left, astree* right, int symbol);
 astree* adopt1sym (astree* root, astree* child, int symbol);
-astree* adopt3 (astree* root, astree* left, astree* middle, astree* right);
+astree* adopt3 (astree* root, astree* left,
+   astree* middle, astree* right);
 void dump_astree (FILE* outfile, astree* root);
 void dump_tok (FILE* outfile, astree* node);
 void yyprint (FILE* outfile, unsigned short toknum, astree* yyvaluep);
 void free_ast (astree* tree);
 void free_ast2 (astree* tree1, astree* tree2);
 
-RCSH("$Id: astree.h,v 1.3 2013-09-20 12:23:31-07 - - $")
 #endif
