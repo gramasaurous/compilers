@@ -43,14 +43,16 @@ astree* adopt2 (astree* root, astree* left, astree* right) {
    return root;
 }
 
-astree* adopt3 (astree* root, astree* left, astree* middle, astree* right) {
+astree* adopt3 (astree* root, astree* left,
+       astree* middle, astree* right) {
    adopt1 (root, left);
    adopt1 (root, middle);
    adopt1 (root, right);
    return root;
 }
 
-astree* adopt2sym (astree* root, astree* left, astree* right, int symbol) {
+astree* adopt2sym (astree* root, astree* left,
+        astree* right, int symbol) {
    root = adopt2(root, left, right);
    root->symbol = symbol;
    return root;
