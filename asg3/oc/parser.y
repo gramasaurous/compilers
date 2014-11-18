@@ -237,17 +237,19 @@ allocator   : TOK_NEW TOK_IDENT '(' ')' {
             }
             ;
 
-callexprs   : '(' expr              { $$ = adopt1($1, $2); }
+callexprs   : TOK_IDENT '(' expr    {
+               $$ = adopt2sym($2, $1, $3, TOK_CALL);
+            }
             | callexprs ',' expr    {
                free_ast($2);
                $$ = adopt1($1, $3); 
             }
             ;
 
-call        : TOK_IDENT callexprs ')' {
-               free_ast($3);
-               $2 = change_sym($2, TOK_CALL);
-               $$ = adopt1($2, $1);
+call        : callexprs ')' {
+               free_ast($2);
+               //$2 = change_sym($2, TOK_CALL);
+               $$ = $1;
             }
             | TOK_IDENT '(' ')' {
                free_ast($3);
