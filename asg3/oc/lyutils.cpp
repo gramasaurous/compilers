@@ -1,3 +1,6 @@
+// Graham Greving
+// ggreving@ucsc.edu
+// CMPS104a: asg3: lyutils.cpp
 
 #include <vector>
 #include <string>

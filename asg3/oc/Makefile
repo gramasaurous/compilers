@@ -1,6 +1,6 @@
 # Graham Greving
 # ggreving@ucsc.edu
-# CMPS104a: asg2: Makefile
+# CMPS104a: asg3: Makefile
 
 MKFILE    = Makefile
 DEPSFILE  = ${MKFILE}.deps

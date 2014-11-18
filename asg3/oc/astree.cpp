@@ -1,3 +1,6 @@
+// Graham Greving
+// ggreving@ucsc.edu
+// CMPS104a: asg3: astree.cpp
 
 #include <assert.h>
 #include <inttypes.h>
@@ -69,7 +72,6 @@ astree* adopt1sym (astree* root, astree* child, int symbol) {
 astree* kidnap_children(astree *root, astree* child) {
    // pop all the children and readopt them
    for (auto i: child->children) {
-      //printf("Kidnapping child: %s", get_yytname(i->symbol));
       adopt1(root, i);
    }
    return root;
@@ -131,4 +133,8 @@ void free_ast2 (astree* tree1, astree* tree2) {
    free_ast (tree2);
 }
 
-
+void free_ast3 (astree* tree1, astree* tree2, astree* tree3) {
+   free_ast(tree1);
+   free_ast(tree2);
+   free_ast(tree3);
+}

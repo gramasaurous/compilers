@@ -1,7 +1,7 @@
 %{
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg2: scanner.l
+// CMPS104a: asg3: scanner.l
 
 #include "auxlib.h"
 #include "lyutils.h"

@@ -1,6 +1,6 @@
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg2: main.cpp
+// CMPS104a: asg3: main.cpp
 
 // Use cpp to scan a file and print line numbers.
 // Generate and intern tokens with a flex scanner.

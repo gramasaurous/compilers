@@ -1,7 +1,7 @@
 %{
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104A: parser.y
+// CMPS104a: asg3: parser.y
 
 #include "lyutils.h"
 #include "astree.h"
@@ -61,21 +61,20 @@ structdef   : TOK_STRUCT TOK_IDENT '{' fielddecls '}' {
                $$ = adopt1($1, $2);
             }
             | TOK_STRUCT TOK_IDENT '{' '}' { 
-               free_ast2($3, $4); 
-               $2 = change_sym($2, TOK_TYPEID); 
+               free_ast2($3, $4);
+               $2 = change_sym($2, TOK_TYPEID);
                $$ = adopt1($1, $2);
             }
             ;
 
 fielddecls  : fielddecl             { $$ = $1; }
             | fielddecls fielddecl { 
-               //free_ast($2);
                $$ = adopt1($1, $2);
             }
             ;
 
 fielddecl   : basetype TOK_IDENT ';' { 
-               free_ast($3); 
+               free_ast($3);
                $2 = change_sym($2, TOK_FIELD);
                $$ = adopt1($1, $2);
             }
@@ -97,17 +96,14 @@ basetype    : TOK_VOID        { $$ = $1; }
 function    : identdecl '(' identdecls ')' block {
                free_ast($4);
                $2 = change_sym($2, TOK_PARAMLIST);
-               //printf("kidnapping the children\n");
                $2 = kidnap_children($2, $3);
-               //$2 = adopt1sym($2, $3, TOK_PARAMLIST);
                $$ = adopt3(new_astree(TOK_FUNCTION, $1->filenr,
                      $1->linenr, $1->offset, ""), $1, $2, $5);
             }
             | identdecl '(' identdecls ')' ';' {
-               free_ast($4); free_ast($5);
+               free_ast2($4, $5);
                $2 = change_sym($2, TOK_PARAMLIST);
                $2 = kidnap_children($2, $3);
-               //$2 = adopt1sym($2, $3, TOK_PARAMLIST);
                $$ = adopt2(new_astree(TOK_PROTOTYPE, $1->filenr,
                      $1->linenr, $1->offset, ""), $1, $2);   
             }
@@ -117,7 +113,7 @@ function    : identdecl '(' identdecls ')' block {
                      $1->linenr, $1->offset, ""), $1, $2, $4);   
             }
             | identdecl '(' ')' ';' {
-               free_ast($3); free_ast($4);
+               free_ast2($3, $4);
                $$ = adopt2(new_astree(TOK_PROTOTYPE, $1->filenr,
                      $1->linenr, $1->offset, ""), $1, $2);   
                   
@@ -132,22 +128,19 @@ identdecls  : identdecl                { $$ = $1; }
             ;
 
 identdecl   : basetype TOK_IDENT {
-               //free_ast($3);
                $2 = change_sym($2, TOK_DECLID);
                $$ = adopt1($1, $2);
             }
             | basetype TOK_ARRAY TOK_IDENT {
-               //free_ast($4);
                $3 = change_sym($3, TOK_DECLID);
                $$ = adopt2($2, $1, $3);
             }
             ;
 
 block       : '{' statements '}' {
-               $1 = change_sym($1, TOK_BLOCK);
                free_ast($3);
+               $1 = change_sym($1, TOK_BLOCK);
                $$ = kidnap_children($1, $2);
-               //$$ = adopt1($1, $2);
             }
             | '{' '}' { 
                free_ast($2);
@@ -180,22 +173,18 @@ vardecl     : identdecl '=' expr ';' {
             ;
 
 while       : TOK_WHILE '(' expr ')' statement {
-               free_ast($2);
-               free_ast($4);
+               free_ast2($2, $4);
                $$ = adopt2($1, $3, $5);
             }
             ;
 
 ifelse      : TOK_IF '(' expr ')' statement TOK_ELSE statement {
-               free_ast($2);
-               free_ast($4);
-               free_ast($6);
+               free_ast3($2, $4, $6);
                $1 = change_sym($1, TOK_IFELSE);
                $$ = adopt3($1, $3, $5, $7);
             }
             | TOK_IF '(' expr ')' statement %prec TOK_IF {
-               free_ast($2);
-               free_ast($4);
+               free_ast2($2, $4);
                $$ = adopt2($1, $3, $5);
             }
             ;
@@ -210,8 +199,8 @@ return      : TOK_RETURN ';' {
             }
             ;
 
-exprs       : exprs ',' expr { free_ast($2); $$ = adopt1($1, $3); }
-            | expr { $$ = $1; }
+exprs       : exprs ',' expr  { free_ast($2); $$ = adopt1($1, $3); }
+            | expr            { $$ = $1; }
             ;
 
 expr        : binop        { $$ = $1; }
@@ -219,7 +208,7 @@ expr        : binop        { $$ = $1; }
             | allocator    { $$ = $1; }
             | call         { $$ = $1; }
             | '(' expr ')' {
-               free_ast($1); free_ast($3);
+               free_ast2($1, $3);
                $$ = $2;
             }
             | variable {$$ = $1; }
@@ -240,22 +229,20 @@ binop       : expr '+' expr      { $$ = adopt2($2, $1, $3); }
             | expr '%' expr      { $$ = adopt2($2, $1, $3); }
             ;
 
-unop        : '+' expr { $$ = adopt1sym($1, $2, TOK_POS); }
-            | '-' expr { $$ = adopt1sym($1, $2, TOK_NEG); }
-            | '!' expr { $$ = adopt1($1, $2); }
-            | TOK_CHR expr { $$ = adopt1($1, $2); }
-            | TOK_ORD expr { $$ = adopt1($1, $2); }
+unop        : '+' expr        { $$ = adopt1sym($1, $2, TOK_POS); }
+            | '-' expr        { $$ = adopt1sym($1, $2, TOK_NEG); }
+            | '!' expr        { $$ = adopt1($1, $2); }
+            | TOK_CHR expr    { $$ = adopt1($1, $2); }
+            | TOK_ORD expr    { $$ = adopt1($1, $2); }
             ;
 
 allocator   : TOK_NEW TOK_IDENT '(' ')' { 
-               free_ast($3);
-               free_ast($4);
+               free_ast2($3, $4);
                $2 = change_sym($2, TOK_TYPEID);
                $$ = adopt1($1, $2);
             }
             | TOK_NEW TOK_STRING '(' expr ')' {
-               free_ast($3);
-               free_ast($5);
+               free_ast2($3, $5);
                $$ = adopt1sym($1, $4, TOK_NEWSTRING);
             }
             | TOK_NEW basetype '[' expr ']' {
