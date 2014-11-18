@@ -70,10 +70,14 @@ astree* adopt1sym (astree* root, astree* child, int symbol) {
 // Yanks all the adopted children from the passed node and will
 // re-adopt them laterally.
 astree* kidnap_children(astree *root, astree* child) {
+   printf("%s will kidnap: \n", get_yytname(root->symbol));
+   dump_astree(stdout, child);
    // pop all the children and readopt them
    for (auto i: child->children) {
       adopt1(root, i);
    }
+   printf("root is now:\n");
+   dump_astree(stdout, root);
    return root;
 }
 
