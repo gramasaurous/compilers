@@ -18,16 +18,16 @@ stringset.cpp
 stringset.h
 
 Added functions to astree module:
-	- kidnap_children (root, child):
-		root adopts all of child's children
-	- free_ast3
-		frees 3 astrees in the vein of free_ast2
-	- adopt3 (root, left, mid, right)
-		addopts 3 children (left, mid, right) to root
-	- change_sym (root, symbol)
-		changes root's symbol to symbol
-	- dump_tok (outfile, node)
-		writes an astree node to outfile in token format
+    - kidnap_children (root, child):
+        root adopts all of child's children
+    - free_ast3
+        frees 3 astrees in the vein of free_ast2
+    - adopt3 (root, left, mid, right)
+        addopts 3 children (left, mid, right) to root
+    - change_sym (root, symbol)
+        changes root's symbol to symbol
+    - dump_tok (outfile, node)
+        writes an astree node to outfile in token format
 
 Grammar rules require multiple expressions handled with kidnap_children
 as stated above.
