@@ -246,7 +246,8 @@ callexprs   : '(' expr              { $$ = adopt1($1, $2); }
 
 call        : TOK_IDENT callexprs ')' {
                free_ast($3);
-               $$ = adopt1sym($2, $1, TOK_CALL);
+               $2 = change_sym($2, TOK_CALL);
+               $$ = adopt1($2, $1);
             }
             | TOK_IDENT '(' ')' {
                free_ast($3);
