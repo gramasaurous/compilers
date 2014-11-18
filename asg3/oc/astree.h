@@ -19,6 +19,7 @@ struct astree {
 
 astree* new_astree (int symbol, int filenr, int linenr, int offset,
                     const char* lexinfo);
+astree* kidnap_children(astree* root, astree* child);
 astree* change_sym (astree* root, int symbol);
 astree* adopt1 (astree* root, astree* child);
 astree* adopt2 (astree* root, astree* left, astree* right);

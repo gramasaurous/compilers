@@ -64,6 +64,17 @@ astree* adopt1sym (astree* root, astree* child, int symbol) {
    return root;
 }
 
+// Yanks all the adopted children from the passed node and will
+// re-adopt them laterally.
+astree* kidnap_children(astree *root, astree* child) {
+   // pop all the children and readopt them
+   for (auto i: child->children) {
+      //printf("Kidnapping child: %s", get_yytname(i->symbol));
+      adopt1(root, i);
+   }
+   return root;
+}
+
 static void dump_node (FILE* outfile, astree* node) {
    char* tname = (char*) get_yytname(node->symbol);
    if (strstr(tname, "TOK_") == tname) tname += 4;

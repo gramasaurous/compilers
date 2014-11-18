@@ -57,7 +57,8 @@ program     : program structdef { $$ = adopt1 ($1, $2); }
 structdef   : TOK_STRUCT TOK_IDENT '{' fielddecls '}' {
                free_ast2($3, $5);
                $2 = change_sym($2, TOK_TYPEID);
-               $$ = adopt2($1, $2, $4);
+               $1 = kidnap_children($1, $4);
+               $$ = adopt1($1, $2);
             }
             | TOK_STRUCT TOK_IDENT '{' '}' { 
                free_ast2($3, $4); 
@@ -68,7 +69,7 @@ structdef   : TOK_STRUCT TOK_IDENT '{' fielddecls '}' {
 
 fielddecls  : fielddecl             { $$ = $1; }
             | fielddecls fielddecl { 
-               free_ast($2);
+               //free_ast($2);
                $$ = adopt1($1, $2);
             }
             ;
@@ -95,13 +96,18 @@ basetype    : TOK_VOID        { $$ = $1; }
 
 function    : identdecl '(' identdecls ')' block {
                free_ast($4);
-               $2 = adopt1sym($2, $3, TOK_PARAMLIST);
+               $2 = change_sym($2, TOK_PARAMLIST);
+               //printf("kidnapping the children\n");
+               $2 = kidnap_children($2, $3);
+               //$2 = adopt1sym($2, $3, TOK_PARAMLIST);
                $$ = adopt3(new_astree(TOK_FUNCTION, $1->filenr,
                      $1->linenr, $1->offset, ""), $1, $2, $5);
             }
             | identdecl '(' identdecls ')' ';' {
                free_ast($4); free_ast($5);
-               $2 = adopt1sym($2, $3, TOK_PARAMLIST);
+               $2 = change_sym($2, TOK_PARAMLIST);
+               $2 = kidnap_children($2, $3);
+               //$2 = adopt1sym($2, $3, TOK_PARAMLIST);
                $$ = adopt2(new_astree(TOK_PROTOTYPE, $1->filenr,
                      $1->linenr, $1->offset, ""), $1, $2);   
             }
@@ -140,7 +146,8 @@ identdecl   : basetype TOK_IDENT {
 block       : '{' statements '}' {
                $1 = change_sym($1, TOK_BLOCK);
                free_ast($3);
-               $$ = adopt1($1, $2);
+               $$ = kidnap_children($1, $2);
+               //$$ = adopt1($1, $2);
             }
             | '{' '}' { 
                free_ast($2);
@@ -259,7 +266,8 @@ allocator   : TOK_NEW TOK_IDENT '(' ')' {
 
 call        : TOK_IDENT '(' exprs ')' {
                free_ast($4);
-               $$ = adopt2sym($2, $1, $3, TOK_CALL);
+               $2 = kidnap_children($2, $3);
+               $$ = adopt1sym($2, $1, TOK_CALL);
             }
             | TOK_IDENT '(' ')' {
                free_ast($3);
