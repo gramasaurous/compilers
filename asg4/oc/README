@@ -1,0 +1,21 @@
+# Graham Greving
+# ggreving@ucsc.edu
+# CMPS104a: asg4: README
+
+Submitted files:
+Makefile
+README
+astree.cpp
+astree.h
+auxlib.cpp
+auxlib.h
+lyutils.cpp
+lyutils.h
+main.cpp
+parser.y
+scanner.l
+stringset.cpp
+stringset.h
+
+
+

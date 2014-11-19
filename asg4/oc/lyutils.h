@@ -1,6 +1,6 @@
 // Graham Greving
 // ggreving@ucsc.edu
-// CMPS104a: asg3: lyutils.h
+// CMPS104a: asg4: lyutils.h
 
 #ifndef __LYUTILS_H__
 #define __LYUTILS_H__
