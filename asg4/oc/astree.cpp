@@ -12,6 +12,7 @@
 #include "astree.h"
 #include "stringset.h"
 #include "lyutils.h"
+#include "typecheck.h"
 
 astree* new_astree (int symbol, int filenr, int linenr, int offset,
                     const char* lexinfo) {
@@ -21,6 +22,9 @@ astree* new_astree (int symbol, int filenr, int linenr, int offset,
    tree->linenr = linenr;
    tree->offset = offset;
    tree->lexinfo = intern_stringset (lexinfo);
+   tree->attributes = 0;
+   tree->block_nr = 0;
+   tree->struct_entry = NULL;
    DEBUGF ('f', "astree %p->{%d:%d.%d: %s: \"%s\"}\n",
            tree, tree->filenr, tree->linenr, tree->offset,
            get_yytname (tree->symbol), tree->lexinfo->c_str());
@@ -67,26 +71,13 @@ astree* adopt1sym (astree* root, astree* child, int symbol) {
    return root;
 }
 
-// Yanks all the adopted children from the passed node and will
-// re-adopt them laterally.
-astree* kidnap_children(astree *root, astree* child) {
-   printf("%s will kidnap: \n", get_yytname(root->symbol));
-   dump_astree(stdout, child);
-   // pop all the children and readopt them
-   for (auto i: child->children) {
-      adopt1(root, i);
-   }
-   printf("root is now:\n");
-   dump_astree(stdout, root);
-   return root;
-}
-
 static void dump_node (FILE* outfile, astree* node) {
    char* tname = (char*) get_yytname(node->symbol);
    if (strstr(tname, "TOK_") == tname) tname += 4;
-   fprintf(outfile, "%s \"%s\" %zu.%zu.%zu\n", tname,
+   fprintf(outfile, "%s \"%s\" (%zu.%zu.%zu) {%lu} %s (%u.%u.%u)\n", tname,
       (node->lexinfo)->c_str(), node->filenr,
-      node->linenr, node->offset);
+      node->linenr, node->offset, node->block_nr,
+      get_attr_name(node->attributes).c_str(), 0,0,0);
 }
 
 static void dump_astree_rec (FILE* outfile, astree* root, int depth) {

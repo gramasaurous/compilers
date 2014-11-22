@@ -2,11 +2,15 @@
 // ggreving@ucsc.edu
 // CMPS104a: asg4: typecheck.h
 
+#ifndef __TYPECHECK_H__
+#define __TYPECHECK_H__
+
 #include <string>
+#include <iostream>
 #include <unordered_map>
 #include <bitset>
+#include <vector>
 
-#include "astree.h"
 #include "auxlib.h"
 
 using namespace std;
@@ -25,18 +29,17 @@ struct symbol;
 using attr_bitset = bitset<ATTR_bitset_size>;
 using symbol_table = unordered_map<string*, symbol*>;
 using symbol_entry = pair<string*,symbol*>;
-using symbol_stack = vector<symbol_table*>;
+using symbol_stack = vector<symbol_table*>; // 
 
-// symbol type
 struct symbol {
    attr_bitset attributes;
    symbol_table* fields;
-   size_t filenr;
-   size_t linenr;
-   size_t offset;
-   size_t block_nr;
+   size_t filenr, linenr, offset, block_nr;
    symbol* parameters;
 };
+//vector<symbol_table*> struct_stack;
 
-// depth-first traversal of the abstract syntax tree
-//void traverse_ast(astree *root);
+string get_attr_name(attr_bitset attributes);
+
+#endif
+

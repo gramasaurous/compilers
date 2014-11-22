@@ -136,7 +136,6 @@ blockhead   : blockhead statement   { $$ = adopt1($1, $2);}
 block       : blockhead '}' {
                free_ast($2);
                $$ = change_sym($1, TOK_BLOCK);
-               //$$ = kidnap_children($1, $2);
             }
             | '{' '}' { 
                free_ast($2);
