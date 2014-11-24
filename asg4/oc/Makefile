@@ -11,8 +11,9 @@ VALGRIND  = valgrind --leak-check=full --show-reachable=yes
 #
 # Definitions of list of files:
 #
-HSOURCES  = typecheck.h astree.h  lyutils.h  auxlib.h  stringset.h
-CSOURCES  = typecheck.cpp astree.cpp lyutils.cpp auxlib.cpp stringset.cpp main.cpp
+MODULES    = typecheck astree lyutils auxlib stringset
+HSOURCES   = ${MODULES:=.h}
+CSOURCES   = ${MODULES:=.cpp} main.cpp 
 LSOURCES  = scanner.l
 YSOURCES  = parser.y
 ETCSRC    = README ${MKFILE} ${DEPSFILE}
@@ -56,7 +57,7 @@ endif
 #
 # Build the executable image from the object files.
 #
-${EXECBIN}: ${OBJECTS}
+${EXECBIN}: ${CLGEN} ${CYGE{} ${OBJECTS}
 	${GCC} -o ${EXECBIN} ${OBJECTS}
 
 #
