@@ -55,7 +55,7 @@ program     : program structdef { $$ = adopt1 ($1, $2); }
             ;
 
 structhead  : '{' fielddecl         { free_ast ($1); $$ = $2; }
-            | structhead fielddecl   { $$ = adopt1($1, $2);}
+            | structhead fielddecl  { $$ = adopt1($1, $2);}
             ;
 
 structdef   : TOK_STRUCT TOK_IDENT structhead '}' {
@@ -93,7 +93,10 @@ basetype    : TOK_VOID        { $$ = $1; }
 funchead    : '(' identdecl         {
                   $$ = adopt1sym($1, $2, TOK_PARAMLIST);
             }
-            | funchead ',' identdecl    { $$ = adopt1($1, $3);}
+            | funchead ',' identdecl    { 
+               free_ast($2);
+               $$ = adopt1($1, $3);
+            }
             ;
 
 function    : identdecl funchead ')' block {
@@ -231,7 +234,7 @@ allocator   : TOK_NEW TOK_IDENT '(' ')' {
                $$ = adopt1sym($1, $4, TOK_NEWSTRING);
             }
             | TOK_NEW basetype '[' expr ']' {
-               free_ast($3); free_ast($5);
+               free_ast2($3, $5);
                $$ = adopt2sym($1, $2, $4, TOK_NEWARRAY);
             }
             ;
@@ -247,7 +250,6 @@ callexprs   : TOK_IDENT '(' expr    {
 
 call        : callexprs ')' {
                free_ast($2);
-               //$2 = change_sym($2, TOK_CALL);
                $$ = $1;
             }
             | TOK_IDENT '(' ')' {

@@ -157,5 +157,7 @@ int main (int argc, char** argv) {
    fclose(tok_file);
    write_str(filebase);
    write_ast(filebase);
+   free_ast(yyparse_astree);
+   yylex_destroy();
    return get_exitstatus();
 }

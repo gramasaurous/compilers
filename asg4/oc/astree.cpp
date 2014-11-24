@@ -140,14 +140,18 @@ void visit_node(astree* n) {
    if (n == NULL) return;
    DEBUGF('z', "%s\n", get_yytname(n->symbol));
    switch (n->symbol) {
-      case TOK_VOID:    n->attributes.set(ATTR_void);   break;
-      case TOK_BOOL:    n->attributes.set(ATTR_bool);   break;
-      case TOK_CHAR:    n->attributes.set(ATTR_char);   break;
-      case TOK_INT :    n->attributes.set(ATTR_int);    break;
-      case TOK_NULL:    n->attributes.set(ATTR_null);   break;
-      case TOK_STRING:  n->attributes.set(ATTR_string); break;
-      case TOK_STRUCT:  n->attributes.set(ATTR_struct); break;
-      default: break;
+   case TOK_VOID:    n->attributes.set(ATTR_void);   break;// this 72
+   case TOK_BOOL:    n->attributes.set(ATTR_bool);   break;
+   case TOK_CHAR:    n->attributes.set(ATTR_char);   break;
+   case TOK_INT :    n->attributes.set(ATTR_int);    break;
+   case TOK_NULL:    n->attributes.set(ATTR_null);   break;
+   case TOK_STRING:  n->attributes.set(ATTR_string); break;
+   case TOK_STRUCT: {
+      n->attributes.set(ATTR_struct);
+      dump_node(stderr, n);
+      break;
+   }
+   default: break;
    }
 }
 
