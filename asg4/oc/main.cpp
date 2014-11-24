@@ -150,6 +150,9 @@ int main (int argc, char** argv) {
 
    yyin_cpp_popen(filename);
    yyparse();
+
+   depth_first(yyparse_astree);
+
    yyin_cpp_pclose();
    fclose(tok_file);
    write_str(filebase);
