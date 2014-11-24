@@ -134,35 +134,3 @@ void free_ast3 (astree* tree1, astree* tree2, astree* tree3) {
    free_ast(tree3);
 }
 
-// This is where the large switch statement will appear. But for now
-// I will just print out the symbol of the node
-void visit_node(astree* n) {
-   if (n == NULL) return;
-   DEBUGF('z', "%s\n", get_yytname(n->symbol));
-   switch (n->symbol) {
-   case TOK_VOID:    n->attributes.set(ATTR_void);   break;// this 72
-   case TOK_BOOL:    n->attributes.set(ATTR_bool);   break;
-   case TOK_CHAR:    n->attributes.set(ATTR_char);   break;
-   case TOK_INT :    n->attributes.set(ATTR_int);    break;
-   case TOK_NULL:    n->attributes.set(ATTR_null);   break;
-   case TOK_STRING:  n->attributes.set(ATTR_string); break;
-   case TOK_STRUCT: {
-      n->attributes.set(ATTR_struct);
-      dump_node(stderr, n);
-      break;
-   }
-   default: break;
-   }
-}
-
-void depth_first(astree *root) {
-   if (root == NULL) return;
-   if (root->children.empty()) {
-      return;
-   } else {
-      for (auto &child : root->children) {
-         visit_node(child);
-         depth_first(child);
-      }
-   }
-}

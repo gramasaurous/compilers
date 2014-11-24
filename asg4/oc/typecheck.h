@@ -11,8 +11,6 @@
 #include <bitset>
 #include <vector>
 
-#include "auxlib.h"
-
 using namespace std;
 
 // enum defining attribute values
@@ -22,14 +20,15 @@ enum {   ATTR_void, ATTR_bool, ATTR_char, ATTR_int, ATTR_null,
          ATTR_const, ATTR_vreg, ATTR_vaddr, ATTR_bitset_size
 };
 
-// forward declaration to resolve circular dependencies
-struct symbol;
-
 // attributes, symbol tables, and symbol table entries
+struct symbol;
 using attr_bitset = bitset<ATTR_bitset_size>;
 using symbol_table = unordered_map<string*, symbol*>;
 using symbol_entry = pair<string*,symbol*>;
 using symbol_stack = vector<symbol_table*>; // 
+
+#include "astree.h"
+#include "auxlib.h"
 
 struct symbol {
    attr_bitset attributes;
@@ -37,9 +36,9 @@ struct symbol {
    size_t filenr, linenr, offset, block_nr;
    symbol* parameters;
 };
-//vector<symbol_table*> struct_stack;
 
 string get_attr_name(attr_bitset attributes);
+void depth_first(astree* root);
 
 #endif
 
