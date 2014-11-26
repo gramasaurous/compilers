@@ -10,9 +10,9 @@
 #include <bitset>
 
 using namespace std;
-
-#include "auxlib.h"
+struct astree;
 #include "typecheck.h"
+#include "auxlib.h"
 
 struct astree {
    int symbol;                   // token code
@@ -40,9 +40,6 @@ void yyprint (FILE* outfile, unsigned short toknum, astree* yyvaluep);
 void free_ast (astree* tree);
 void free_ast2 (astree* tree1, astree* tree2);
 void free_ast3 (astree* tree1, astree* tree2, astree* tree3);
-
-void visit_node(astree* n);
-void depth_first(astree* root);
 
 void assign_attrs(astree* ast);
 
