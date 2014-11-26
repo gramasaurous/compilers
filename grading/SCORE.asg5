@@ -79,6 +79,12 @@ min 0, max 30
 
 =================================================================
 
+SUBTOTAL=
+min 1, max 60
+
+If pair programming, TOTALSCORE = SUBTOTAL - TOTAL1.
+If not, TOTALSCORE = SUBTOTAL.
+
 TOTALSCORE=
 min 1, max 60
 
