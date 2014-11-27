@@ -1,7 +1,7 @@
-gnroff-1.18.1.4 -mgm -Tlatin1 asg4-symbols-types.qrf                 1
-2014-11-12
-
-asg4-symbols-types.mm:785: warning: can't find font `C'
+CMPS-104A · Fall 2014 · Project 4 · Symbols and Type Checking   1 of 1
+$Id: asg4-symbols-types.mm,v 1.66 2014-11-20 15:35:18-08 - - $
+PWD: /afs/cats.ucsc.edu/courses/cmps104a-wm/Assignments
+URL: http://www2.ucsc.edu/courses/cmps104a-wm/:/Assignments/
 
 .EQ
 delim $$
@@ -207,7 +207,7 @@ each:
   |  primitive `>=' primitive ->   |vaddr lval                      |
   |bool vreg                       |  `string' `[' int `]' -> char  |
   |  int `+' int -> int vreg       |vaddr lval                      |
-  |  int `-' int -> int vreg       |  TYPEID `.' FIELD -> lookup    |
+  |  int `-' int -> int vreg       |  IDENT `.' FIELD -> lookup     |
   |  int `*' int -> int vreg       |vaddr lval                      |
   |  int `/' int -> int vreg       |  INTCON -> int const           |
   |  int `%' int -> int vreg       |  CHARCON -> char const         |
@@ -230,7 +230,9 @@ and any is either primitive or reference.
 (a) Two types are compatible if they are exactly the same type, or if
     one type is any reference type and the other is null.  In the type
     checking grammar, in each rule, types in italics must be
-    substituted consistently by compatible types.
+    substituted consistently by compatible types.  Types are
+    compatible only if the array attribute is on for both or off for
+    both.
 
 (b) When the right side of a production is empty, there are no type
     attributes.  Only expressions have type attributes, not
@@ -273,36 +275,38 @@ and any is either primitive or reference.
     its elements, and for a string, the address of one of its
     characters.
 
-+------------------------+-------------------------------------------+
-|struct symbol {         | Each node in the symbol table must have   |
-|                        | information associated with the           |
-|                        | identifier.  It will be simpler to make   |
-|                        | nodes in all of the symbol tables         |
-|                        | identical, and null out unnecessary       |
-|                        | fields.                                   |
-+------------------------+-------------------------------------------+
-|attr_bitset attributes; | Symbol attributes, as described earlier.  |
-+------------------------+-------------------------------------------+
-|symbol_table* fields;   | A pointer to the field table if this      |
-|                        | symbol is a struct (if the typeid         |
-|                        | attribute is present), otherwise null.    |
-+------------------------+-------------------------------------------+
-|size_t filenr, linenr,  | The index into the filename vector, along |
-|       offset;          | with the line number and offset where     |
-|                        | this symbol was declared.                 |
-+------------------------+-------------------------------------------+
-|size_t block_nr;        | The block number to which this symbol     |
-|                        | belongs.  Block 0 is the global block,    |
-|                        | and positive increasing sequential        |
-|                        | numbers being assigned to nested blocks.  |
-+------------------------+-------------------------------------------+
-|symbol* parameters;     | A symbol node pointer which points at the |
-|                        | parameter list.  For a function, point at |
-|                        | the first parameter, for other parameters |
-|                        | except the last to the next parameter in  |
-|                        | sequence.  Null if neither the function   |
-|                        | nor param attributes are present.         |
-+------------------------+-------------------------------------------+
++-------------------------------+-------------------------------------+
+|struct symbol {                | Each node in the symbol table must  |
+|                               | have information associated with    |
+|                               | the identifier.  It will be simpler |
+|                               | to make nodes in all of the symbol  |
+|                               | tables identical, and null out      |
+|                               | unnecessary fields.                 |
++-------------------------------+-------------------------------------+
+|attr_bitset attributes;        | Symbol attributes, as described     |
+|                               | earlier.                            |
++-------------------------------+-------------------------------------+
+|symbol_table* fields;          | A pointer to the field table if     |
+|                               | this symbol is a struct (if the     |
+|                               | typeid attribute is present).  Null |
+|                               | otherwise.                          |
++-------------------------------+-------------------------------------+
+|size_t filenr, linenr, offset; | The index into the filename vector, |
+|                               | along with the line number and      |
+|                               | offset where this symbol was        |
+|                               | declared.                           |
++-------------------------------+-------------------------------------+
+|size_t block_nr;               | The block number to which this      |
+|                               | symbol belongs.  Block 0 is the     |
+|                               | global block, and positive          |
+|                               | increasing sequential numbers being |
+|                               | assigned to nested blocks.          |
++-------------------------------+-------------------------------------+
+|vector<symbol*>* parameters;   | A symbol node pointer which points  |
+|                               | at the parameter list.  For a       |
+|                               | function, points at a vector of     |
+|                               | parameters.  Null otherwise.        |
++-------------------------------+-------------------------------------+
                      Figure 2.  Symbol table node
 
 3.  Symbol tables
@@ -338,8 +342,8 @@ time.
     and represents the next block number to be used.  Each block must
     be unique.
 
-(c) When entering a block, increment next_block and push null onto the
-    top of the symbol stack.
+(c) When entering a block, increment next_block and push nullptr onto
+    the top of the symbol stack.
 
 (d) When leaving a block, pop the top of the symbol stack.
 
