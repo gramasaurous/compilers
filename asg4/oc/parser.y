@@ -54,31 +54,30 @@ program     : program structdef { $$ = adopt1 ($1, $2); }
             |                   { $$ = new_parseroot(); }
             ;
 
-structhead  : '{' fielddecl         { free_ast ($1); $$ = $2; }
-            | structhead fielddecl  { $$ = adopt1($1, $2);}
+structdef   : fielddecls '}' {free_ast($2); $$ = $1; }
             ;
 
-structdef   : TOK_STRUCT TOK_IDENT structhead '}' {
-               free_ast($4);
-               $2 = change_sym($2, TOK_TYPEID);
-               $$ = adopt2($1, $2, $3);
-            }
-            | TOK_STRUCT TOK_IDENT '{' '}' { 
-               free_ast2($3, $4);
-               $2 = change_sym($2, TOK_TYPEID);
-               $$ = adopt1($1, $2);
-            }
-            ;
-
-fielddecl   : basetype TOK_IDENT ';' { 
-               free_ast($3);
-               $2 = change_sym($2, TOK_FIELD);
-               $$ = adopt1($1, $2);
-            }
-            | basetype TOK_ARRAY TOK_IDENT ';' {
-               free_ast($4);
-               $3 = change_sym($3, TOK_FIELD);
+fielddecl   : basetype TOK_ARRAY TOK_IDENT 
+            {
+               change_sym($3, TOK_FIELD); 
                $$ = adopt2($2, $1, $3);
+            }
+            | basetype TOK_IDENT           
+            {
+               change_sym($2, TOK_FIELD); 
+               $$ = adopt1($1, $2);
+            }
+            ;
+fielddecls  : TOK_STRUCT TOK_IDENT '{'            
+            {
+               free_ast($3); 
+               change_sym($2, TOK_TYPEID);
+               $$ = adopt1($1, $2);    
+            }
+            | fielddecls fielddecl ';' 
+            {
+               free_ast($3); 
+               $$ = adopt1($1, $2);
             }
             ;
 

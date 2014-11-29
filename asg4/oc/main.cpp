@@ -150,8 +150,10 @@ int main (int argc, char** argv) {
 
    yyin_cpp_popen(filename);
    yyparse();
-
-   depth_first(yyparse_astree);
+   
+   typecheck_init();
+   get_fn_names(yyparse_astree);
+   dump_tables();
 
    yyin_cpp_pclose();
    fclose(tok_file);
