@@ -27,10 +27,64 @@ vector<size_t> blockstack;
 
 // This is where the large switch statement will appear. But for now
 // I will just print out the symbol of the node
-void visit_node(astree* n) {
+//     
+// TOK_IF TOK_ELSE TOK_WHILE TOK_RETURN 
+// TOK_FALSE TOK_TRUE  TOK_NEW 
+// TOK_IDENT   
+// TOK_BLOCK TOK_CALL TOK_IFELSE TOK_INITDECL
+// TOK_NEWARRAY TOK_TYPEID 
+// TOK_ORD TOK_CHR TOK_ROOT
+
+// %token TOK_DECLID TOK_INDEX TOK_NEWSTRING TOK_RETURNVOID
+// %token TOK_PARAMLIST
+void set_attributes(astree* n) {
    if (n == NULL) return;
    DEBUGF('z', "%s\n", get_yytname(n->symbol));
    switch (n->symbol) {
+      case TOK_INTCON:
+         n->attributes.set(ATTR_const);
+         n->attributes.set(ATTR_int);
+         break;
+      case TOK_INT:
+         n->attributes.set(ATTR_int);
+         break;
+      case TOK_CHARCON:
+         n->attributes.set(ATTR_const);
+      case TOK_CHAR:
+         n->attributes.set(ATTR_char);
+         break;
+      case TOK_STRINGCON:
+         n->attributes.set(ATTR_const);
+      case TOK_STRING:
+         n->attributes.set(ATTR_string);
+         break;
+      case TOK_VOID:
+         n->attributes.set(ATTR_void);
+         break;
+      case TOK_BOOL:
+         n->attributes.set(ATTR_bool);
+         break;
+      case TOK_STRUCT:
+         n->attributes.set(ATTR_struct);
+         break;
+      case TOK_NULL:
+         n->attributes.set(ATTR_const);
+         break;
+      case TOK_FIELD:
+         n->attributes.set(ATTR_field);
+         break;
+      case TOK_FUNCTION:
+         n->attributes.set(ATTR_function);
+         break;
+      case TOK_ARRAY:
+         n->attributes.set(ATTR_array);
+         break;
+      case TOK_VARDECL:
+         n->attributes.set(ATTR_variable);
+         break;
+      case TOK_PROTOTYPE:
+         n->attributes.set(ATTR_proto);
+         break;
       default: break;
    }
 }
@@ -62,14 +116,39 @@ void exit_block() {
    blockstack.pop_back();
 }
 
+// Create a new struct
+//  90 |  STRUCT "struct" (8.11.0) {0}  (0.0.0)
+//  91 |  |  TYPEID "foo" (8.11.7) {0}  (0.0.0)
+//  92 |  |  INT "int" (8.12.1) {0}  (0.0.0)
+//  93 |  |  |  FIELD "bar" (8.12.5) {0}  (0.0.0)
+//  94 |  |  INT "int" (8.13.1) {0}  (0.0.0)
+//  95 |  |  |  FIELD "baz" (8.13.5) {0}  (0.0.0)
+//  96 |  |  INT "int" (8.14.1) {0}  (0.0.0)
+//  97 |  |  |  FIELD "fuck" (8.14.5) {0}  (0.0.0)
+void new_type (astree *struct_node) {
+   if (struct_node == NULL || struct_node->children.empty()) return;
+   astree *struct_name = struct_node->children[0];
+
+}
+
+// Create a new variable
 void new_var(astree *var_node) {
+      printf("new var...\n");
    if (var_node == NULL || var_node->children.empty()) return;
    astree *var_type = var_node->children[0];
-   astree *var_name = var_type->children[1];
-   astree *var_val = var_node->children[2];
+   if (var_type == NULL) return;
+   astree *var_name = var_type->children[0];
+   if (var_name == NULL) return;
+   astree *var_val = var_node->children[1];
+   if (var_val == NULL) return;
    symbol *var_sym = new_symbol(var_node);
+   if (var_sym == NULL) return;
+   var_sym->attributes.set(ATTR_variable);
+   printf("adding var: idents[%d][%s]\n",
+      (int)blockstack.back(), var_name->lexinfo->c_str());
    idents[blockstack.back()]->insert(
       make_pair((string*)var_name->lexinfo, var_sym));
+   var_node->visited = true;
 }
 
 // Enter declarations for a new block onto the 
@@ -77,12 +156,30 @@ void new_var(astree *var_node) {
 // note that enter_block()  should be called before this function
 // if you wish to have this inside a new scope  
 void new_block(astree *block_node) {
+   printf("new block...\n");
    for (auto &i : block_node->children) {
-      if (i->symbol == TOK_VARDECL) new_var(i);
+      switch(i->symbol) {
+      case (TOK_VARDECL):
+         new_var(i);
+         break;
+      case (TOK_BLOCK):{
+         symbol_table *iblock = enter_block();
+         idents.push_back(iblock);
+         new_block(i);
+         exit_block();
+         break;
+      }
+      default:
+         break;
+      }
    }
+   block_node->visited = true;
 }
 
 void new_fn(astree *fn_node) {
+   printf("new function...\n");
+   // get all the necessary children nodes -
+   // fn type, fn name, fn params, fn block
    if (fn_node == NULL || fn_node->children.empty()) return;
    astree *type_node = fn_node->children[0];
    if (type_node == NULL || type_node->children.empty()) return;
@@ -100,9 +197,10 @@ void new_fn(astree *fn_node) {
 
    // Enter the new block
    symbol_table *fn_table = enter_block();
+   idents.push_back(fn_table);
    printf("New Function: %s %s() \n",
       type_node->lexinfo->c_str(), name_node->lexinfo->c_str());
-   
+
    // get parameters
    for (auto &param_type : params_node->children) {
       if (param_type->children.empty()) return;
@@ -110,17 +208,20 @@ void new_fn(astree *fn_node) {
       if (param_name == NULL) return;
       symbol *param_sym = new_symbol(param_name);
       if (param_sym == NULL) return;
+      param_sym->attributes.set(ATTR_variable);
       param_sym->attributes.set(ATTR_param);
       printf("parameter: %s %s\n", param_type->lexinfo->c_str(),
          param_name->lexinfo->c_str());
       fn_symbol->parameters->push_back(param_sym);
-      fn_table->insert(make_pair((string*)param_name->lexinfo, param_sym));
+      fn_table->insert(
+         make_pair((string*)param_name->lexinfo, param_sym));
    }
    // get function block
    new_block(fnblock_node);
    exit_block();
-   idents[0]->insert(make_pair((string*)name_node->lexinfo, fn_symbol));
-   idents.push_back(fn_table);
+   idents[blockstack.back()]->insert(
+            make_pair((string*)name_node->lexinfo, fn_symbol));
+   fn_node->visited = true;
 }
 
 // for testing purposes only
@@ -130,7 +231,7 @@ void dump_tables() {
    for (auto v: idents) {
       printf("%d\n", scope);
       for (auto i = v->cbegin(); i != v->cend(); i++) {
-         printf("%s\n", i->first->c_str());
+         printf("\t %s\n", i->first->c_str());
       }
       scope++;
    }
@@ -141,21 +242,44 @@ void dump_tables() {
 // somewhat similar to enter_block() should be ...?
 void get_fn_names(astree *root) {
    if (root == NULL) return;
-   blockstack.push_back(blockctr);
    if (root->children.empty()) {
       return;
    } else {
       for (auto &child : root->children) {
          // visit_node(child);
-         if (child->symbol == TOK_FUNCTION) new_fn(child);
-         //if (child->symbol == TOK_VARDECL) new_var(child);
+         if (child->visited) continue;
+         switch(child->symbol) {
+            case TOK_FUNCTION: new_fn(child); break;
+            case TOK_VARDECL: new_var(child); break;
+            case TOK_BLOCK: {
+               symbol_table *iblock = enter_block();
+               idents.push_back(iblock);
+               new_block(child);
+               exit_block();
+               break;
+            }
+         }
          get_fn_names(child);
+      }
+   }
+}
+
+// Recursively set the attributes for a tree pointed to by root
+void set_attributes_rec (astree *root) {
+   if (root == NULL) return;
+   if (root->children.empty()) {
+      return;
+   } else {
+      for (auto &child : root->children) {
+         set_attributes(child);
+         set_attributes_rec(child);
       }
    }
 }
 
 void typecheck_init() {
    symbol_table *global = new symbol_table();
+   blockstack.push_back(blockctr);
    idents.push_back(global);
 }
 
@@ -165,22 +289,23 @@ void typecheck_init() {
 // conditionally concatenate the typeid of a struct
 string get_attr_name(attr_bitset attributes) {
    string attrs = "";
-   if (attributes.test(0))  attrs += "void ";
-   if (attributes.test(1))  attrs += "bool ";
-   if (attributes.test(2))  attrs += "char ";
-   if (attributes.test(3))  attrs += "int ";
-   if (attributes.test(4))  attrs += "null ";
-   if (attributes.test(5))  attrs += "string ";
-   if (attributes.test(6))  attrs += "struct ";
-   if (attributes.test(7))  attrs += "array ";
-   if (attributes.test(8))  attrs += "function ";
-   if (attributes.test(9))  attrs += "variable ";
-   if (attributes.test(10)) attrs += "field ";
-   if (attributes.test(11)) attrs += "typeid ";
-   if (attributes.test(12)) attrs += "param ";
-   if (attributes.test(13)) attrs += "lval ";
-   if (attributes.test(14)) attrs += "const ";
-   if (attributes.test(15)) attrs += "vreg ";
-   if (attributes.test(16)) attrs += "vaddr ";
+   if (attributes.test(ATTR_void))     attrs += "void ";
+   if (attributes.test(ATTR_bool))     attrs += "bool ";
+   if (attributes.test(ATTR_char))     attrs += "char ";
+   if (attributes.test(ATTR_int))      attrs += "int ";
+   if (attributes.test(ATTR_null))     attrs += "null ";
+   if (attributes.test(ATTR_string))   attrs += "string ";
+   if (attributes.test(ATTR_struct))   attrs += "struct ";
+   if (attributes.test(ATTR_array))    attrs += "array ";
+   if (attributes.test(ATTR_function)) attrs += "function ";
+   if (attributes.test(ATTR_proto))    attrs += "prototype ";
+   if (attributes.test(ATTR_variable)) attrs += "variable ";
+   if (attributes.test(ATTR_field))    attrs += "field ";
+   if (attributes.test(ATTR_typeid))   attrs += "typeid ";
+   if (attributes.test(ATTR_param))    attrs += "param ";
+   if (attributes.test(ATTR_lval))     attrs += "lval ";
+   if (attributes.test(ATTR_const))    attrs += "const ";
+   if (attributes.test(ATTR_vreg))     attrs += "vreg ";
+   if (attributes.test(ATTR_vaddr))    attrs += "vaddr ";
    return attrs;
 }

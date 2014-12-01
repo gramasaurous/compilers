@@ -24,6 +24,7 @@ struct astree {
    size_t block_nr;              // block number
    symbol_entry* struct_entry;   // struct table entry
    vector<astree*> children;     // children of this n-way node
+   bool visited = false;         // visitation
 };
 
 astree* new_astree (int symbol, int filenr, int linenr, int offset,

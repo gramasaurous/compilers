@@ -57,7 +57,7 @@ program     : program structdef { $$ = adopt1 ($1, $2); }
 structdef   : fielddecls '}' {free_ast($2); $$ = $1; }
             ;
 
-fielddecl   : basetype TOK_ARRAY TOK_IDENT 
+fielddecl  : basetype TOK_ARRAY TOK_IDENT 
             {
                change_sym($3, TOK_FIELD); 
                $$ = adopt2($2, $1, $3);

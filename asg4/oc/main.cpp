@@ -152,6 +152,7 @@ int main (int argc, char** argv) {
    yyparse();
    
    typecheck_init();
+   set_attributes_rec(yyparse_astree);
    get_fn_names(yyparse_astree);
    dump_tables();
 

@@ -41,6 +41,7 @@ struct symbol {
 void typecheck_init();
 // Perform a depth-first traversal of the astree pointed at by root
 // and insert new variable and function names into the symbol table
+void set_attributes_rec(astree *root);
 void get_fn_names(astree* root);
 void get_var_names(astree* root);
 
