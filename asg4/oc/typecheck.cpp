@@ -99,6 +99,8 @@ void new_type (astree *struct_node) {
    if (struct_name == NULL) return;
    symbol *type_sym = new_symbol(struct_name);
 
+   insert_symbol(&types, type_sym, (string*)struct_name->lexinfo);
+   struct_node->visited = true;
 }
 
 // Create a new variable
