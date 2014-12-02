@@ -29,7 +29,7 @@ OBJECTS   = ${ALLCSRC:.cpp=.o}
 LREPORT   = yylex.output
 YREPORT   = yyparse.output
 REPORTS   = ${LREPORT} ${YREPORT}
-ALLSRC    = ${ETCSRC} ${YSOURCES} ${LSOURCES} ${HSOURCES} ${CSOURCES}
+ALLSRC    = ${ETCSRC} ${YSOURCES} ${LSOURCES} ${CSOURCES} ${HSOURCES}
 SUBSRC    = ${ETCSUB} ${LSOURCES} ${YSOURCES} ${CSOURCES} ${HSOURCES}
 
 #
@@ -52,7 +52,7 @@ TESTDIR    = ../../grading/${PROJECT}_test/
 #
 all: ${EXECBIN}
 ifeq ($(HOST),ucsc)
-	- checksource ${ALLSRC}
+	- checksource ${SUBSRC}
 endif
 #
 # Build the executable image from the object files.

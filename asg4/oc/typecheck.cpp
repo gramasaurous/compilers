@@ -160,7 +160,8 @@ void new_block(astree *block_node) {
 }
 
 // Create a new function parameter
-void new_param(astree *param, symbol_table *fn_table, symbol *fn_symbol) {
+void new_param(astree *param, symbol_table *fn_table,
+      symbol *fn_symbol) {
    if (param == NULL) return;
    if (param->children.empty()) return;
    astree *param_name = param->children[0];
@@ -224,15 +225,18 @@ void dump_tables() {
    for (auto v: idents) {
       printf("%d\n", scope);
       for (auto i = v->cbegin(); i != v->cend(); i++) {
-         printf("\t %s %s\n", i->first->c_str(), get_attr_string(i->second->attributes));
+         printf("\t %s %s\n", i->first->c_str(),
+         get_attr_string(i->second->attributes));
       }
       scope++;
    }
    printf("Types:\n");
    for (auto i = types.cbegin(); i != types.cend(); i++) {
       printf("%s\n", i->first->c_str());
-      for (auto j = i->second->fields->cbegin(); j != i->second->fields->cbegin(); j++) {
-         printf("%s %s\n", j->first->c_str(), get_attr_string(j->second->attributes));
+      for (auto j = i->second->fields->cbegin();
+      j != i->second->fields->cbegin(); j++) {
+         printf("%s %s\n", j->first->c_str(),
+         get_attr_string(j->second->attributes));
       }
    }
 }
