@@ -80,29 +80,30 @@ symbol *new_symbol (astree *sym_node) {
 }
 
 // Insert a symbol + name into a symbol table
-void insert_symbol(symbol_table *table, symbol *sym, string *name) {
-   if (table == NULL || sym == NULL || name == NULL) return;
+bool insert_symbol(symbol_table *table, symbol *sym, string *name) {
+   if (table == NULL || sym == NULL || name == NULL) return false;
+   if (table->find(name) != table->end()) return false;
    table->insert(make_pair(name, sym));
    dump_sym(sym, name);
+   return true;
 }
 
 // Create a new struct
-//  90 |  STRUCT "struct" (8.11.0) {0}  (0.0.0)
-//  91 |  |  TYPEID "foo" (8.11.7) {0}  (0.0.0)
-//  92 |  |  INT "int" (8.12.1) {0}  (0.0.0)
-//  93 |  |  |  FIELD "bar" (8.12.5) {0}  (0.0.0)
-//  94 |  |  INT "int" (8.13.1) {0}  (0.0.0)
-//  95 |  |  |  FIELD "baz" (8.13.5) {0}  (0.0.0)
-//  96 |  |  INT "int" (8.14.1) {0}  (0.0.0)
-//  97 |  |  |  FIELD "fuck" (8.14.5) {0}  (0.0.0)
 void new_type (astree *struct_node) {
    if (struct_node == NULL || struct_node->children.empty()) return;
    astree *struct_name = struct_node->children[0];
    if (struct_name == NULL) return;
    symbol *type_sym = new_symbol(struct_name);
+   insert_symbol(&types, type_sym, (string*)struct_name->lexinfo);
    symbol_table *field_table = new symbol_table();
+   // use c to skip the first child in the following
+   // for:each loop 
+   bool c = true;
    for (auto &i : struct_node->children) {
-      if (i->symbol == TOK_TYPEID) continue;
+      if (i->symbol == TOK_TYPEID && c) {
+         c = false;
+         continue;
+      }
       if (i->children.empty()) return;
       astree *field_name = i->children[0];
       if (field_name == NULL) return;
@@ -113,10 +114,9 @@ void new_type (astree *struct_node) {
    }
    fields.push_back(field_table);
    type_sym->fields = field_table;
-   insert_symbol(&types, type_sym, (string*)struct_name->lexinfo);
    struct_node->visited = true;
-   struct_node->struct_entry = new symbol_entry((string*)struct_name->lexinfo,
-         type_sym);
+   struct_node->struct_entry = new symbol_entry(
+            (string*)struct_name->lexinfo, type_sym);
 }
 
 // Create a new variable
@@ -238,7 +238,7 @@ void dump_tables() {
       printf("%s\n", i->first->c_str());
       for (auto j = i->second->fields->cbegin();
             j != i->second->fields->cend(); j++) {
-         printf("%s %s\n", j->first->c_str(),
+         printf("\t%s %s\n", j->first->c_str(),
          get_attr_string(j->second->attributes));
       }
    }
