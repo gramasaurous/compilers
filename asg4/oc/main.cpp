@@ -165,7 +165,7 @@ int main (int argc, char** argv) {
    typecheck_init();
    set_attributes_rec(yyparse_astree);
    get_fn_names(yyparse_astree);
-   dump_tables();
+   //dump_tables();
 
    yyin_cpp_pclose();
    fclose(tok_file);
