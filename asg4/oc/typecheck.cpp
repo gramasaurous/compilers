@@ -73,6 +73,7 @@ symbol *new_symbol (astree *sym_node) {
    newsym->linenr = sym_node->linenr;
    newsym->offset = sym_node->offset;
    newsym->block_nr = blockstack.back();
+   newsym->attributes = sym_node->attributes;
    newsym->parameters = NULL;
    return newsym;
 }
@@ -98,14 +99,26 @@ void new_type (astree *struct_node) {
    astree *struct_name = struct_node->children[0];
    if (struct_name == NULL) return;
    symbol *type_sym = new_symbol(struct_name);
-
+   symbol_table *field_table = new symbol_table();
+   for (auto &i : struct_node->children) {
+      if (i->symbol == TOK_TYPEID) continue;
+      if (i->children.empty()) return;
+      astree *field_name = i->children[0];
+      if (field_name == NULL) return;
+      symbol *field = new_symbol(i);
+      if (field == NULL) return;
+      field->attributes.set(ATTR_field);
+      insert_symbol(field_table, field, (string*)field_name->lexinfo);
+   }
+   fields.push_back(field_table);
+   type_sym->fields = field_table;
    insert_symbol(&types, type_sym, (string*)struct_name->lexinfo);
    struct_node->visited = true;
 }
 
 // Create a new variable
 void new_var(astree *var_node) {
-      printf("new var...\n");
+   //printf("new var...\n");
    if (var_node == NULL || var_node->children.empty()) return;
    astree *var_type = var_node->children[0];
    if (var_type == NULL) return;
@@ -126,7 +139,7 @@ void new_var(astree *var_node) {
 // note that enter_block()  should be called before this function
 // if you wish to have this inside a new scope  
 void new_block(astree *block_node) {
-   printf("new block...\n");
+   //printf("new block...\n");
    for (auto &i : block_node->children) {
       switch(i->symbol) {
       case (TOK_VARDECL):
@@ -156,15 +169,15 @@ void new_param(astree *param, symbol_table *fn_table, symbol *fn_symbol) {
    if (param_sym == NULL) return;
    param_sym->attributes.set(ATTR_variable);
    param_sym->attributes.set(ATTR_param);
-   printf("parameter: %s %s\n", param->lexinfo->c_str(),
-      param_name->lexinfo->c_str());
+   //printf("parameter: %s %s\n", param->lexinfo->c_str(),
+   //   param_name->lexinfo->c_str());
    fn_symbol->parameters->push_back(param_sym);
    insert_symbol(fn_table, param_sym, (string*)param_name->lexinfo);
    param->visited = true;
 }
 
 void new_fn(astree *fn_node) {
-   printf("new function...\n");
+   //printf("new function...\n");
    // get all the necessary children nodes -
    // fn type, fn name, fn params, fn block
    if (fn_node == NULL || fn_node->children.empty()) return;
@@ -187,13 +200,14 @@ void new_fn(astree *fn_node) {
    // Enter the new block
    symbol_table *fn_table = enter_block();
    idents.push_back(fn_table);
-   printf("New Function: %s %s() \n",
-      type_node->lexinfo->c_str(), name_node->lexinfo->c_str());
+   //printf("New Function: %s %s() \n",
+   //   type_node->lexinfo->c_str(), name_node->lexinfo->c_str());
 
    // get parameters
    for (auto &param_type : params_node->children) {
       new_param(param_type, fn_table, fn_symbol);
    }
+
    // get function block
    new_block(fnblock_node);
    exit_block();
@@ -202,6 +216,7 @@ void new_fn(astree *fn_node) {
    fn_node->visited = true;
 }
 
+
 // for testing purposes only
 void dump_tables() {
    printf("Idents:\n");
@@ -209,9 +224,16 @@ void dump_tables() {
    for (auto v: idents) {
       printf("%d\n", scope);
       for (auto i = v->cbegin(); i != v->cend(); i++) {
-         printf("\t %s\n", i->first->c_str());
+         printf("\t %s %s\n", i->first->c_str(), get_attr_string(i->second->attributes));
       }
       scope++;
+   }
+   printf("Types:\n");
+   for (auto i = types.cbegin(); i != types.cend(); i++) {
+      printf("%s\n", i->first->c_str());
+      for (auto j = i->second->fields->cbegin(); j != i->second->fields->cbegin(); j++) {
+         printf("%s %s\n", j->first->c_str(), get_attr_string(j->second->attributes));
+      }
    }
 }
 
