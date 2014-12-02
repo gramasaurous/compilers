@@ -41,15 +41,16 @@ struct symbol {
 void typecheck_init();
 // Perform a depth-first traversal of the astree pointed at by root
 // and insert new variable and function names into the symbol table
-void set_attributes_rec(astree *root);
 void get_fn_names(astree* root);
 void get_var_names(astree* root);
+// Set the attributes so we don't have to worry about them later
+void set_attributes_rec(astree *root);
 
 // Return a string which is the concatenation of all of the attributes
 // This is helpful for the modified printing necessary for the .ast file
 // Potentially change the passed variable to an AST node so I can 
 // conditionally concatenate the typeid of a struct
-string get_attr_name(attr_bitset attributes);
+const char *get_attr_string(attr_bitset attributes);
 
 void dump_tables();
 

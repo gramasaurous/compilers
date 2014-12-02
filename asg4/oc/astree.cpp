@@ -71,13 +71,15 @@ astree* adopt1sym (astree* root, astree* child, int symbol) {
    return root;
 }
 
+// used for printing to the .ast file
+// not (normally) called externally -- only by dump_astree_rec()
 static void dump_node (FILE* outfile, astree* node) {
    char* tname = (char*) get_yytname(node->symbol);
    if (strstr(tname, "TOK_") == tname) tname += 4;
    fprintf(outfile, "%s \"%s\" (%zu.%zu.%zu) {%lu} %s (%u.%u.%u)\n", tname,
       (node->lexinfo)->c_str(), node->filenr,
       node->linenr, node->offset, node->block_nr,
-      get_attr_name(node->attributes).c_str(), 0,0,0);
+      get_attr_string(node->attributes), 0,0,0);
 }
 
 static void dump_astree_rec (FILE* outfile, astree* root, int depth) {
@@ -89,6 +91,7 @@ static void dump_astree_rec (FILE* outfile, astree* root, int depth) {
       }
 }
 
+// Used for printing to the .tok file (called externally)
 void dump_tok (FILE* outfile, astree* node) {
    fprintf(outfile, "%3ld %ld.%03ld %-3d %-15s (%s)\n",
             node->filenr, node->linenr, node->offset,
