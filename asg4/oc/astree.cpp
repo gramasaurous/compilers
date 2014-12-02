@@ -76,11 +76,18 @@ astree* adopt1sym (astree* root, astree* child, int symbol) {
 static void dump_node (FILE* outfile, astree* node) {
    char* tname = (char*) get_yytname(node->symbol);
    if (strstr(tname, "TOK_") == tname) tname += 4;
-   fprintf(outfile, "%s \"%s\" (%zu.%zu.%zu) {%lu} %s (%u.%u.%u)\n",
+   fprintf(outfile, "%s \"%s\" (%zu.%zu.%zu) {%lu} %s ",
       tname,
       (node->lexinfo)->c_str(), node->filenr,
       node->linenr, node->offset, node->block_nr,
-      get_attr_string(node->attributes), 0,0,0);
+      get_attr_string(node->attributes));
+   if (node->symbol == TOK_STRUCT) {
+      fprintf(outfile, "\"%s\"", node->struct_entry->first->c_str());
+   }
+   if (node->symbol == TOK_IDENT) {
+      fprintf(outfile, "(%u.%u.%u)", 0, 0, 0);
+   }
+   fprintf(outfile, "\n");
 }
 
 static void dump_astree_rec (FILE* outfile, astree* root, int depth) {

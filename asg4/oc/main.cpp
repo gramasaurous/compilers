@@ -165,7 +165,7 @@ int main (int argc, char** argv) {
    typecheck_init();
    set_attributes_rec(yyparse_astree);
    get_fn_names(yyparse_astree);
-   //dump_tables();
+   dump_tables();
 
    yyin_cpp_pclose();
    fclose(tok_file);
@@ -173,6 +173,7 @@ int main (int argc, char** argv) {
    write_str(filebase);
    write_ast(filebase);
    free_ast(yyparse_astree);
+   free_typechecker();
    yylex_destroy();
    return get_exitstatus();
 }

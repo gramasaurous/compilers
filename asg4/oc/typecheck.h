@@ -33,6 +33,7 @@ using symbol_stack = vector<symbol_table*>; //
 struct symbol {
    attr_bitset attributes;
    symbol_table* fields;
+   string *type_id;
    size_t filenr, linenr, offset, block_nr;
    vector<symbol*>* parameters;
 };
@@ -53,6 +54,8 @@ void set_attributes_rec(astree *root);
 const char *get_attr_string(attr_bitset attributes);
 
 void dump_tables();
+
+void free_typechecker();
 
 #endif
 

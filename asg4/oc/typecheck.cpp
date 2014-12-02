@@ -75,6 +75,7 @@ symbol *new_symbol (astree *sym_node) {
    newsym->block_nr = blockstack.back();
    newsym->attributes = sym_node->attributes;
    newsym->parameters = NULL;
+   newsym->type_id = NULL;
    return newsym;
 }
 
@@ -114,6 +115,8 @@ void new_type (astree *struct_node) {
    type_sym->fields = field_table;
    insert_symbol(&types, type_sym, (string*)struct_name->lexinfo);
    struct_node->visited = true;
+   struct_node->struct_entry = new symbol_entry((string*)struct_name->lexinfo,
+         type_sym);
 }
 
 // Create a new variable
@@ -234,7 +237,7 @@ void dump_tables() {
    for (auto i = types.cbegin(); i != types.cend(); i++) {
       printf("%s\n", i->first->c_str());
       for (auto j = i->second->fields->cbegin();
-      j != i->second->fields->cbegin(); j++) {
+            j != i->second->fields->cend(); j++) {
          printf("%s %s\n", j->first->c_str(),
          get_attr_string(j->second->attributes));
       }
@@ -274,8 +277,8 @@ void set_attributes(astree* n) {
    if (n == NULL) return;
    DEBUGF('z', "%s\n", get_yytname(n->symbol));
    switch (n->symbol) {
-      case TOK_INTCON:
-         n->attributes.set(ATTR_const);
+      case TOK_INTCON:                    // constants set ATTR_const
+         n->attributes.set(ATTR_const);   // and fall through to set var
       case TOK_INT:
          n->attributes.set(ATTR_int);      break;
       case TOK_CHARCON:
@@ -346,4 +349,11 @@ const char *get_attr_string(attr_bitset attributes) {
    if (attributes.test(ATTR_vreg))     attrs += "vreg ";
    if (attributes.test(ATTR_vaddr))    attrs += "vaddr ";
    return attrs.c_str();
+}
+
+void free_typechecker() {
+   int size = idents.size();
+   for (int i = 0; i < size; i++) {
+      free (idents[i]);
+   }
 }
