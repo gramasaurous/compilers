@@ -23,9 +23,7 @@ SOURCE CODE /30 points
         and symbol nodes
 
     (3) Implementation of expanding hash table for symbols with
-        insertions and deletions, or, alternately, checking AST
-        and associated info to make initial hashes large enough
-        so that array doubling is never needed.
+        insertions and deletions.  Use unordered_map<string,symbol*>.
 
     (3) Implementation of struct table with a field table for each.
         May reuse ident symbol table code, or write separate

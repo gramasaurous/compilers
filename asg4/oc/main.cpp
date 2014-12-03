@@ -30,6 +30,7 @@ int oc_include = 0;
 extern int yydebug;
 extern int yy_flex_debug;
 FILE *tok_file;
+FILE *sym_file;
 extern astree *yyparse_astree;
 
 // Open a pipe from the C preprocessor.
@@ -127,6 +128,15 @@ void open_tok_file(string base) {
    }
 }
 
+void open_sym_file(string base) {
+   base.append("sym");
+   sym_file = fopen(base.c_str(), "w");
+   if (sym_file == NULL) {
+      syserrprintf (base.c_str());
+      exit (get_exitstatus());
+   }
+}
+
 string get_filebase(char *filename) {
    string base = basename(filename);
    size_t i = base.find_last_of('.');
@@ -147,12 +157,23 @@ int main (int argc, char** argv) {
    }
    string filebase = get_filebase(filename);
    open_tok_file(filebase);
+   open_sym_file(filebase);
 
    yyin_cpp_popen(filename);
    yyparse();
+   
+   typecheck_init();
+   set_attributes_rec(yyparse_astree);
+   get_fn_names(yyparse_astree);
+   //dump_tables();
+
    yyin_cpp_pclose();
    fclose(tok_file);
+   fclose(sym_file);
    write_str(filebase);
    write_ast(filebase);
+   free_ast(yyparse_astree);
+   free_typechecker();
+   yylex_destroy();
    return get_exitstatus();
 }

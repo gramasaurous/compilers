@@ -10,23 +10,25 @@
 #include <bitset>
 
 using namespace std;
-
-#include "auxlib.h"
+struct astree;
 #include "typecheck.h"
+#include "auxlib.h"
 
 struct astree {
-   int symbol;               // token code
-   size_t filenr;            // index into filename stack
-   size_t linenr;            // line number from source code
-   size_t offset;            // offset of token with current line
-   const string* lexinfo;    // pointer to lexical information
-   attr_bitset attributes;	 // attributes for the node
-   vector<astree*> children; // children of this n-way node
+   int symbol;                   // token code
+   size_t filenr;                // index into filename stack
+   size_t linenr;                // line number from source code
+   size_t offset;                // offset of token with current line
+   const string* lexinfo;        // pointer to lexical information
+   attr_bitset attributes;       // attributes for the node
+   size_t block_nr;              // block number
+   symbol_entry* struct_entry;   // struct table entry
+   vector<astree*> children;     // children of this n-way node
+   bool visited = false;         // visitation
 };
 
 astree* new_astree (int symbol, int filenr, int linenr, int offset,
                     const char* lexinfo);
-astree* kidnap_children(astree* root, astree* child);
 astree* change_sym (astree* root, int symbol);
 astree* adopt1 (astree* root, astree* child);
 astree* adopt2 (astree* root, astree* left, astree* right);
@@ -39,5 +41,7 @@ void yyprint (FILE* outfile, unsigned short toknum, astree* yyvaluep);
 void free_ast (astree* tree);
 void free_ast2 (astree* tree1, astree* tree2);
 void free_ast3 (astree* tree1, astree* tree2, astree* tree3);
+
+void assign_attrs(astree* ast);
 
 #endif

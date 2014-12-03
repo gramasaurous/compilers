@@ -1,0 +1,647 @@
+CMPS-104A � Fall 2012 � Project 5 � Code Emission: oc and oil   1 of 1
+$Id: asg5-intermed-lang.mm,v 1.144 2014-12-01 15:02:39-08 - - $
+PWD: /afs/cats.ucsc.edu/courses/cmps104a-wm/Assignments
+URL: http://www2.ucsc.edu/courses/cmps104a-wm/:/Assignments/
+
+.EQ
+delim $$
+.EN
+
+1.  Overview
+
+An intermediate language is a very low level language used by a
+compiler to perform optimizations and other changes before emitting
+final assembly language for some particular machine.  It generally
+matches common assembly language statement semantics, but in a typeful
+manner.
+
+SYNOPSIS
+     oc [-ly] [-@ flag...]  [-D string] program.oc
+
+All of the requirements for all previous projects are included in this
+project.  For any input file called program.oc emit an intermediate
+language file called program.oil, which can then be compiled into
+assembly language using gcc.
++---------------------------------------------------------------------+
+|                                                                     |
+|  program    ->  [ structdef ]... [ stringdef ]... [ type IDENT  `;' |
+|             ]... [ function ]...                                    |
+|  structdef  ->  `struct' TYPEID `{' [ type IDENT `;' ]... `}' `;'   |
+|  stringdef  ->  `char*' IDENT `=' STRINGCON `;'                     |
+|  function   ->  type IDENT `(' parameters `)' fnbody                |
+|  fnbody     ->  `{' [ statement ]... `}' | `;'                      |
+|  parameters ->  type IDENT [ `,' type IDENT ]... | `void'           |
+|  statement  ->  LABEL `:;'                                          |
+|             ->  [ `if' `(' [ `!' ] operand `)' ] `goto' LABEL `;'   |
+|             ->  `return' [ operand ] `;'                            |
+|             ->  [ type ] IDENT `=' expression `;'                   |
+|             ->  `*'IDENT `=' expression `;'                         |
+|             ->   [  type  IDENT  `='  ]  IDENT  `(' [ operand [ `,' |
+|             operand ]... ] `)' `;'                                  |
+|  expression ->  operand binop operand | unop operand | selection  | |
+|             operand                                                 |
+|  binop      ->   `+'  | `-' | `*' | `/' | `%' | `==' | `!=' | `<' | |
+|             `<=' | `>' | `>='                                       |
+|  unop       ->  `+' | `-' | `!' | `*' | `(int)' | `(char)'          |
+|  selection  ->  `&' IDENT `[' operand `]' | `&' IDENT `->' IDENT    |
+|  operand    ->  IDENT | INTCON | CHARCON | `sizeof' `(' type `)'    |
+|  type       ->  `void' | `void*' | `char' | `char*'  |  `char**'  | |
+|             `char***'                                               |
+|             ->  `int' | `int*' | `int**' | `struct' TYPEID`*'       |
+|             ->  `struct' TYPEID`**' `struct' TYPEID`***'            |
++---------------------------------------------------------------------+
+
+                      Figure 1.  Grammar of oil
+
++--------------------------------+------------------------------------+
+|bool IDENT     char IDENT       | bool[] IDENT     char* IDENT       |
+|char IDENT     char IDENT       | char[] IDENT     char* IDENT       |
+|int IDENT      int IDENT        | int[] IDENT      int* IDENT        |
+|string IDENT   char* IDENT      | string[] IDENT   char** IDENT      |
+|TYPEID IDENT   struct TYPEID*   | TYPEID[] IDENT   struct TYPEID**   |
+|               IDENT            |                  IDENT             |
++--------------------------------+------------------------------------+
+
+              Figure 2.  Type declarations in oc and oil
+
+2.  Intermediate Language
+
+The intermediate language chosen here looks very much like C, except
+that, for the most part, each oil statement should be capable of
+translating into a single assembly language instruction, or only a
+few.  Unlike most assembly languages, oil is typed as to basic data
+types, namely unsigned byte, int, and pointer.  The size of the int
+and pointer types are dependent on the underlying architecture.
+
+The basic grammar of oil is given in Figure 1, and uses the same
+metanotation as was used in the definition of oc.  Figure 2 shows the
+relationship between types in oc and the corresponding C-compatible
+types in oil.  The extra types listed in Figure 1 but not in Figure 2
+are used only when the address operator (&) is applied to take the
+address of a field selection, which is then dereferenced when applied.
+
+The intermediate language itself has three datatypes:  byte (char);
+signed integer (int);  and a pointer type.
+2.1  Program and Function Structure
+
+An oil program is structured in a way similar to C, except that it
+looks more like assembly language.  All code is either aligned with
+the left margin or indented by 8 spaces.
+
+ (a) Structure definitions come first, with the struct keyword and
+     closing brace left-aligned, and the fields indented, as in:
+
+        struct s_foo {
+                char** f_foo_string_array;
+                struct s_foo* f_foo_pointer;
+        };
+
+ (b) Then all string constants are listed in the order they appear in
+     the program.  They are unlikely to be able to be used as
+     immediate operands in assembly language.  Global declarations are
+     all left-aligned, as in:
+
+        char* s1 = "Hello, world!\n";
+
+ (c) Then all global variable declarations that appeared in the
+     program, but without initialization, because in C, static
+     initialization is done at compile time.
+
+ (d) Finally, functions are emitted with one parameter per line.  The
+     function name and the two braces are left aligned, as are label
+     statements, but everything else is indented, as in:
+
+        int __add (
+                int _1_a,
+                int _1_b)
+        {
+                int i2 = _1_a + _1_b;
+                return i2;
+        }
+
+2.2  Statements
+
+Statements are all indented, except for labels, and all declarations
+of local variables must be initialized.  Expressions other than calls
+are restricted to three-address instructions, with a destination and
+at most two sources.
+
+ (a) A label is emitted unindented on a line by itself.  It consists
+     of a keyword from the source language followed by the coordinates
+     taken from the node.
+
+        while_4_20_9:;
+
+ (b) A goto statement may be conditional or unconditional, and if
+     conditional is preceded by an if and an operand (possibly
+     complemented) in parentheses.
+
+                goto while_4_20_9;
+                if (b36) goto while_4_29_9;
+
+ (c) A return statement may or may not have an operand, depending on
+     the requirements of the original oc program.
+
+                return _5_foobar;
+                return;
+
+ (d) An assignment statement takes an expression as an operand.  A
+     type is present if the identifier has not previously been
+     declared, and absent if it has.
+
+                int i5 = _2_n + 45;
+                _2_n = i5;
+                char c4 = (char) _4_foo;
+                char* a5 = &_3_a[i6];
+                *a5 = i7
+
+ (e) A function call may only have operands in parentheses, but may
+     have as many as appropriate.  A void function has no assignment
+     on the left.  All other functions must have it, and the result is
+     placed into a temporary.
+2.3  Expressions
+
+Expressions are simple and restricted to three-address code.
+
+ (a) Binary operators are the same as they are in oc and have already
+     been type checked.  As in C, 0 means false and anything else
+     means true.
+
+ (b) The unary operators are also the same, with the cast (int) being
+     substituted for ord, and (char) being substituted for chr.  These
+     represent actual machine instructions that must be issued.
+
+ (c) Address computation for indexing and field selection is taken
+     care of by the back end, alghough a type checker would normally
+     assign offsets of fields in structures and offsets of local
+     variables from the frame pointer.
+
+      (i) The type of a subscript address is the same as the type of
+          the array.  So if we have char** _3_a, then a subscripting
+          operation might be:
+             char** i5 = _3_a[_3_i];
+          and when it is used, i5 must be dereferenced, as in:
+             _3_n = *i5;
+             *i5 = _3_n;
+          depending on whether the dereference is an lvalue or an
+          rvalue.
+
+     (ii) The type of a selection has one more level of pointer than
+          the declaration of a field.  So if a struct has a field
+          char** f_foo_bar;, then the selection might be:
+             char*** i9 = &_3_ptr->f_foo_bar;
+
+ (d) Figure 2 show the types in oc and their corresponding types in
+     oil.  Note that the asterisk representing a pointer cuddles up
+     against the following identifier, not against the type.
+
+ (e) There is no bool data type, it being replaced by char.
+
++-----------------------------------------------------------------------------------+
+|Category            Format string   Format arguments                     Example   |
++-----------------------------------------------------------------------------------+
+|Global names        "__%s"          identifier                           __glovar  |
+|Local names         "_%d_%s"        block, identifier                    _3_ix     |
+|Stmt labels         "%s_%d_%d_%d"   keyword, file, line, offset          if_4_21_9 |
+|Structure typeids   "s_%s"          structure_typeid                     s_foo     |
+|Field names         "f_%s_%s"       structure_typeid, field_name         f_foo_bar |
+|Virtual registers   "%c%d"          register_category, register_number   i67       |
++-----------------------------------------------------------------------------------+
+                 Figure 3.  Summary of name mangling
+
+2.4  Name Mangling
+
+Assembly language generally uses a completely flat symbol table, so
+names need to be mangled in order to avoid clashing global names with
+various local scopes and the C library to which a program is linked.
+Figure 3 shows the fprintf(3) format items and arguments to be used to
+mangle a name.
+
+ (a) All global names, functions and global variables will be prefixed
+     with a double underscore (__), e.g., ``__foo''.  Global names
+     belong to block 0.
+
+ (b) Local names will be prefixed with a double underscore with a
+     block number between the underscores, as in ``_1_n''.  Local
+     names belong to blocks whose number is greater than 0.
+
+ (c) Statement labels are emitted with a keyword from the language
+     followed by the file number, line number, and offset from the
+     token.  The following keywords are used:  ``while'', before a
+     while expression;  ``break'', the statement to transfer to for a
+     false test;  ``else'', to branch to if the if-test is false and
+     there is an else;  and ``fi'', to skip the else part.
+
+ (d) Structure names all have file scope and are just prefixed with
+     ``s_''.  So the name of a struct foo would be s_foo.
+
+ (e) Field names are prefixed with ``f_'' and the name of the
+     structure to which they belong.  So a field from struct foo { int
+     ix; };  would be called f_foo_ix.
+
+ (f) Virtual registers are just assigned numbers in sequence
+     throughout the entire program starting with 1, 2, 3, etc.  The
+     letter used is c for a char, i for an int, s for a STRINGCON
+     address, p for a direct data pointer, and a for an indirect
+     (dereferenceable) address pointing at data.  E.g., c1, i2, s3,
+     p4, a5.
+
+ (g) Indirect addresses are the result of evaluating selections, which
+     must be dereferenced when used.  All other addresses are used
+     directly.
+
+                int* a6 = &_3_array[_3_i];
+                char** a8 = &_3_foo->f_foo_bar;
+
++---------------------------------------------------------------------+
+|                                                                     |
+|     1  #!/bin/sh -x                                                 |
+|     2  # $Id: ocl,v 1.3 2012-11-16 20:57:44-08 - - $                |
+|     3  for file in $*                                               |
+|     4  do                                                           |
+|     5     gcc -g -o $file -x c $file.oil oclib.c                    |
+|     6  done                                                         |
++---------------------------------------------------------------------+
+
+                     Figure 4.  oil-examples/ocl
+
+3.  Code Emission
+
+Code is emitted from the AST with the benefit of the the symbol table
+and type checker.  Since the suffix oil is not recognized by gcc, in
+order to make it compile the code, the -x option must be used.  Figure
+4 shows a shell script that will compile into an executable, given the
+name of the executable.
+
+The file oclib.oh is bilingual for both oc and gcc.
+
+ (a) Figure 5 shows the bilingual source file.
+
+ (b) Figure 6 show the file preprocessed for oc, as will be seen by
+     the oc compiler when #included in an oc program.  Note that the
+     #defines EOF and assert are not shown in the preprocessed
+     figures, but will be used by the preprocessor to process an oc
+     program.
+
+ (c) Figure 7 shows it preprocessed for gcc, with names mangled names
+     correctly when __OCLIB_C__ is defined, as is done when #included
+     from oclib.c.
+
+Figures 8 and 9 show the code for oclib.c, the library written in C.
+3.1  Top Level Description
+
+First, a prolog is emitted, then the children of the root are
+traversed in their own sequence to build the various parts of the
+program.
+
+ (a) Then all structure definitions are traversed and output as
+     described above, with names mangled, and fields properly
+     indented.
+
+ (b) Next, all string constants are given names as described above.
+     This should not require a complete tree traversal.  Retrofit
+     either the construction of the AST or the type checking module to
+     put all STRINGCON AST nodes into a queue.
+
+ (c) Then all global variables, immediate children of the root, and
+     output, but without any initialization given to them by the
+     source.
+
+ (d) Then all functions are output, as described below.  Finally a
+     single function with the signature
+        void __ocmain (void)
+     is output, containing all global initializations and statements.
+3.2  Emitting Functions and Statements
+
+Function emission is done by a complete depth-first mostly post-order
+traversal of the AST for that function.  Prototypes need not be
+emitted.  They are used only in type checking.
+
+ (a) Output the function's return type, mangled name, and mangled
+     parameter names.  Mangle the parameter names using the block
+     number the function created.
+
+ (b) Following that, indented, are the declarations of all of the
+     parameters.
+
+ (c) An opening brace, unindented, at the start of the function's
+     body, and a closing brace, unindented, after the function is
+     finished.
+
+ (d) A block simply has its children traversed.
+
+ (e) A while has two children.  For the while and break labels, both
+     use the serial number of the while token.
+      (i) Emit:  while_%d_%d_%d:;  unindented.
+     (ii) Emit the first child, unless it is an operand.
+     (iii) Emit:  if (!operand) goto break_%d_%d_%d;
+     (iv) Emit the statement.
+      (v) Emit:  goto while_%d_%d_%d;
+     (vi) Emit:  break_%d_%d_%d:;  unindented.
+
+ (f) For an if-else statement, do the following:
+      (i) Emit the first expression, unless it is an operand.
+     (ii) Emit:  if (!operand) goto else_%d_%d_%d;
+     (iii) Emit the second child (consequent statement).
+     (iv) Emit:  goto fi_%d_%d_%d;
+      (v) Emit:  else_%d_%d_%d:;  unindented.
+     (vi) Emit the third child (alternate statement).
+     (vii) Emit fi_%d_%d_%d:;  unindented.
+
+ (g) For an if with no else, do the following:
+      (i) Emit the first expression, unless it is an operand.
+     (ii) Emit:  if (!operand) goto fi_%d_%d_%d;
+     (iii) Emit the second child (consequent statement).
+     (iv) Emit fi_%d_%d_%d:;  unindented.
+
+ (h) If a return statement has an expression, emit the expression,
+     unless it is an operand, then return the operand.  If not, just
+     return.
+3.3  Emitting Expressions
+
+Expressions are always emitted using a strict depth-first post-order
+traversal, accumulating values into virtual registers.  This results
+in some redundant virtual registers, but the back end can use copy
+propagation to remove them during register allocation.
+
+ (a) In each case of generating code into an operand, generate a
+     declaration of a virtual register with the appropriate letter, b,
+     i, a, or p, and assign it the value of the expression thus
+     evaluated.
+
+ (b) The binary operators are the same in both oc and oil, and after
+     emitting an instruction, record the register number in the AST
+     node itself.  This will require adding yet another field.
+     Example:
+        int i5 = _3_n + 1;
+
+ (c) Similarly, handle the unary operators, except that ord becomes
+     (int) and chr becomes (char).
+
+ (d) An allocator uses a call to xcalloc() to allocate the storage,
+     based on the type of allocator, for some structure type T and
+     pointer number i:
+
+      (i) `new' TYPEID `(' `)' :
+          Emit:  struct T* pi = xcalloc (1, sizeof (struct T));
+
+     (ii) `new' `string' `(' expression `)' :
+          Emit the expression, unless it is an operand.
+          Emit:  char* pi = xcalloc (opnd, sizeof (char));
+
+     (iii) `new' basetype `[' expression `]' :
+          Emit the expression, unless it is an operand.
+          Emit one of the following, depending on the basetype:
+             � char* pi = xcalloc (opnd, sizeof (char));
+             � int* pi = xcalloc (opnd, sizeof (int));
+             � char** pi = xcalloc (opnd, sizeof (char*));
+             � struct T** pi = xcalloc (opnd, sizeof (struct T*));
+
+ (e) For a function call, evaluate each of the arguments into
+     registers, and generate the call instruction.  A void function is
+     just called.  A non-void function has its result captured into a
+     register.
+
+ (f) An INTCON must be emitted with leading zeros suppressed, since
+     0077 means tha same thing as 77 in oc, but it means 63 in C.  A
+     CHARCON is emitted as is.  The constants null and false are
+     emitted as the literal 0, and true is emitted as the literal 1.
+
+ (g) Constants (except strings) and variables are never captured in
+     registers, but instead are used as immediate operands.
+
+4.  An Example
+
+Figure 10 contains a sample oc program.  Figure 11 contains the output
+file generated from it, except that the code generated from the
+#include header file has been omitted.  It is assumed that cpp here
+has recognized this file as the fifth file in sequence and that the
+header file has generated 11 blocks so that the code presented is the
+12th block.
+
+.EQ
+delim off
+.EN
+
++---------------------------------------------------------------------+
+|                                                                     |
+|     1  // $Id: oclib.oh,v 1.30 2014-11-21 16:46:15-08 - - $         |
+|     2                                                               |
+|     3  #ifndef __OCLIB_OH__                                         |
+|     4  #define __OCLIB_OH__                                         |
+|     5                                                               |
+|     6  #ifdef __OCLIB_C__                                           |
+|     7  void* xcalloc (int nelem, int size);                         |
+|     8  void __putb (char __b);                                      |
+|     9  void __putc (char __c);                                      |
+|    10  void __puti (int __i);                                       |
+|    11  void __puts (char* __s);                                     |
+|    12  void __endl (void);                                          |
+|    13  int __getc (void);                                           |
+|    14  char* __getw (void);                                         |
+|    15  char* __getln (void);                                        |
+|    16  char** __getargv (void);                                     |
+|    17  void __exit (int status);                                    |
+|    18                                                               |
+|    19  #else                                                        |
+|    20  #define EOF (-1)                                             |
+|    21  #define assert(expr) \                                       |
+|    22          {if (!(expr)) __assert_fail (#expr, __FILE__, __LINE__);}
+|    23  void __assert_fail (string expr, string file, int line);     |
+|    24  void putb (bool b);                                          |
+|    25  void putc (char c);                                          |
+|    26  void puti (int i);                                           |
+|    27  void puts (string s);                                        |
+|    28  void endl ();                                                |
+|    29  int getc ();                                                 |
+|    30  string getw ();                                              |
+|    31  string getln ();                                             |
+|    32  string[] getargv ();                                         |
+|    33  void exit (int status);                                      |
+|    34                                                               |
+|    35  #endif                                                       |
+|    36  #endif                                                       |
+|    37                                                               |
++---------------------------------------------------------------------+
+
+                   Figure 5.  oc-programs/oclib.oh
+
++---------------------------------------------------------------------+
+|                                                                     |
+|     1  # 1 "oc-programs/oclib.oh"                                   |
+|     2  # 1 "<command-line>"                                         |
+|     3  # 1 "oc-programs/oclib.oh"                                   |
+|     4  # 23 "oc-programs/oclib.oh"                                  |
+|     5  void __assert_fail (string expr, string file, int line);     |
+|     6  void putb (bool b);                                          |
+|     7  void putc (char c);                                          |
+|     8  void puti (int i);                                           |
+|     9  void puts (string s);                                        |
+|    10  void endl ();                                                |
+|    11  int getc ();                                                 |
+|    12  string getw ();                                              |
+|    13  string getln ();                                             |
+|    14  string[] getargv ();                                         |
+|    15  void exit (int status);                                      |
++---------------------------------------------------------------------+
+
+                 Figure 6.  cpp oc-programs/oclib.oh
+
++---------------------------------------------------------------------+
+|                                                                     |
+|     1  # 1 "oc-programs/oclib.oh"                                   |
+|     2  # 1 "<command-line>"                                         |
+|     3  # 1 "oc-programs/oclib.oh"                                   |
+|    10  void* xcalloc (int nelem, int size);                         |
+|    11  void __putb (char __b);                                      |
+|    12  void __putc (char __c);                                      |
+|    13  void __puti (int __i);                                       |
+|    14  void __puts (char* __s);                                     |
+|    15  void __endl (void);                                          |
+|    16  int __getc (void);                                           |
+|    17  char* __getw (void);                                         |
+|    18  char* __getln (void);                                        |
+|    19  char** __getargv (void);                                     |
+|    20  void __exit (int status);                                    |
++---------------------------------------------------------------------+
+
+          Figure 7.  cpp -D__OCLIB_C__ oc-programs/oclib.oh
+
++---------------------------------------------------------------------+
+|                                                                     |
+|     1  // $Id: oclib.c,v 1.48 2014-11-21 16:58:19-08 - - $          |
+|     2                                                               |
+|     3  #include <assert.h>                                          |
+|     4  #include <ctype.h>                                           |
+|     5  #include <libgen.h>                                          |
+|     6  #include <stdio.h>                                           |
+|     7  #include <stdlib.h>                                          |
+|     8  #include <string.h>                                          |
+|     9                                                               |
+|    10  #define __OCLIB_C__                                          |
+|    11  #include "oclib.oh"                                          |
+|    12                                                               |
+|    13  char** oc_argv;                                              |
+|    14                                                               |
+|    15  void ____assert_fail (char* expr, char* file, int line) {    |
+|    16     fflush (NULL);                                            |
+|    17     fprintf (stderr, "%s: %s:%d: assert (%s) failed.\n",      |
+|    18              basename ((char*) oc_argv[0]), file, line, expr);|
+|    19     fflush (NULL);                                            |
+|    20     abort();                                                  |
+|    21  }                                                            |
+|    22                                                               |
+|    23  void* xcalloc (int nelem, int size) {                        |
+|    24     void* result = calloc (nelem, size);                      |
+|    25     assert (result != NULL);                                  |
+|    26     return result;                                            |
+|    27  }                                                            |
+|    28                                                               |
+|    29  void __ocmain (void);                                        |
+|    30  int main (int argc, char** argv) {                           |
+|    31     argc = argc; // warning: unused parameter 'argc'          |
+|    32     oc_argv = (char**) argv;                                  |
+|    33     __ocmain();                                               |
+|    34     return EXIT_SUCCESS;                                      |
+|    35  }                                                            |
+|    36                                                               |
++---------------------------------------------------------------------+
+
+                Figure 8.  oc-programs/oclib.c, part 1
+
++---------------------------------------------------------------------+
+|                                                                     |
+|    37  ^L                                                           |
+|    38  char* scan (int (*skipover) (int), int (*stopat) (int)) {    |
+|    39     int byte;                                                 |
+|    40     do {                                                      |
+|    41        byte = getchar();                                      |
+|    42        if (byte == EOF) return NULL;                          |
+|    43     } while (skipover (byte));                                |
+|    44     char buffer[0x1000];                                      |
+|    45     char* end = buffer;                                       |
+|    46     do {                                                      |
+|    47        *end++ = byte;                                         |
+|    48        assert (end < buffer + sizeof buffer);                 |
+|    49        *end = '\0';                                           |
+|    50        byte = getchar();                                      |
+|    51     }while (byte != EOF && ! stopat (byte));                  |
+|    52     char* result = (char*) strdup ((char*) buffer);           |
+|    53     assert (result != NULL);                                  |
+|    54     return result;                                            |
+|    55  }                                                            |
+|    56                                                               |
+|    57  int isfalse (int byte)   { return 0 & byte; }                |
+|    58  int isnl (int byte)      { return byte == '\n'; }            |
+|    59  void __putb (char byte)  { printf ("%s", byte ? "true" : "false"); }
+|    60  void __putc (char byte)  { printf ("%c", byte); }            |
+|    61  void __puti (int val)    { printf ("%d", val); }             |
+|    62  void __puts (char* str)  { printf ("%s", str); }             |
+|    63  void __endl (void)       { printf ("%c", '\n'); fflush (NULL); }
+|    64  int __getc (void)        { return getchar(); }               |
+|    65  char* __getw (void)      { return scan (isspace, isspace); } |
+|    66  char* __getln (void)     { return scan (isfalse, isnl); }    |
+|    67  char** __getargv (void)  { return oc_argv; }                 |
+|    68  void __exit (int status) { exit (status); }                  |
+|    69                                                               |
++---------------------------------------------------------------------+
+
+                Figure 9.  oc-programs/oclib.c, part 2
+
++---------------------------------------------------------------------+
+|                                                                     |
+|     1  #include "oclib.oh"                                          |
+|     2  int fac (int n) {                                            |
+|     3     int f = 1;                                                |
+|     4     while (n > 1) {                                           |
+|     5        f = f * n;                                             |
+|     6        n = n - 1;                                             |
+|     7     }                                                         |
+|     8     return f;                                                 |
+|     9  }                                                            |
+|    10  int n = 1;                                                   |
+|    11  while (n <= 5) {                                             |
+|    12     puti (fac (n));                                           |
+|    13     endl ();                                                  |
+|    14     n = n + 1;                                                |
+|    15  }                                                            |
++---------------------------------------------------------------------+
+
+                  Figure 10.  Sample program fac.oc
+
++---------------------------------------------------------------------+
+|                                                                     |
+|     1  int __n;                                                     |
+|     2  int __fac (                                                  |
+|     3          int _12_n)                                           |
+|     4  {                                                            |
+|     5          int _12_f = 1;                                       |
+|     6  while_5_2_3:;                                                |
+|     7          char b1 = _12_n > 1;                                 |
+|     8          if (!b1) goto break_5_2_3;                           |
+|     9          int i1 = _12_f * _12_n;                              |
+|    10          _12_f = i1;                                          |
+|    11          int i2 = _12_n - 1;                                  |
+|    12          _12_n = i2;                                          |
+|    13          goto while_5_2_3;                                    |
+|    14  break_5_2_3:                                                 |
+|    15          return _12_f                                         |
+|    16  }                                                            |
+|    17  void __ocmain (void)                                         |
+|    18  {                                                            |
+|    19          __n = 1;                                             |
+|    20  while_5_11_0:;                                               |
+|    21          char b2 = __n <= 5;                                  |
+|    22          if (!b2) goto break_5_11_0;                          |
+|    23          int i3 = __fac (__n);                                |
+|    24          __puti (i3);                                         |
+|    25          __endl();                                            |
+|    26          int i4 = __n + 1;                                    |
+|    27          __n = i4;                                            |
+|    28          goto while_5_11_0;                                   |
+|    29  break_5_11_0:;                                               |
+|    30  }                                                            |
++---------------------------------------------------------------------+
+
+                 Figure 11.  Sample generated fac.oil
+

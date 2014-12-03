@@ -12,6 +12,7 @@
 #include "astree.h"
 #include "stringset.h"
 #include "lyutils.h"
+#include "typecheck.h"
 
 astree* new_astree (int symbol, int filenr, int linenr, int offset,
                     const char* lexinfo) {
@@ -21,6 +22,9 @@ astree* new_astree (int symbol, int filenr, int linenr, int offset,
    tree->linenr = linenr;
    tree->offset = offset;
    tree->lexinfo = intern_stringset (lexinfo);
+   tree->attributes = 0;
+   tree->block_nr = 0;
+   tree->struct_entry = NULL;
    DEBUGF ('f', "astree %p->{%d:%d.%d: %s: \"%s\"}\n",
            tree, tree->filenr, tree->linenr, tree->offset,
            get_yytname (tree->symbol), tree->lexinfo->c_str());
@@ -67,26 +71,23 @@ astree* adopt1sym (astree* root, astree* child, int symbol) {
    return root;
 }
 
-// Yanks all the adopted children from the passed node and will
-// re-adopt them laterally.
-astree* kidnap_children(astree *root, astree* child) {
-   printf("%s will kidnap: \n", get_yytname(root->symbol));
-   dump_astree(stdout, child);
-   // pop all the children and readopt them
-   for (auto i: child->children) {
-      adopt1(root, i);
-   }
-   printf("root is now:\n");
-   dump_astree(stdout, root);
-   return root;
-}
-
+// used for printing to the .ast file
+// not (normally) called externally -- only by dump_astree_rec()
 static void dump_node (FILE* outfile, astree* node) {
    char* tname = (char*) get_yytname(node->symbol);
    if (strstr(tname, "TOK_") == tname) tname += 4;
-   fprintf(outfile, "%s \"%s\" %zu.%zu.%zu\n", tname,
+   fprintf(outfile, "%s \"%s\" (%zu.%zu.%zu) {%lu} %s ",
+      tname,
       (node->lexinfo)->c_str(), node->filenr,
-      node->linenr, node->offset);
+      node->linenr, node->offset, node->block_nr,
+      get_attr_string(node->attributes));
+   if (node->symbol == TOK_STRUCT) {
+      fprintf(outfile, "\"%s\"", node->struct_entry->first->c_str());
+   }
+   if (node->symbol == TOK_IDENT) {
+      fprintf(outfile, "(%u.%u.%u)", 0, 0, 0);
+   }
+   fprintf(outfile, "\n");
 }
 
 static void dump_astree_rec (FILE* outfile, astree* root, int depth) {
@@ -98,6 +99,7 @@ static void dump_astree_rec (FILE* outfile, astree* root, int depth) {
       }
 }
 
+// Used for printing to the .tok file (called externally)
 void dump_tok (FILE* outfile, astree* node) {
    fprintf(outfile, "%3ld %ld.%03ld %-3d %-15s (%s)\n",
             node->filenr, node->linenr, node->offset,
@@ -142,3 +144,4 @@ void free_ast3 (astree* tree1, astree* tree2, astree* tree3) {
    free_ast(tree2);
    free_ast(tree3);
 }
+

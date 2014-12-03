@@ -27,7 +27,7 @@ q
 0 Tc
 /R12 11 Tf
 0.833333 0 0 1 72 725 Tm
-($Id: asg4-symbols-types.mm,v 1.35 2014-11-12 16:31:12-08 - - $)Tj
+($Id: asg4-symbols-types.mm,v 1.67 2014-11-20 15:42:07-08 - - $)Tj
 13 TL
 (PWD: /afs/cats.ucsc.edu/courses/cmps104a-wm/Assignments)'
 (URL: http://www2.ucsc.edu/courses/cmps104a-wm/:/Assignments/)'
@@ -1554,10 +1554,10 @@ q
 0.833333 0 0 1 85.5 492 Tm
 (enum { ATTR_void, ATTR_bool, ATTR_char, ATTR_int, ATTR_null,)Tj
 50.4 -14 Td
-(ATTR_string, ATTR_struct, ATTR_array, ATTR_function, ATTR_variable,)Tj
+(ATTR_string, ATTR_struct, ATTR_array, ATTR_function,)Tj
 14 TL
-(ATTR_field, ATTR_typeid, ATTR_param, ATTR_lval, ATTR_const,)'
-(ATTR_vreg, ATTR_vaddr, ATTR_bitset_size,)'
+(ATTR_variable, ATTR_field, ATTR_typeid, ATTR_param, ATTR_lval,)'
+(ATTR_const, ATTR_vreg, ATTR_vaddr, ATTR_bitset_size,)'
 -50.4 -14 Td
 (};)Tj
 (using attr_bitset = bitset<ATTR_bitset_size>;)'
@@ -2541,15 +2541,15 @@ q
 (char vaddr lval)Tj
 /R16 9 Tf
 1 0 0 1 324 548 Tm
-(TYPEID)Tj
+(IDENT)Tj
 /R35 12 Tf
-38.4961 0 Td
+33.6629 0 Td
 (`)Tj
 /R14 12 Tf
-0.833333 0 0 1 366.492 548 Tm
+0.833333 0 0 1 361.659 548 Tm
 (.)Tj
 /R35 12 Tf
-1 0 0 1 371.544 548 Tm
+1 0 0 1 366.711 548 Tm
 (')Tj
 /R16 9 Tf
 6.99609 0 Td
@@ -2561,7 +2561,7 @@ q
 14.8441 0 Td
 (lookup)Tj
 /R14 12 Tf
-0.833333 0 0 1 465.441 548 Tm
+0.833333 0 0 1 460.608 548 Tm
 (vaddr lval)Tj
 /R16 9 Tf
 1 0 0 1 324 534 Tm
@@ -2744,14 +2744,25 @@ q
 [(ac)6.9987(h)]TJ
 -424.752 -14 Td
 (rule)Tj
-3.336 Tc
+6.758 Tc
 22.2238 0 Td
 (,t)Tj
 0 Tc
-11.3398 0 Td
+14.7621 0 Td
+3.422 Tw
+(ypes in italics must be substituted consistently by compatible types)Tj
+403.674 0 Td
+(.)Tj
+-440.66 -14 Td
 0 Tw
-[(ypes in italics must be substituted consistently by compatible types)25.0163(.)]TJ
--54.2277 -20 Td
+(Types are compatible only if the)Tj
+/R14 12 Tf
+0.833333 0 0 1 276.696 306 Tm
+(array)Tj
+/R10 12 Tf
+1 0 0 1 310.032 306 Tm
+(attribute is on for both or off for both.)Tj
+-234.696 -20 Td
 2.664 Tw
 (\(b\) When)Tj
 56.5621 0 Td
@@ -2785,11 +2796,11 @@ q
 0 Tw
 (result type of assignment \()Tj
 /R14 12 Tf
-0.833333 0 0 1 268.68 266 Tm
+0.833333 0 0 1 268.68 252 Tm
 (=)Tj
 3.336 Tc
 /R10 12 Tf
-1 0 0 1 274.032 266 Tm
+1 0 0 1 274.032 252 Tm
 [(\)i)277.991(st)]TJ
 0 Tc
 24.6723 0 Td
@@ -2801,10 +2812,10 @@ q
 0.513 Tw
 [(ields following a selector ha)9.99349(ve the)]TJ
 /R14 12 Tf
-0.833333 0 0 1 297.09 246 Tm
+0.833333 0 0 1 297.09 232 Tm
 (field)Tj
 /R10 12 Tf
-1 0 0 1 330.939 246 Tm
+1 0 0 1 330.939 232 Tm
 (attribute)Tj
 3.849 Tc
 49.5719 0 Td
@@ -2845,16 +2856,16 @@ q
 0.459 Tw
 (addition, either the)Tj
 /R14 12 Tf
-0.833333 0 0 1 207.837 198 Tm
+0.833333 0 0 1 207.837 184 Tm
 (function)Tj
 /R10 12 Tf
-1 0 0 1 259.632 198 Tm
+1 0 0 1 259.632 184 Tm
 (or)Tj
 /R14 12 Tf
-0.833333 0 0 1 274.755 198 Tm
+0.833333 0 0 1 274.755 184 Tm
 (variable)Tj
 /R10 12 Tf
-1 0 0 1 326.55 198 Tm
+1 0 0 1 326.55 184 Tm
 (attribute will be present, and for vari-)Tj
 -230.55 -14 Td
 0.618 Tw
@@ -2866,10 +2877,10 @@ q
 13.9621 0 Td
 (lso the)Tj
 /R14 12 Tf
-0.833333 0 0 1 296.568 184 Tm
+0.833333 0 0 1 296.568 170 Tm
 (param)Tj
 /R10 12 Tf
-1 0 0 1 330.522 184 Tm
+1 0 0 1 330.522 170 Tm
 (attribute)Tj
 7.29 Tc
 49.5719 0 Td
@@ -2878,45 +2889,47 @@ q
 19.2898 0 Td
 [(ll variables also ha)10.0016(ve the)]TJ
 /R14 12 Tf
-0.833333 0 0 1 96 170 Tm
+0.833333 0 0 1 96 156 Tm
 (lval)Tj
 /R10 12 Tf
-1 0 0 1 123.336 170 Tm
+1 0 0 1 123.336 156 Tm
 [(attribute)18.0105(.)]TJ
 -45.3238 -20 Td
 2.664 Tw
 (\(f\) F)Tj
 25.8719 0 Td
-0.764 Tw
+0.763 Tw
 (ield selection sets the selector \()Tj
 /R14 12 Tf
-0.833333 0 0 1 279.712 150 Tm
+0.833333 0 0 1 279.707 136 Tm
 (.)Tj
 4.099 Tc
 /R10 12 Tf
-1 0 0 1 285.064 150 Tm
+1 0 0 1 285.059 136 Tm
 (\)a)Tj
 0 Tc
 14.7672 0 Td
-0.763 Tw
 (ttribute as follows)Tj
-7.435 Tc
+7.436 Tc
 103.99 0 Td
 (:T)Tj
 0 Tc
-18.775 0 Td
+18.7762 0 Td
+0.764 Tw
 (he left operand must)Tj
--326.596 -14 Td
-2.04 Tw
+-326.592 -14 Td
+2.041 Tw
 (be a)Tj
 /R14 12 Tf
-0.833333 0 0 1 126.096 136 Tm
+0.833333 0 0 1 126.098 122 Tm
 (struct)Tj
 /R10 12 Tf
-1 0 0 1 167.472 136 Tm
-2.041 Tw
-[(type or an error message is generated.)-726.086(Look up the \214eld in the)]TJ
--71.4723 -14 Td
+1 0 0 1 167.475 122 Tm
+(type or an error message is generated.)Tj
+233.191 0 Td
+2.04 Tw
+(Look up the \214eld in the)Tj
+-304.666 -14 Td
 3.946 Tw
 (structure and copy its type attributes to the selector)Tj
 7.282 Tc
@@ -2924,37 +2937,35 @@ q
 (,r)Tj
 0 Tc
 15.9461 0 Td
-3.945 Tw
 (emoving the)Tj
 /R14 12 Tf
-0.833333 0 0 1 510 122 Tm
+0.833333 0 0 1 510.002 108 Tm
 (field)Tj
 /R10 12 Tf
-1 0 0 1 96 108 Tm
+1 0 0 1 96 94 Tm
 0 Tw
 (attribute and adding the)Tj
 /R14 12 Tf
-0.833333 0 0 1 236.028 108 Tm
+0.833333 0 0 1 236.028 94 Tm
 (vaddr)Tj
 /R10 12 Tf
-1 0 0 1 269.364 108 Tm
+1 0 0 1 269.364 94 Tm
 [(attribute)18.0094(.)]TJ
 -193.8 -20 Td
 2.664 Tw
 (\(g\) F)Tj
 27.7801 0 Td
-1.108 Tw
+1.109 Tw
 (or a)Tj
 /R14 12 Tf
-0.833333 0 0 1 130.232 88 Tm
+0.833333 0 0 1 130.234 74 Tm
 (CALL)Tj
-4.444 Tc
+4.445 Tc
 /R10 12 Tf
-1 0 0 1 153.488 88 Tm
+1 0 0 1 153.49 74 Tm
 (,e)Tj
 0 Tc
-13.7801 0 Td
-1.109 Tw
+13.7809 0 Td
 (valuate the types of eac)Tj
 4.445 Tc
 134.816 0 Td
@@ -2967,8 +2978,9 @@ q
 (,a)Tj
 0 Tc
 14.4531 0 Td
+1.108 Tw
 (nd look up the func-)Tj
--328.9 -14 Td
+-328.903 -14 Td
 0.179 Tw
 (tion in the identi\214er table)Tj
 6.851 Tc
@@ -2977,16 +2989,13 @@ q
 0 Tc
 18.191 0 Td
 (hen verify that the arguments are compatible with)Tj
--161.827 -14 Td
-0.537 Tw
-(the parameters and error if not, or if the argument and parameter lists are not)Tj
 ET
 Q
 Q
 endstream
 endobj
 34 0 obj
-16118
+16207
 endobj
 40 0 obj
 <</Length 41 0 R>>
@@ -3015,22 +3024,25 @@ q
 [(5o)278.015(f9)]TJ
 0 Tc
 -413.988 -24 Td
-0.59 Tw
-(of the same length.)Tj
-114.824 0 Td
+0.537 Tw
+(the parameters and error if not, or if the argument and parameter lists are not)Tj
+14 TL
+0.589 Tw
+(of the same length.)'
+114.82 0 Td
 (The)Tj
 /R14 12 Tf
-0.833333 0 0 1 236.086 718 Tm
+0.833333 0 0 1 236.081 704 Tm
 (CALL)Tj
 /R10 12 Tf
-1 0 0 1 264.012 718 Tm
-0.589 Tw
+1 0 0 1 264.006 704 Tm
+0.59 Tw
 (node has the result type of the function, with the)Tj
 /R14 12 Tf
-0.833333 0 0 1 96 704 Tm
+0.833333 0 0 1 96 690 Tm
 (vreg)Tj
 /R10 12 Tf
-1 0 0 1 123.336 704 Tm
+1 0 0 1 123.336 690 Tm
 [(attribute)18.0105(.)]TJ
 -48.6598 -20 Td
 2.664 Tw
@@ -3039,115 +3051,121 @@ q
 0 Tw
 (expression operand of both)Tj
 /R14 12 Tf
-0.833333 0 0 1 272.676 684 Tm
+0.833333 0 0 1 272.676 670 Tm
 (if)Tj
 /R10 12 Tf
-1 0 0 1 288.012 684 Tm
+1 0 0 1 288.012 670 Tm
 (and)Tj
 /R14 12 Tf
-0.833333 0 0 1 312.24 684 Tm
+0.833333 0 0 1 312.24 670 Tm
 (while)Tj
 /R10 12 Tf
-1 0 0 1 345.576 684 Tm
+1 0 0 1 345.576 670 Tm
 (must be of type)Tj
 /R14 12 Tf
-0.833333 0 0 1 433.812 684 Tm
+0.833333 0 0 1 433.812 670 Tm
 (bool)Tj
 /R10 12 Tf
-1 0 0 1 456.888 684 Tm
+1 0 0 1 456.888 670 Tm
 (.)Tj
 -378.66 -20 Td
 2.664 Tw
 (\(i\) If)Tj
-30.6148 0 Td
-0.627 Tw
+30.616 0 Td
+0.628 Tw
 (the function')Tj
-3.963 Tc
-69.8789 0 Td
+3.964 Tc
+69.8801 0 Td
 (sr)Tj
 0 Tc
-14.8469 0 Td
+14.848 0 Td
 (eturn type is not)Tj
 /R14 12 Tf
-0.833333 0 0 1 291.417 664 Tm
+0.833333 0 0 1 291.423 650 Tm
 (void)Tj
 3.963 Tc
 /R10 12 Tf
-1 0 0 1 314.673 664 Tm
+1 0 0 1 314.679 650 Tm
 (,t)Tj
 0 Tc
 11.9672 0 Td
-0.628 Tw
-[(hen it must ha)9.98942(ve an expression whic)]TJ
-206.028 0 Td
+0.627 Tw
+[(hen it must ha)10.0016(ve an expression whic)]TJ
+206.022 0 Td
 (h)Tj
 -436.668 -14 Td
-1.48 Tw
-[(is compatible with the dec)7.00684(lared return type)]TJ
+1.479 Tw
+[(is compatible with the dec)6.9987(lared return type)]TJ
 8.151 Tc
-248.376 0 Td
+248.37 0 Td
 (.I)Tj
 4.815 Tc
 16.3711 0 Td
-[(ti)401.259(sa)401.253(ne)]TJ
+(ti)Tj
+4.816 Tc
+13.2629 0 Td
+[(sa)401.322(ne)]TJ
 0 Tc
-48.4527 0 Td
-1.479 Tw
+35.1922 0 Td
+1.48 Tw
 (rror for a)Tj
 /R14 12 Tf
-0.833333 0 0 1 467.625 650 Tm
+0.833333 0 0 1 467.624 636 Tm
 (return)Tj
 /R10 12 Tf
-1 0 0 1 508.439 650 Tm
+1 0 0 1 508.44 636 Tm
 (state-)Tj
--412.439 -14 Td
+-412.44 -14 Td
+1.157 Tw
+(ment to ha)Tj
+62.2059 0 Td
 1.156 Tw
-[(ment to ha)10.0077(ve an operand if the function')]TJ
+(ve an operand if the function')Tj
 4.492 Tc
-229.912 0 Td
+167.708 0 Td
 (sr)Tj
 0 Tc
 15.3762 0 Td
 (eturn type is)Tj
 /R14 12 Tf
-0.833333 0 0 1 418.761 636 Tm
+0.833333 0 0 1 418.762 622 Tm
 (void)Tj
-7.829 Tc
+7.828 Tc
 /R10 12 Tf
-1 0 0 1 441.837 636 Tm
+1 0 0 1 441.838 622 Tm
 (.A)Tj
 0 Tc
-24.3219 0 Td
+24.3199 0 Td
 (global)Tj
 /R14 12 Tf
-0.833333 0 0 1 504 636 Tm
+0.833333 0 0 1 503.998 622 Tm
 (return)Tj
 /R10 12 Tf
-1 0 0 1 96 622 Tm
+1 0 0 1 96 608 Tm
 0 Tw
 (statement is considered to be in a)Tj
 /R14 12 Tf
-0.833333 0 0 1 285.144 622 Tm
+0.833333 0 0 1 285.144 608 Tm
 (void)Tj
 /R10 12 Tf
-1 0 0 1 312.48 622 Tm
+1 0 0 1 312.48 608 Tm
 (function.)Tj
 -234.024 -20 Td
 2.664 Tw
 (\(j\) The)Tj
-43.4441 0 Td
-1.228 Tw
+43.443 0 Td
+1.227 Tw
 (indexing operator for an arra)Tj
 4.564 Tc
-166.348 0 Td
+166.344 0 Td
 (yr)Tj
 0 Tc
 16.3359 0 Td
-1.227 Tw
+1.228 Tw
 (eturns the address of one of its elements)Tj
-232.077 0 Td
+232.084 0 Td
 (,)Tj
--440.661 -14 Td
+-440.663 -14 Td
 0 Tw
 (and for a string)Tj
 3.336 Tc
@@ -3158,237 +3176,218 @@ q
 [(he address of one of its c)7.01497(haracters)25(.)]TJ
 ET
 Q
-720.25 5690.25 m
-5340.25 5690.25 l
+720.25 5550.25 m
+5370.25 5550.25 l
 S
 q
 10 0 0 10 0 0 cm BT
 /R14 12 Tf
-0.833333 0 0 1 78 558 Tm
+0.833333 0 0 1 78 544 Tm
 (struct symbol {)Tj
 /R35 12 Tf
-1 0 0 1 234 558 Tm
-0.161 Tw
+1 0 0 1 276 544 Tm
+1.682 Tw
 (Each node in the symbol table must ha)Tj
 -0.18 Tc
-186.539 0 Td
-0.522 Tw
+197.186 0 Td
+2.041 Tw
 (ve i)Tj
 0 Tc
-17.6461 0 Td
-0.162 Tw
-(nformation associ-)Tj
--204.185 -14 Td
-0.952 Tw
-(ated with the identi\214er)Tj
-6.951 Tc
-110.52 0 Td
+19.1648 0 Td
+(nforma-)Tj
+-216.351 -14 Td
+0.625 Tw
+(tion associated with the identi\214er)Tj
+6.626 Tc
+161.164 0 Td
 (.I)Tj
-3.951 Tc
-13.9469 0 Td
+3.626 Tc
+13.6219 0 Td
 (tw)Tj
 0 Tc
-15.9512 0 Td
-0.951 Tw
-(ill be simpler to mak)Tj
-3.951 Tc
-103.02 0 Td
+15.6262 0 Td
+0.626 Tw
+(ill be simpler)Tj
+-190.412 -14 Td
+1.238 Tw
+(to mak)Tj
+4.238 Tc
+34.118 0 Td
 (en)Tj
 0 Tc
-15.2789 0 Td
-(odes in)Tj
--258.717 -14 Td
-1.411 Tw
-(all of the symbol tables identical, and null out unnecessary)Tj
-14 TL
-(\214elds.)'
+15.566 0 Td
+1.237 Tw
+(odes in all of the symbol tables identical,)Tj
+-49.684 -14 Td
+0 Tw
+(and null out unnecessary \214elds.)Tj
 ET
 Q
-720.25 5110.25 m
-5340.25 5110.25 l
+720.25 4970.25 m
+5370.25 4970.25 l
 S
 q
 10 0 0 10 0 0 cm BT
 /R14 12 Tf
-0.833333 0 0 1 78 500 Tm
+0.833333 0 0 1 78 486 Tm
 (attr_bitset attributes;)Tj
 /R35 12 Tf
-1 0 0 1 234 500 Tm
+1 0 0 1 276 486 Tm
 [(Symbol attrib)20.0053(utes, as described earlier)55(.)]TJ
 ET
 Q
-720.25 4950.25 m
-5340.25 4950.25 l
+720.25 4810.25 m
+5370.25 4810.25 l
 S
 q
 10 0 0 10 0 0 cm BT
 /R14 12 Tf
-0.833333 0 0 1 78 484 Tm
+0.833333 0 0 1 78 470 Tm
 (symbol_table* fields;)Tj
-3.642 Tc
+3.121 Tc
 /R35 12 Tf
-1 0 0 1 234 484 Tm
+1 0 0 1 276 470 Tm
 (Ap)Tj
 0 Tc
-18.3059 0 Td
-0.642 Tw
+17.7852 0 Td
+0.121 Tw
 (ointer to the \214eld table if this symbol is a)Tj
 /R14 12 Tf
-0.833333 0 0 1 458.729 484 Tm
+0.833333 0 0 1 495 470 Tm
 (struct)Tj
 /R35 12 Tf
-1 0 0 1 498.37 484 Tm
-0.641 Tw
+1 0 0 1 276 456 Tm
+0 Tw
 (\(if the)Tj
 /R14 12 Tf
-0.833333 0 0 1 234 470 Tm
+0.833333 0 0 1 307.992 456 Tm
 (typeid)Tj
 /R35 12 Tf
-1 0 0 1 273 470 Tm
-0 Tw
-[(attrib)19.9849(ute is present\), otherwise null.)]TJ
+1 0 0 1 346.992 456 Tm
+[(attrib)19.9849(ute is present\).)-500(Null otherwise.)]TJ
 ET
 Q
-720.25 4650.25 m
-5340.25 4650.25 l
+720.25 4510.25 m
+5370.25 4510.25 l
 S
 q
 10 0 0 10 0 0 cm BT
 /R14 12 Tf
-0.833333 0 0 1 78 454 Tm
-(size_t filenr, linenr,)Tj
-50.4 -14 Td
-(offset;)Tj
+0.833333 0 0 1 78 440 Tm
+(size_t filenr, linenr, offset;)Tj
 /R35 12 Tf
-1 0 0 1 234 454 Tm
-0.586 Tw
+1 0 0 1 276 440 Tm
+2.025 Tw
 (The inde)Tj
-3.586 Tc
-42.7301 0 Td
+5.025 Tc
+44.1691 0 Td
 (xi)Tj
 0 Tc
-12.9219 0 Td
-0.587 Tw
+14.3609 0 Td
 (nto the \214lename v)Tj
-87.909 0 Td
+92.223 0 Td
 (ector)Tj
-3.587 Tc
+5.025 Tc
 23.5078 0 Td
 (,a)Tj
 0 Tc
-11.9148 0 Td
-(long with the line num-)Tj
--178.984 -14 Td
-0 Tw
-[(ber and of)24.9959(fset where this symbol w)10.0016(as declared.)]TJ
+13.3531 0 Td
+(long with the)Tj
+-187.614 -14 Td
+4.921 Tw
+(line number and of)Tj
+105.447 0 Td
+4.922 Tw
+(fset where this symbol w)Tj
+139.556 0 Td
+(as)Tj
+-245.003 -14 Td
+(declared.)Tj
 ET
 Q
-720.25 4350.25 m
-5340.25 4350.25 l
+720.25 4070.25 m
+5370.25 4070.25 l
 S
 q
 10 0 0 10 0 0 cm BT
 /R14 12 Tf
-0.833333 0 0 1 78 424 Tm
+0.833333 0 0 1 78 396 Tm
 (size_t block_nr;)Tj
 /R35 12 Tf
-1 0 0 1 234 424 Tm
-0.467 Tw
+1 0 0 1 276 396 Tm
+2.906 Tw
 (The block number to which this symbol belongs.)Tj
-244.396 0 Td
-0.466 Tw
-(Block 0 is)Tj
--244.396 -14 Td
-0.644 Tw
-(the global block, and positi)Tj
+14 TL
+1.228 Tw
+(Block 0 is the global block, and positi)'
 -0.18 Tc
-132.608 0 Td
-1.005 Tw
+190.3 0 Td
+1.589 Tw
 (ve i)Tj
 0 Tc
-18.1289 0 Td
-0.645 Tw
-(ncreasing sequential numbers)Tj
--150.737 -14 Td
-0 Tw
-(being assigned to nested blocks.)Tj
+18.7129 0 Td
+(ncreasing)Tj
+-209.013 -14 Td
+0.782 Tw
+(sequential numbers being assigned to nested blocks.)Tj
 ET
 Q
-720.25 3910.25 m
-5340.25 3910.25 l
+720.25 3630.25 m
+5370.25 3630.25 l
 S
 q
 10 0 0 10 0 0 cm BT
 /R14 12 Tf
-0.833333 0 0 1 78 380 Tm
-(symbol* parameters;)Tj
-5.003 Tc
+0.833333 0 0 1 78 352 Tm
+(vector<symbol*>* parameters;)Tj
+4.045 Tc
 /R35 12 Tf
-1 0 0 1 234 380 Tm
+1 0 0 1 276 352 Tm
 (As)Tj
 0 Tc
-18.3352 0 Td
-2.003 Tw
-(ymbol node pointer which points at the parameter list.)Tj
+17.377 0 Td
+1.046 Tw
+(ymbol node pointer which points at the parame-)Tj
+-17.377 -14 Td
+0.441 Tw
+(ter list.)Tj
 -0.18 Tc
--18.3352 -14 Td
+40.218 0 Td
 (Fo)Tj
-3.405 Tc
+3.441 Tc
 12.4922 0 Td
 (raf)Tj
 0 Tc
-20.1301 0 Td
-0.406 Tw
-(unction, point at the \214rst parameter)Tj
-3.406 Tc
-170.198 0 Td
-(,f)Tj
-0 Tc
-10.402 0 Td
-(or other parame-)Tj
--213.222 -14 Td
-0.069 Tw
-[(ters e)15.0065(xcept the last to the ne)15.0167(xt parameter in sequence.)]TJ
-262.265 0 Td
-0.068 Tw
-(Null if)Tj
--262.265 -14 Td
-0 Tw
-(neither the)Tj
-/R14 12 Tf
-0.833333 0 0 1 287.988 338 Tm
-(function)Tj
-/R35 12 Tf
-1 0 0 1 338.988 338 Tm
-(nor)Tj
-/R14 12 Tf
-0.833333 0 0 1 357.984 338 Tm
-(param)Tj
-/R35 12 Tf
-1 0 0 1 390.984 338 Tm
-[(attrib)19.9829(utes are present.)]TJ
+20.202 0 Td
+0.44 Tw
+[(unction, points at a v)14.9902(ector of parame-)]TJ
+-72.9121 -14 Td
+3 Tw
+(ters. Null)Tj
+50.6641 0 Td
+(otherwise.)Tj
 ET
 Q
-720.25 3330.25 m
-5340.25 3330.25 l
+720.25 3190.25 m
+5370.25 3190.25 l
 S
-2250.25 3330.25 m
-2250.25 5690.25 l
+2670.25 3190.25 m
+2670.25 5550.25 l
 S
-5340.25 3330.25 m
-5340.25 5690.25 l
+5370.25 3190.25 m
+5370.25 5550.25 l
 S
-720.25 3330.25 m
-720.25 5690.25 l
+720.25 3190.25 m
+720.25 5550.25 l
 S
-2250.25 3330.25 m
-2250.25 5690.25 l
+2670.25 3190.25 m
+2670.25 5550.25 l
 S
 q
 10 0 0 10 0 0 cm BT
 -0.216 Tc
 /R8 12 Tf
-1 0 0 1 217.5 318 Tm
+1 0 0 1 217.5 304 Tm
 (Fi)Tj
 0 Tc
 12.8879 0 Td
@@ -3405,11 +3404,11 @@ q
 282.096 0 Td
 (,)Tj
 /R14 12 Tf
-0.833333 0 0 1 362.64 252 Tm
+0.833333 0 0 1 362.64 238 Tm
 (struct)Tj
 -0.3 Tc
 /R10 12 Tf
-1 0 0 1 398.64 252 Tm
+1 0 0 1 398.64 238 Tm
 2.472 Tw
 (s, a)Tj
 0 Tc
@@ -3419,11 +3418,11 @@ q
 57.8762 0 Td
 (h)Tj
 /R14 12 Tf
-0.833333 0 0 1 489.528 252 Tm
+0.833333 0 0 1 489.528 238 Tm
 (struct)Tj
 5.208 Tc
 /R10 12 Tf
-1 0 0 1 524.784 252 Tm
+1 0 0 1 524.784 238 Tm
 (,a)Tj
 0 Tc
 -452.784 -14 Td
@@ -3437,10 +3436,10 @@ q
 1.857 Tw
 [(igure 2 contains dec)6.98649(larations for type)]TJ
 /R14 12 Tf
-0.833333 0 0 1 369.146 238 Tm
+0.833333 0 0 1 369.146 224 Tm
 (symbol)Tj
 /R10 12 Tf
-1 0 0 1 410.339 238 Tm
+1 0 0 1 410.339 224 Tm
 (in the left column and)Tj
 -338.339 -14 Td
 0.009 Tw
@@ -3456,12 +3455,12 @@ q
 0 Tw
 [(\214er as the key and a symbol as the value)-166.667(:)]TJ
 /R14 12 Tf
-0.833333 0 0 1 85.5 196 Tm
+0.833333 0 0 1 85.5 182 Tm
 (using symbol_table = unordered_map<string*,symbol*>;)Tj
 14 TL
 (using symbol_entry = pair<string*,symbol*>;)'
 /R10 12 Tf
-1 0 0 1 72 168 Tm
+1 0 0 1 72 154 Tm
 (Eac)Tj
 3.861 Tc
 20.5801 0 Td
@@ -3471,21 +3470,21 @@ q
 0.525 Tw
 (ntry in the symbol table is a)Tj
 /R14 12 Tf
-0.833333 0 0 1 272.604 168 Tm
+0.833333 0 0 1 272.604 154 Tm
 (pair)Tj
 7.196 Tc
 /R10 12 Tf
-1 0 0 1 295.68 168 Tm
+1 0 0 1 295.68 154 Tm
 (.T)Tj
 0 Tc
 18.5359 0 Td
 0.524 Tw
 (he key is a pointer into the)Tj
 /R14 12 Tf
-0.833333 0 0 1 469.912 168 Tm
+0.833333 0 0 1 469.912 154 Tm
 (stringset)Tj
 /R10 12 Tf
-1 0 0 1 527.772 168 Tm
+1 0 0 1 527.772 154 Tm
 (as)Tj
 -455.772 -14 Td
 0.9 Tw
@@ -3536,10 +3535,10 @@ q
 1.716 Tw
 (aintain a)Tj
 /R14 12 Tf
-0.833333 0 0 1 208.428 72 Tm
+0.833333 0 0 1 208.428 58 Tm
 (symbol_table)Tj
 /R10 12 Tf
-1 0 0 1 285.48 72 Tm
+1 0 0 1 285.48 58 Tm
 (containing all structure de\214nitions)Tj
 5.052 Tc
 197.964 0 Td
@@ -3547,29 +3546,13 @@ q
 0 Tc
 17.7238 0 Td
 (ith the)Tj
--429.168 -14 Td
-0.029 Tw
-(type name as the key and a \214eld table as the value)Tj
-6.702 Tc
-281.071 0 Td
-(.E)Tj
-0 Tc
-18.702 0 Td
-(ac)Tj
-3.366 Tc
-11.916 0 Td
-(hs)Tj
-0 Tc
-16.2539 0 Td
-0.03 Tw
-(tructure de\214nition points)Tj
 ET
 Q
 Q
 endstream
 endobj
 41 0 obj
-8651
+8189
 endobj
 45 0 obj
 <</Length 46 0 R>>
@@ -3598,6 +3581,23 @@ q
 [(6o)278.015(f9)]TJ
 0 Tc
 -437.988 -24 Td
+0.029 Tw
+(type name as the key and a \214eld table as the value)Tj
+6.702 Tc
+281.071 0 Td
+(.E)Tj
+0 Tc
+18.702 0 Td
+(ac)Tj
+3.366 Tc
+11.916 0 Td
+(hs)Tj
+0 Tc
+16.2539 0 Td
+0.03 Tw
+(tructure de\214nition points)Tj
+-327.943 -14 Td
+0 Tw
 [(at its own \214eld table)17.9962(.)]TJ
 /R8 12 Tf
 20 TL
@@ -3670,10 +3670,10 @@ q
 (k:)Tj
 0 Tc
 /R14 12 Tf
-0.833333 0 0 1 183.716 630 Tm
+0.833333 0 0 1 183.716 616 Tm
 (vector<symbol_table*> symbol_stack;)Tj
 /R10 12 Tf
-1 0 0 1 75.3359 610 Tm
+1 0 0 1 75.3359 596 Tm
 2.664 Tw
 (\(b\) Maintain)Tj
 4.245 Tc
@@ -3684,10 +3684,10 @@ q
 0.909 Tw
 (lobal counter)Tj
 /R14 12 Tf
-0.833333 0 0 1 246.552 610 Tm
+0.833333 0 0 1 246.552 596 Tm
 (next_block)Tj
 /R10 12 Tf
-1 0 0 1 310.797 610 Tm
+1 0 0 1 310.797 596 Tm
 (whic)Tj
 4.245 Tc
 25.6922 0 Td
@@ -3719,25 +3719,24 @@ q
 -287.112 -20 Td
 2.664 Tw
 (\(c\) When)Tj
-55.5922 0 Td
-0.5 Tw
-[(entering a bloc)7.01294(k, increment)]TJ
+55.9121 0 Td
+0.82 Tw
+[(entering a bloc)6.99463(k, increment)]TJ
 /R14 12 Tf
-0.833333 0 0 1 289.756 576 Tm
+0.833333 0 0 1 291.356 562 Tm
 (next_block)Tj
 /R10 12 Tf
-1 0 0 1 353.592 576 Tm
+1 0 0 1 355.512 562 Tm
 (and push)Tj
 /R14 12 Tf
-0.833333 0 0 1 409.264 576 Tm
-(null)Tj
+0.833333 0 0 1 411.824 562 Tm
+(nullptr)Tj
 /R10 12 Tf
-1 0 0 1 437.1 576 Tm
-0.501 Tw
-(onto the top of the)Tj
--341.1 -14 Td
+1 0 0 1 457.98 562 Tm
+(onto the top of)Tj
+-361.98 -14 Td
 0 Tw
-[(symbol stac)6.99158(k.)]TJ
+[(the symbol stac)6.99666(k.)]TJ
 -20.8801 -20 Td
 2.664 Tw
 (\(d\) When)Tj
@@ -3758,19 +3757,19 @@ q
 1.234 Tw
 (e\214ne a new)Tj
 /R14 12 Tf
-0.833333 0 0 1 335.677 522 Tm
+0.833333 0 0 1 335.677 508 Tm
 (symbol)Tj
 /R10 12 Tf
-1 0 0 1 376.247 522 Tm
+1 0 0 1 376.247 508 Tm
 (and insert it into the symbol)Tj
 -280.247 -14 Td
 0.852 Tw
 (table at the top of the)Tj
 /R14 12 Tf
-0.833333 0 0 1 223.813 508 Tm
+0.833333 0 0 1 223.813 494 Tm
 (symbol_stack.)Tj
 /R10 12 Tf
-1 0 0 1 309.338 508 Tm
+1 0 0 1 309.338 494 Tm
 0.853 Tw
 (Create the symbol table if it is null.)Tj
 210.212 0 Td
@@ -4052,11 +4051,11 @@ q
 0.356 Tw
 (an incomplete structure has a \214eld selected from it, or if it follows)Tj
 /R14 12 Tf
-0.833333 0 0 1 480.783 132 Tm
+0.833333 0 0 1 480.783 118 Tm
 (new)Tj
 3.691 Tc
 /R10 12 Tf
-1 0 0 1 498.039 132 Tm
+1 0 0 1 498.039 118 Tm
 [(,o)307.589(ri)307.597(fi)]TJ
 0 Tc
 37.293 0 Td
@@ -4069,19 +4068,13 @@ q
 -440.004 -14 Td
 0 Tw
 [(ring to an incomplete type)17.9891(.)]TJ
--17.9879 -20 Td
-2.664 Tw
-(\(f\) All)Tj
-37.548 0 Td
-0 Tw
-[(other identi\214ers are inserted into the main symbol tables)24.9959(.)]TJ
 ET
 Q
 Q
 endstream
 endobj
 46 0 obj
-7530
+7622
 endobj
 50 0 obj
 <</Length 51 0 R>>
@@ -4109,7 +4102,13 @@ q
 437.988 0 Td
 [(7o)278.015(f9)]TJ
 0 Tc
--434.424 -24 Td
+-431.976 -24 Td
+2.664 Tw
+(\(f\) All)Tj
+37.548 0 Td
+0 Tw
+[(other identi\214ers are inserted into the main symbol tables)24.9959(.)]TJ
+-39.9961 -20 Td
 2.664 Tw
 (\(g\) Whenever)Tj
 80.007 0 Td
@@ -4444,11 +4443,11 @@ q
 0.218 Tw
 (\214le with the symbol table in it with a suf\214x of)Tj
 /R14 12 Tf
-0.833333 0 0 1 330.239 286 Tm
+0.833333 0 0 1 330.239 266 Tm
 (.sym)Tj
 6.891 Tc
 /R10 12 Tf
-1 0 0 1 353.315 286 Tm
+1 0 0 1 353.315 266 Tm
 (.I)Tj
 3.555 Tc
 15.1109 0 Td
@@ -4461,10 +4460,10 @@ q
 0.454 Tw
 (tion will be printed into the)Tj
 /R14 12 Tf
-0.833333 0 0 1 230.532 272 Tm
+0.833333 0 0 1 230.532 252 Tm
 (.ast)Tj
 /R10 12 Tf
-1 0 0 1 258.321 272 Tm
+1 0 0 1 258.321 252 Tm
 0.453 Tw
 [(\214le when tra)10.0077(versing and printing the AST)]TJ
 7.125 Tc
@@ -4481,10 +4480,10 @@ q
 0.433 Tw
 (hows some sample output to the)Tj
 /R14 12 Tf
-0.833333 0 0 1 272.18 258 Tm
+0.833333 0 0 1 272.18 238 Tm
 (.sym)Tj
 /R10 12 Tf
-1 0 0 1 299.95 258 Tm
+1 0 0 1 299.95 238 Tm
 0.434 Tw
 (\214le for some sample input shown in F)Tj
 211.166 0 Td
@@ -4501,12 +4500,12 @@ q
 -1.336 Tw
 (ated :)Tj
 /R14 12 Tf
-0.833333 0 0 1 133.192 210 Tm
+0.833333 0 0 1 133.192 190 Tm
 1.1472 Tw
 (attr_bitset attributes)Tj
 4.292 Tc
 /R10 12 Tf
-1 0 0 1 265.404 210 Tm
+1 0 0 1 265.404 190 Tm
 (,i)Tj
 0 Tc
 11.4078 0 Td
@@ -4534,14 +4533,14 @@ q
 0 Tw
 [(your parser so that its output lines look like)-166.667(:)]TJ
 /R14 12 Tf
-0.833333 0 0 1 109.5 162 Tm
+0.833333 0 0 1 109.5 142 Tm
 ('+' "+" \(0.6.3\) {4} int vreg)Tj
 14 TL
 (IDENT "foo" \(0.6.8\) {4} int variable \(0.2.9\))'
 (IDENT "bar" \(0.7.3\) {5} struct "node" variable \(0.3.7\))'
 -0.66 Tc
 /R10 12 Tf
-1 0 0 1 96 120 Tm
+1 0 0 1 96 100 Tm
 (Fo)Tj
 0 Tc
 13.3441 0 Td
@@ -4585,7 +4584,7 @@ Q
 endstream
 endobj
 51 0 obj
-7532
+7665
 endobj
 55 0 obj
 <</Length 56 0 R>>
@@ -4614,7 +4613,7 @@ q
 [(8o)278.015(f9)]TJ
 0 Tc
 /R12 12 Tf
--377.988 -52 Td
+0.833333 0 0 1 132 690 Tm
 (struct node { int foo; node link; })Tj
 14 TL
 (node func \(node head, int length\) {)'
@@ -4660,7 +4659,7 @@ q
 1 0 0 1 453.618 541.2 Tm
 <8C6C65>Tj
 /R12 12 Tf
--321.618 -42 Td
+0.833333 0 0 1 132 499.2 Tm
 (node \(0.1.7\) {0} struct "node")Tj
 21.6 -14 Td
 (foo \(0.1.18\) field {node} int)Tj
@@ -4927,7 +4926,7 @@ Q
 endstream
 endobj
 56 0 obj
-4968
+4990
 endobj
 60 0 obj
 <</Length 61 0 R>>
@@ -5093,12 +5092,12 @@ endobj
 7 0 R>>
 endobj
 19 0 obj
-<</R12
-12 0 R/R10
+<</R10
 10 0 R/R8
 8 0 R/R16
 16 0 R/R14
-14 0 R>>
+14 0 R/R12
+12 0 R>>
 endobj
 23 0 obj
 <</R7
@@ -5172,11 +5171,11 @@ endobj
 7 0 R>>
 endobj
 58 0 obj
-<</R12
-12 0 R/R10
+<</R10
 10 0 R/R8
 8 0 R/R14
-14 0 R>>
+14 0 R/R12
+12 0 R>>
 endobj
 62 0 obj
 <</R7
@@ -5186,17 +5185,6 @@ endobj
 <</R10
 10 0 R/R8
 8 0 R>>
-endobj
-12 0 obj
-<</BaseFont/GKPFPN+Courier/FontDescriptor 13 0 R/Type/Font
-/FirstChar 32/LastChar 125/Widths[
-600 0 600 0 600 0 0 0 600 600 0 0 600 600 600 600
-600 600 600 600 600 600 600 600 600 600 600 600 600 600 0 0
-0 600 0 0 600 0 0 0 0 600 0 0 600 0 0 0
-600 0 600 0 0 600 0 600 0 0 0 0 0 0 0 0
-0 600 600 600 600 600 600 600 600 600 0 600 600 600 600 600
-600 0 600 600 600 600 600 600 0 600 0 600 0 600]
-/Encoding/WinAnsiEncoding/Subtype/Type1>>
 endobj
 28 0 obj
 <</BaseFont/CRHNMJ+Symbol/FontDescriptor 29 0 R/Type/Font
@@ -5311,98 +5299,16 @@ endobj
 39/quoteright
 173/minus]>>
 endobj
-13 0 obj
-<</Type/FontDescriptor/FontName/GKPFPN+Courier/FontBBox[0 -186 593 668]/Flags 35
-/Ascent 668
-/CapHeight 563
-/Descent -186
-/ItalicAngle 0
-/StemV 148
-/AvgWidth 600
-/MaxWidth 600
-/MissingWidth 600
-/XHeight 431
-/CharSet(/A/D/I/L/P/R/U/W/a/b/braceleft/braceright/c/colon/comma/d/dollar/e/eight/equal/f/five/four/g/h/hyphen/i/k/l/less/m/n/nine/o/one/p/parenleft/parenright/period/quotedbl/r/s/semicolon/seven/six/slash/space/t/three/two/u/v/w/y/zero)/FontFile3 64 0 R>>
-endobj
-64 0 obj
-<</Filter[/ASCII85Decode
-/FlateDecode]
-/Subtype/Type1C/Length 5567>>stream
-GasIi#?4[Sf"U/uGHQOW@Bek<,rW[WH\2G4"<3.FG)7DpUEG6P:k`>VLX$;sA5GQh.AC,`m&1M+
-M$3oi/;`a3_b8@Dm$i.=>5sukRIRu'pTLDEm_.fMF8!)XrU%91:aWk(JO%"1"bh`Q2i$UG\)E)K
-peQ5+rt$C@cG09uOsn4AJBW\fb[f$IQESO.@0<475D0N>KE?]KF-fg%E+Fd[InQ0Z(ba4#2WMf:
-2nYP@HhM8+T?%OMXIM5)b5JeRN@)D.C^p^X%c"][bgspnX:>MtDmJpEL^`,QC:2I@GI+JjgPUsk
-S$uP2a91M>_*JZ6A"7A:VG*F8Glmdrh-D)c'-:oM(:66GC9a&eB)h@NN?KCWUaTuTj7]-RkE+&p
-n-'Cc2YntbguQ*#cbk6jVgOt85iBfT'.//d.=1QLfW!>sc`iiuC\[6V,Alg3+(IZ8_l4rH#ITd7
-74k:#;dRr\C+QcU>"-]4S>ZbD)TnJ:8%DI!e7<;X[=F]</Yj.\1FP3)SXN"?V>='fW<(L6C)pk\
-8LSN"Js'#te0%@K%AnkV6>@o+N"T![;#d2!<,\cI22akR183\16@k>nTpK=DQ#NTS?eAdBgI,Q"
-.>ej'Ve=Hnidp)kE>u6OWTlX\pYe<2qh4Y<Qg#.3%("o)aK4+^Y1XnF8+t3p$iOo=mHH:hYO2@=
-_"IeY%/=n:j1pD#^RFUFYEpX`?X&n%/@-b2pmH'ha1!9'X>stP"DZQp[brOo*Pb$g)-`$ckt%X#
-/lo)(ARQ3WWm3+I;W^ERIPbBUCINK#d:Y6R]68pe!fUHF1[M?@)o5\\fpicFUk++%d4W#rjQBc%
-B+F&D<,dI8&&=L'/p/l#W56fnBgpX;QA%U/Mr'Og=)j[\>m61_IUD2&c-]t?O>a(c7n#gC#RY)r
-P)BcN&K!FK+ch*1H?G+7^LGSg)7`-l`sXjm1WT7KKQ*&tP%)OHCYU!Blkfg;0Rrs-oE0sC0A(mL
-0mWfOG5.GmF%21Wp#p85P=NBmA3Y8#i%kkWdlHuZ".o;8%O6fPisgGoG*[Fl+ld.DNX]OJ%1=cn
-5!TPKJ+HGiAL3DQFM]Oj^j^F1b6f,s>`s7mE#^sef"ksW?0duP*k)'blCm7U3PfVR4QD+0EDj?0
-ojA]6*FJrdfumk"F>T@mW=0"NJP(!SiDMiZ7Yi!\>tjXOj$"2NcjFBfpsZ3#j('7k&jYH^M)]P]
-15I`RTq`55GK+>0GI+FHq)H8*gnAq-ndC?gntT=R$=D2D\dmq(]<?\9?;q\I*gW_H9[?("Tita#
-:<JVIB#!%=Y251>Tf#+LB/1P15bQk/%jbIK4eVoFbY+d:%X[[87#]CG[0m(/""PVLb,@p49B)eD
-"02=)N9%s/R,&oo6WYi.SN=ZbY!J@$Q96Qf<:?&C?Grk.OmFXi*1<]U-I5,+l;G&UI)>>We4g"N
-kfMqp>")0$*d69Z^B4/BWTp;'n7"lX+JLQ=GKJ3qQ`F<D/o::-O_%#FW<s64hgS(s<N5$<''#au
-3!6p8!Z4?Cj%dAj;mA505?<!2%%B;8HPkLhpX0Q'f)G:DcpnU]Pa[9deF_fiR;\I6e2"tPCoBPD
-65]oaHg%-3*MS2D*!UA$JDdWh(Kn0bnWu2P@bU%!@Tl[EA@['Fr*cWa*C%T]V==cL2j1@f(KZ'8
-lWRl[-!:aqTSd"P5-L4Q95D-J.p1SC`$)QF*4&,\c#frI_`G4RFTmQ9#;!Y\#VR`;%W<]R%/7\0
-oY4+1C]%G5T^c-/0"Pb=juC7&NX!*j1QfuV*WVbug#*+AKtNo:'4P-\A6N[!FcLX]pSU9jBGEZN
-k<$M.dD`k-W26+!lf[LK;"tA6MEV%-be[]4]U=DQ"R6hQVWAc7FtY8=n$ublkdN6@Z!8':P,(DN
-9Y=Q.air&OaHh6U?C?-C1&'"2?,J^]4\>creftA0SF/+kQ(57s^@LsQVYsT!am)U_0D5`q-K4[$
-\T#7XjR9"l,UnfH7/F%b!o:^*6\M5pA)YcQ$-/Ou[,gSddnTE1_n`@e!sZVmna3iYj0EOIX''E;
-7f)FpF%4g+R6>_Ph;aNULQB$3_?UcoRLk>^eUDO04mX;bs4I[T=Mk_8GD7'UKTL*uXJ\\tp%@C3
-eDk7f^UQr0penu)>"`Kj8q\K[>_t=??:]^;0,53@S^kp)3>t]6:[ou\._9#p6>Tb$6MCcX;\&fG
-$2L^9RFLDUQe%]m4`oJ(4;_<#oGJ(KFfVV;4Bnf@<Jh,$NDc=?8khrPPc\3V(-7e`'R\=)*dY6%
-6Ed<]2Qk,51S\tj7GXC18tXeT4b`7_QsAh4:BK-N55jAJK&c)QpQeiA&AtATFetg^qe.[#D5t9r
-R[(fbH"0BX0,b)5>A;-%[Nc&*XDR.Q=PJt\5pFd[,',a]b6b?Cl\57S==ZfLWS6!>s!P8<`t@>I
-ee<%1D#)+B)"n<\:=g6m^QMODP#^kGD0*VN&>kQVS_3ZFB2\TPk-*N:4)4:6RDaKo:)H^b'1F[i
-S6uOoN=]EBNBUENHY`)TeC4T+1J%j`lL[*O:m7-Q1Q1(Tl]S^p0p<EUR*3':22K@qr7o:?b]ep1
-Ik^*7/IA!gA<B4akh6=dakpb\WS'POBR0Q&<qE4?<Z*\Th!8IuoE^D7L1h7A!ZU[IS',&BS33_J
-H^uIVGsOdgLgLS:Uu("332?qfB]90=@-7-,&2cBf^/`KgWS#a:\Z:\=0#Kt3I1FfpY,scb<HK't
-N23!ddqB$>GZsYDgBC7-ga=E"_-u=k#?#SH>(>g0Ub6-?rN"<@pE-rW^?\@c,%Ybu_'<m>V[JA#
-DcH/=N.r<BHWBqW'g%;ed^L[^7W$9jK/.a?(B%p_eVW]5_q\=9f47++KN!AH]cQ!G.642@b:0XX
-GQr6.&DmJ6%X]0o\+o%MWeN=n-M)=[o2lmUpoi>"@G'j16ad:h_$"cL[pD]Cfrh\jHg%hNLH-&T
-od.,_-H1VE"B1:roYJlD1o'6KN8cjWQ?8qmhb-+%>bsY/k=FTe)pFX,*/"(>72/-/6Xa[$BY4X0
-^gn9-3c.8o9>g&.1j1/3.W9',qE@s*DBVU2"<AK;+[V>Y1pBGfXuJ/&>ge@-,UULq(Ur=ho]1;h
-VG;-AqbdVO>7C/>\ch5'<C9eqqT!:m!g@9CJF5%ng7Ilh+iRB=4R1b%r>u:_Fi2JEi="I+_J_+O
-3'2T=&,10l]6.t-:C>69Xcf3fEjVj@G$*#J/\WdM@ruYFf:u[p.OX>Xp@-YXUt1%fZ'N,8md*iD
-XV%U^A`7:1mG!.LU@"*6[<a:T_l%L+1(o--YX&Qn/?dMFk!t"pk=Eu0qAV0plnSpj=JJJTHZfU'
-1.I/VBPc,maYH%^o\-89)ek.X(k>=78idJqV5L,eU6HhK7<'VBq70[g$q<O^Y$OHrC")m#69Yhc
-Uch4kN],N5Mdg(U!$Yg0&C(8#oaM?#o/j>X(os?k*ND5*(Kfq&>Js&0fiOW5T95,=),5]DJZ*=b
-8qt+\CN54]4dd:]5^G:^:3LWK/uUKEIte)+Uea'9)Ldme<-t:B&.@k[Kr<(p`HXuoVEbF(2DX&]
-Ol7D>8C<FFgP6^@f$nA/TG+7nYucBfIAn`#`(Uc<7?Oa(lbhh)`C9p9>T6u_fFW<Ih9`tI22"&n
-I#8WgloS%/V9R6-6,cNk1-]CHL@lTClmP>PTcsE7dHQK;'Sg/hP=j8aUm?Lar#,(Mj5g&0]82Ob
-X)\oBZ>E`Q#>bj3A.KKkB5;d8H,1OGH$ZIsTUHkM_Xg[l[PU$*3=3Y<Y7oERq3e%dJ\`^%SOJq5
-l=;d.*FM[-]/r9lRZuoDE1Ij2cUkI]=3b'cqWp]h!.E$#U8uM=l&TZ9QNaMaP:8iY!`:5<,ct!2
-DJjI&XJG*MqV-g?qpsTB>7i^N1D\$k&CD+sp-@E^C\[5L$ogq>+'(pp4=k_]WZk0&N+/3GlGQtp
-:,Z@Bkrc!sY;h\FP*)AlM@dnjkR@Kmd/E0acKhMM)OADl'6hIY-#:t?<N5kIO^*YSngTBn%c&$A
-++\eVI=U8n#@X,_5G(jcH0aDc^a!Q*7V5*oC8s7>!F9-*fmdeNEclJsY:LkY2NkFu$#4$;ITC'S
-7Wu#uCtWC<4Lht7iPm"tNKJ$F6?N'=`'bo!BVJhB5@3jT(\S4a/R,)8ZAqrHUgteq-:+V)Lb"@`
-NaaXESW5d)"r$N&O#pH8#J.UOl1:qC12aqEn!nne,Kqrrc_]:2hPab>1EL<`oP.E+gbg@uB$sf/
-3EWX`%-;$bNhO9*IM\9u?1'o9^lC7)2P`4CSk_Cs&"\04'U!.OCI<^)P2R]>?WeM8][&l(R>&1!
-p7<`nNgQ_O]1j/,hoTK0f=k1!=]M'MRs:bbIV3Xo<<RYdlac5;`#I/I?@k2)3'88TV4TMP(#*m%
-3=b,'I%MB'*N9V46*`=QS%]90d>cu><1Z/*qXASGd\>/h9lb]'G'XX-$M)^N>5s`p$Q"Q!?bncU
-hD-*[L;?V\E'NR8hY%%JDsa/lEq\3DgIIRq,qV>]:qE^'lH&KYFbmSTAV&ZZcNT?3X6Q;]Z`.](
-OgIo>X%i_b3:lm7&)Z,32raB9p_-OfX]%U*-OHUZ+\dE:-7>]:7g:dF'%'FYA5?iV>&qYiX<8`6
-BcFIc=u[hrEiJCbU_5@MA7?m&6%EkPk=sp$o\P_J-dag6jdanAj5r<pG-BV=f3]kM2coFZEl$,-
-:[R#PHhssP->>uZHnWdIAfP3f[&n&1o0W2:%e`OJgq)6^\W+RN-B`RKY'\ka/m)REB44_SbDi\I
-lQrWBLB'f-)H290ZU313V.`CK;AWkDe3NH[$^Q;:[d1AB>ms7(3&l=[aNNNqBndfV"t@ro.(>j&
-f/VEbZUY?:R?`ktR$3\q9Hot)N)q!U5'ca37DhR&ja-<T#T*c9AjJZ:B<;%?9T<eVq<D;Hn]..N
-WDOT1AUJ#^oJZ_D&UoP(kBZCPO&p5,gck0io)P8V7-V6j9UAAhk:l]2;<e9t,k&2]hB/i"$U!(<
-i3gp9#C.Rb-DuFkTr+9n0:eN8_ui#nc)(CEGO1ASQuHQu[rE_9qr5b.MKRb+@Q3`n1<BVg1qt[)
-A6N\f?6!GHIk7f;7s;kZ<)t4"^V)A'+cZ-fL6lGdIp6mP$@7M'7NMlg';YRVhl58'+<l#"+X<tI
-.#KV65P3+[ds%s#$1QRFh&nZ@_fX9O/ko6a`i0Rbkq`:]0TC97F2=Mh3e]Yq_nfQ4KE(s$J9.FD
-^Oac@2,\laNlal;8]sFfE`$^t<c2O#i63`MiNc9t9!0oS"0<OPjG,cD3sXjX6!<GTC#o<PPh`'N
-6?tu]MH#!)ng';(cL].E?;$`&6_3m(e61W1O8Sl.3Wl:`$2K:.R0cE\M@+OH]mOg<A;s&ZO1:0<
-qu"qM)NrVhF[:1sAm,]1!WrM\U-I!HLOZo<rA&FL1.b=iP>8b3S?-KmYTpU9'9r#9)/5M\ls2aC
-OL8uuYmM?,K);AjVl-4&7\?o1GmAN9mQn$dcl;q@hJI]0$791Oaj>^.IQP^Il"+7/<`V\^m),6_
-1c+19qGPiC!QaLghZ~>
-endstream
+12 0 obj
+<</BaseFont/GKPFPN+Courier/FontDescriptor 13 0 R/Type/Font
+/FirstChar 32/LastChar 125/Widths[
+600 0 600 0 600 0 0 0 600 600 0 0 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 0 0
+0 600 0 0 600 0 0 0 0 600 0 0 600 0 0 0
+600 0 600 0 0 600 0 600 0 0 0 0 0 0 0 0
+0 600 600 600 600 600 600 600 600 600 0 600 600 600 600 600
+600 0 600 600 600 600 600 600 0 600 0 600 0 600]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
 endobj
 29 0 obj
 <</Type/FontDescriptor/FontName/CRHNMJ+Symbol/FontBBox[0 -222 959 740]/Flags 65568
@@ -5412,9 +5318,9 @@ endobj
 /ItalicAngle 0
 /StemV 143
 /MissingWidth 250
-/CharSet(/arrowright/iota/lambda/mu/omicron/phi/pi/rho/sigma/sigma1/upsilon)/FontFile3 65 0 R>>
+/CharSet(/arrowright/iota/lambda/mu/omicron/phi/pi/rho/sigma/sigma1/upsilon)/FontFile3 64 0 R>>
 endobj
-65 0 obj
+64 0 obj
 <</Filter[/ASCII85Decode
 /FlateDecode]
 /Subtype/Type1C/Length 2175>>stream
@@ -5458,9 +5364,9 @@ endobj
 /StemV 125
 /MissingWidth 500
 /XHeight 495
-/CharSet(/A/C/E/F/G/I/J/L/M/N/O/P/R/S/T/V/W/Y/a/acute/b/bracketleft/bracketright/c/colon/comma/d/e/eight/f/fi/five/fl/four/g/h/hyphen/i/j/k/l/m/n/nine/o/odieresis/one/p/parenleft/parenright/period/plus/q/quoteleft/quoteright/r/s/seven/six/space/t/three/two/u/v/w/x/y/z/zero)/FontFile3 66 0 R>>
+/CharSet(/A/C/E/F/G/I/J/L/M/N/O/P/R/S/T/V/W/Y/a/acute/b/bracketleft/bracketright/c/colon/comma/d/e/eight/f/fi/five/fl/four/g/h/hyphen/i/j/k/l/m/n/nine/o/odieresis/one/p/parenleft/parenright/period/plus/q/quoteleft/quoteright/r/s/seven/six/space/t/three/two/u/v/w/x/y/z/zero)/FontFile3 65 0 R>>
 endobj
-66 0 obj
+65 0 obj
 <</Filter[/ASCII85Decode
 /FlateDecode]
 /Subtype/Type1C/Length 8512>>stream
@@ -5587,9 +5493,9 @@ endobj
 /StemV 111
 /MissingWidth 500
 /XHeight 461
-/CharSet(/A/B/E/F/I/N/S/T/a/b/c/comma/d/e/f/fi/g/h/hyphen/i/k/l/m/n/o/p/parenleft/parenright/period/q/quoteleft/quoteright/r/s/space/t/u/v/w/x/y/zero)/FontFile3 67 0 R>>
+/CharSet(/A/B/E/F/I/N/S/T/a/b/c/comma/d/e/f/fi/g/h/hyphen/i/k/l/m/n/o/p/parenleft/parenright/period/q/quoteleft/quoteright/r/s/space/t/u/v/w/x/y/zero)/FontFile3 66 0 R>>
 endobj
-67 0 obj
+66 0 obj
 <</Filter[/ASCII85Decode
 /FlateDecode]
 /Subtype/Type1C/Length 5630>>stream
@@ -5679,9 +5585,9 @@ endobj
 /StemV 188
 /MissingWidth 500
 /XHeight 538
-/CharSet(/A/C/E/F/G/I/M/N/O/P/S/T/Y/a/b/bullet/c/colon/d/e/f/fi/five/four/g/h/hyphen/i/j/k/l/m/n/o/one/p/period/r/s/space/t/three/two/u/v/w/x/y/zero)/FontFile3 68 0 R>>
+/CharSet(/A/C/E/F/G/I/M/N/O/P/S/T/Y/a/b/bullet/c/colon/d/e/f/fi/five/four/g/h/hyphen/i/j/k/l/m/n/o/one/p/period/r/s/space/t/three/two/u/v/w/x/y/zero)/FontFile3 67 0 R>>
 endobj
-68 0 obj
+67 0 obj
 <</Filter[/ASCII85Decode
 /FlateDecode]
 /Subtype/Type1C/Length 6543>>stream
@@ -5783,9 +5689,9 @@ endobj
 /StemV 130
 /MissingWidth 500
 /XHeight 505
-/CharSet(/A/C/D/E/F/G/H/I/L/N/O/P/R/S/T/Y/a/b/c/d/e/fl/g/i/k/l/m/n/o/p/r/s/t/u/v/y)/FontFile3 69 0 R>>
+/CharSet(/A/C/D/E/F/G/H/I/L/N/O/P/R/S/T/Y/a/b/c/d/e/fl/g/i/k/l/m/n/o/p/r/s/t/u/v/y)/FontFile3 68 0 R>>
 endobj
-69 0 obj
+68 0 obj
 <</Filter[/ASCII85Decode
 /FlateDecode]
 /Subtype/Type1C/Length 5712>>stream
@@ -5878,9 +5784,9 @@ endobj
 /MaxWidth 600
 /MissingWidth 600
 /XHeight 451
-/CharSet(/A/C/D/E/F/I/L/N/R/T/a/asterisk/at/b/backslash/braceleft/braceright/bracketleft/bracketright/c/comma/d/e/eight/equal/exclam/f/five/four/g/greater/h/hyphen/i/k/l/less/m/minus/n/nine/o/p/parenleft/parenright/percent/period/plus/quotedbl/quoteright/r/s/semicolon/seven/six/slash/space/t/three/two/u/underscore/v/w/x/y/z/zero)/FontFile3 70 0 R>>
+/CharSet(/A/C/D/E/F/I/L/N/R/T/a/asterisk/at/b/backslash/braceleft/braceright/bracketleft/bracketright/c/comma/d/e/eight/equal/exclam/f/five/four/g/greater/h/hyphen/i/k/l/less/m/minus/n/nine/o/p/parenleft/parenright/percent/period/plus/quotedbl/quoteright/r/s/semicolon/seven/six/slash/space/t/three/two/u/underscore/v/w/x/y/z/zero)/FontFile3 69 0 R>>
 endobj
-70 0 obj
+69 0 obj
 <</Filter[/ASCII85Decode
 /FlateDecode]
 /Subtype/Type1C/Length 7480>>stream
@@ -5985,6 +5891,99 @@ dhFJW9Sf=H'R@fs)E#U5KJf`g2+IP\>0[T@E=@j1IfS[E"5->?GN+I\dM1k^k`%5j<SbC4pt]B7
 WiE)?7me?2pq:S/cppH1,)H7&EnN+:~>
 endstream
 endobj
+13 0 obj
+<</Type/FontDescriptor/FontName/GKPFPN+Courier/FontBBox[0 -186 593 668]/Flags 35
+/Ascent 668
+/CapHeight 563
+/Descent -186
+/ItalicAngle 0
+/StemV 148
+/AvgWidth 600
+/MaxWidth 600
+/MissingWidth 600
+/XHeight 431
+/CharSet(/A/D/I/L/P/R/U/W/a/b/braceleft/braceright/c/colon/comma/d/dollar/e/eight/equal/f/five/four/g/h/hyphen/i/k/l/less/m/n/nine/o/one/p/parenleft/parenright/period/quotedbl/r/s/semicolon/seven/six/slash/space/t/three/two/u/v/w/y/zero)/FontFile3 70 0 R>>
+endobj
+70 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 5567>>stream
+GasIi#?4[Sf"U/uGHQOW@Bek<,rW[WH\2G4"<3.FG)7DpUEG6P:k`>VLX$;sA5GQh.AC,`m&1M+
+M$3oi/;`a3_b8@Dm$i.=>5sukRIRu'pTLDEm_.fMF8!)XrU%91:aWk(JO%"1"bh`Q2i$UG\)E)K
+peQ5+rt$C@cG09uOsn4AJBW\fb[f$IQESO.@0<475D0N>KE?]KF-fg%E+Fd[InQ0Z(ba4#2WMf:
+2nYP@HhM8+T?%OMXIM5)b5JeRN@)D.C^p^X%c"][bgspnX:>MtDmJpEL^`,QC:2I@GI+JjgPUsk
+S$uP2a91M>_*JZ6A"7A:VG*F8Glmdrh-D)c'-:oM(:66GC9a&eB)h@NN?KCWUaTuTj7]-RkE+&p
+n-'Cc2YntbguQ*#cbk6jVgOt85iBfT'.//d.=1QLfW!>sc`iiuC\[6V,Alg3+(IZ8_l4rH#ITd7
+74k:#;dRr\C+QcU>"-]4S>ZbD)TnJ:8%DI!e7<;X[=F]</Yj.\1FP3)SXN"?V>='fW<(L6C)pk\
+8LSN"Js'#te0%@K%AnkV6>@o+N"T![;#d2!<,\cI22akR183\16@k>nTpK=DQ#NTS?eAdBgI,Q"
+.>ej'Ve=Hnidp)kE>u6OWTlX\pYe<2qh4Y<Qg#.3%("o)aK4+^Y1XnF8+t3p$iOo=mHH:hYO2@=
+_"IeY%/=n:j1pD#^RFUFYEpX`?X&n%/@-b2pmH'ha1!9'X>stP"DZQp[brOo*Pb$g)-`$ckt%X#
+/lo)(ARQ3WWm3+I;W^ERIPbBUCINK#d:Y6R]68pe!fUHF1[M?@)o5\\fpicFUk++%d4W#rjQBc%
+B+F&D<,dI8&&=L'/p/l#W56fnBgpX;QA%U/Mr'Og=)j[\>m61_IUD2&c-]t?O>a(c7n#gC#RY)r
+P)BcN&K!FK+ch*1H?G+7^LGSg)7`-l`sXjm1WT7KKQ*&tP%)OHCYU!Blkfg;0Rrs-oE0sC0A(mL
+0mWfOG5.GmF%21Wp#p85P=NBmA3Y8#i%kkWdlHuZ".o;8%O6fPisgGoG*[Fl+ld.DNX]OJ%1=cn
+5!TPKJ+HGiAL3DQFM]Oj^j^F1b6f,s>`s7mE#^sef"ksW?0duP*k)'blCm7U3PfVR4QD+0EDj?0
+ojA]6*FJrdfumk"F>T@mW=0"NJP(!SiDMiZ7Yi!\>tjXOj$"2NcjFBfpsZ3#j('7k&jYH^M)]P]
+15I`RTq`55GK+>0GI+FHq)H8*gnAq-ndC?gntT=R$=D2D\dmq(]<?\9?;q\I*gW_H9[?("Tita#
+:<JVIB#!%=Y251>Tf#+LB/1P15bQk/%jbIK4eVoFbY+d:%X[[87#]CG[0m(/""PVLb,@p49B)eD
+"02=)N9%s/R,&oo6WYi.SN=ZbY!J@$Q96Qf<:?&C?Grk.OmFXi*1<]U-I5,+l;G&UI)>>We4g"N
+kfMqp>")0$*d69Z^B4/BWTp;'n7"lX+JLQ=GKJ3qQ`F<D/o::-O_%#FW<s64hgS(s<N5$<''#au
+3!6p8!Z4?Cj%dAj;mA505?<!2%%B;8HPkLhpX0Q'f)G:DcpnU]Pa[9deF_fiR;\I6e2"tPCoBPD
+65]oaHg%-3*MS2D*!UA$JDdWh(Kn0bnWu2P@bU%!@Tl[EA@['Fr*cWa*C%T]V==cL2j1@f(KZ'8
+lWRl[-!:aqTSd"P5-L4Q95D-J.p1SC`$)QF*4&,\c#frI_`G4RFTmQ9#;!Y\#VR`;%W<]R%/7\0
+oY4+1C]%G5T^c-/0"Pb=juC7&NX!*j1QfuV*WVbug#*+AKtNo:'4P-\A6N[!FcLX]pSU9jBGEZN
+k<$M.dD`k-W26+!lf[LK;"tA6MEV%-be[]4]U=DQ"R6hQVWAc7FtY8=n$ublkdN6@Z!8':P,(DN
+9Y=Q.air&OaHh6U?C?-C1&'"2?,J^]4\>creftA0SF/+kQ(57s^@LsQVYsT!am)U_0D5`q-K4[$
+\T#7XjR9"l,UnfH7/F%b!o:^*6\M5pA)YcQ$-/Ou[,gSddnTE1_n`@e!sZVmna3iYj0EOIX''E;
+7f)FpF%4g+R6>_Ph;aNULQB$3_?UcoRLk>^eUDO04mX;bs4I[T=Mk_8GD7'UKTL*uXJ\\tp%@C3
+eDk7f^UQr0penu)>"`Kj8q\K[>_t=??:]^;0,53@S^kp)3>t]6:[ou\._9#p6>Tb$6MCcX;\&fG
+$2L^9RFLDUQe%]m4`oJ(4;_<#oGJ(KFfVV;4Bnf@<Jh,$NDc=?8khrPPc\3V(-7e`'R\=)*dY6%
+6Ed<]2Qk,51S\tj7GXC18tXeT4b`7_QsAh4:BK-N55jAJK&c)QpQeiA&AtATFetg^qe.[#D5t9r
+R[(fbH"0BX0,b)5>A;-%[Nc&*XDR.Q=PJt\5pFd[,',a]b6b?Cl\57S==ZfLWS6!>s!P8<`t@>I
+ee<%1D#)+B)"n<\:=g6m^QMODP#^kGD0*VN&>kQVS_3ZFB2\TPk-*N:4)4:6RDaKo:)H^b'1F[i
+S6uOoN=]EBNBUENHY`)TeC4T+1J%j`lL[*O:m7-Q1Q1(Tl]S^p0p<EUR*3':22K@qr7o:?b]ep1
+Ik^*7/IA!gA<B4akh6=dakpb\WS'POBR0Q&<qE4?<Z*\Th!8IuoE^D7L1h7A!ZU[IS',&BS33_J
+H^uIVGsOdgLgLS:Uu("332?qfB]90=@-7-,&2cBf^/`KgWS#a:\Z:\=0#Kt3I1FfpY,scb<HK't
+N23!ddqB$>GZsYDgBC7-ga=E"_-u=k#?#SH>(>g0Ub6-?rN"<@pE-rW^?\@c,%Ybu_'<m>V[JA#
+DcH/=N.r<BHWBqW'g%;ed^L[^7W$9jK/.a?(B%p_eVW]5_q\=9f47++KN!AH]cQ!G.642@b:0XX
+GQr6.&DmJ6%X]0o\+o%MWeN=n-M)=[o2lmUpoi>"@G'j16ad:h_$"cL[pD]Cfrh\jHg%hNLH-&T
+od.,_-H1VE"B1:roYJlD1o'6KN8cjWQ?8qmhb-+%>bsY/k=FTe)pFX,*/"(>72/-/6Xa[$BY4X0
+^gn9-3c.8o9>g&.1j1/3.W9',qE@s*DBVU2"<AK;+[V>Y1pBGfXuJ/&>ge@-,UULq(Ur=ho]1;h
+VG;-AqbdVO>7C/>\ch5'<C9eqqT!:m!g@9CJF5%ng7Ilh+iRB=4R1b%r>u:_Fi2JEi="I+_J_+O
+3'2T=&,10l]6.t-:C>69Xcf3fEjVj@G$*#J/\WdM@ruYFf:u[p.OX>Xp@-YXUt1%fZ'N,8md*iD
+XV%U^A`7:1mG!.LU@"*6[<a:T_l%L+1(o--YX&Qn/?dMFk!t"pk=Eu0qAV0plnSpj=JJJTHZfU'
+1.I/VBPc,maYH%^o\-89)ek.X(k>=78idJqV5L,eU6HhK7<'VBq70[g$q<O^Y$OHrC")m#69Yhc
+Uch4kN],N5Mdg(U!$Yg0&C(8#oaM?#o/j>X(os?k*ND5*(Kfq&>Js&0fiOW5T95,=),5]DJZ*=b
+8qt+\CN54]4dd:]5^G:^:3LWK/uUKEIte)+Uea'9)Ldme<-t:B&.@k[Kr<(p`HXuoVEbF(2DX&]
+Ol7D>8C<FFgP6^@f$nA/TG+7nYucBfIAn`#`(Uc<7?Oa(lbhh)`C9p9>T6u_fFW<Ih9`tI22"&n
+I#8WgloS%/V9R6-6,cNk1-]CHL@lTClmP>PTcsE7dHQK;'Sg/hP=j8aUm?Lar#,(Mj5g&0]82Ob
+X)\oBZ>E`Q#>bj3A.KKkB5;d8H,1OGH$ZIsTUHkM_Xg[l[PU$*3=3Y<Y7oERq3e%dJ\`^%SOJq5
+l=;d.*FM[-]/r9lRZuoDE1Ij2cUkI]=3b'cqWp]h!.E$#U8uM=l&TZ9QNaMaP:8iY!`:5<,ct!2
+DJjI&XJG*MqV-g?qpsTB>7i^N1D\$k&CD+sp-@E^C\[5L$ogq>+'(pp4=k_]WZk0&N+/3GlGQtp
+:,Z@Bkrc!sY;h\FP*)AlM@dnjkR@Kmd/E0acKhMM)OADl'6hIY-#:t?<N5kIO^*YSngTBn%c&$A
+++\eVI=U8n#@X,_5G(jcH0aDc^a!Q*7V5*oC8s7>!F9-*fmdeNEclJsY:LkY2NkFu$#4$;ITC'S
+7Wu#uCtWC<4Lht7iPm"tNKJ$F6?N'=`'bo!BVJhB5@3jT(\S4a/R,)8ZAqrHUgteq-:+V)Lb"@`
+NaaXESW5d)"r$N&O#pH8#J.UOl1:qC12aqEn!nne,Kqrrc_]:2hPab>1EL<`oP.E+gbg@uB$sf/
+3EWX`%-;$bNhO9*IM\9u?1'o9^lC7)2P`4CSk_Cs&"\04'U!.OCI<^)P2R]>?WeM8][&l(R>&1!
+p7<`nNgQ_O]1j/,hoTK0f=k1!=]M'MRs:bbIV3Xo<<RYdlac5;`#I/I?@k2)3'88TV4TMP(#*m%
+3=b,'I%MB'*N9V46*`=QS%]90d>cu><1Z/*qXASGd\>/h9lb]'G'XX-$M)^N>5s`p$Q"Q!?bncU
+hD-*[L;?V\E'NR8hY%%JDsa/lEq\3DgIIRq,qV>]:qE^'lH&KYFbmSTAV&ZZcNT?3X6Q;]Z`.](
+OgIo>X%i_b3:lm7&)Z,32raB9p_-OfX]%U*-OHUZ+\dE:-7>]:7g:dF'%'FYA5?iV>&qYiX<8`6
+BcFIc=u[hrEiJCbU_5@MA7?m&6%EkPk=sp$o\P_J-dag6jdanAj5r<pG-BV=f3]kM2coFZEl$,-
+:[R#PHhssP->>uZHnWdIAfP3f[&n&1o0W2:%e`OJgq)6^\W+RN-B`RKY'\ka/m)REB44_SbDi\I
+lQrWBLB'f-)H290ZU313V.`CK;AWkDe3NH[$^Q;:[d1AB>ms7(3&l=[aNNNqBndfV"t@ro.(>j&
+f/VEbZUY?:R?`ktR$3\q9Hot)N)q!U5'ca37DhR&ja-<T#T*c9AjJZ:B<;%?9T<eVq<D;Hn]..N
+WDOT1AUJ#^oJZ_D&UoP(kBZCPO&p5,gck0io)P8V7-V6j9UAAhk:l]2;<e9t,k&2]hB/i"$U!(<
+i3gp9#C.Rb-DuFkTr+9n0:eN8_ui#nc)(CEGO1ASQuHQu[rE_9qr5b.MKRb+@Q3`n1<BVg1qt[)
+A6N\f?6!GHIk7f;7s;kZ<)t4"^V)A'+cZ-fL6lGdIp6mP$@7M'7NMlg';YRVhl58'+<l#"+X<tI
+.#KV65P3+[ds%s#$1QRFh&nZ@_fX9O/ko6a`i0Rbkq`:]0TC97F2=Mh3e]Yq_nfQ4KE(s$J9.FD
+^Oac@2,\laNlal;8]sFfE`$^t<c2O#i63`MiNc9t9!0oS"0<OPjG,cD3sXjX6!<GTC#o<PPh`'N
+6?tu]MH#!)ng';(cL].E?;$`&6_3m(e61W1O8Sl.3Wl:`$2K:.R0cE\M@+OH]mOg<A;s&ZO1:0<
+qu"qM)NrVhF[:1sAm,]1!WrM\U-I!HLOZo<rA&FL1.b=iP>8b3S?-KmYTpU9'9r#9)/5M\ls2aC
+OL8uuYmM?,K);AjVl-4&7\?o1GmAN9mQn$dcl;q@hJI]0$791Oaj>^.IQP^Il"+7/<`V\^m),6_
+1c+19qGPiC!QaLghZ~>
+endstream
+endobj
 77 0 obj
 <</Type/Metadata
 /Subtype/XML/Length 1336>>stream
@@ -5992,12 +5991,12 @@ endobj
 <?adobe-xap-filters esc="CRLF"?>
 <x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='XMP toolkit 2.9.1-13, framework 1.6'>
 <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:iX='http://ns.adobe.com/iX/1.0/'>
-<rdf:Description rdf:about='eb375232-a2e8-11ef-0000-d39812e60157' xmlns:pdf='http://ns.adobe.com/pdf/1.3/' pdf:Producer='GPL Ghostscript 8.70'/>
-<rdf:Description rdf:about='eb375232-a2e8-11ef-0000-d39812e60157' xmlns:xmp='http://ns.adobe.com/xap/1.0/'><xmp:ModifyDate>2014-11-12T16:31:12-08:00</xmp:ModifyDate>
-<xmp:CreateDate>2014-11-12T16:31:12-08:00</xmp:CreateDate>
+<rdf:Description rdf:about='632a1695-a92b-11ef-0000-5efe38cc17cc' xmlns:pdf='http://ns.adobe.com/pdf/1.3/' pdf:Producer='GPL Ghostscript 8.70'/>
+<rdf:Description rdf:about='632a1695-a92b-11ef-0000-5efe38cc17cc' xmlns:xmp='http://ns.adobe.com/xap/1.0/'><xmp:ModifyDate>2014-11-20T15:42:07-08:00</xmp:ModifyDate>
+<xmp:CreateDate>2014-11-20T15:42:07-08:00</xmp:CreateDate>
 <xmp:CreatorTool>groff version 1.18.1.4</xmp:CreatorTool></rdf:Description>
-<rdf:Description rdf:about='eb375232-a2e8-11ef-0000-d39812e60157' xmlns:xapMM='http://ns.adobe.com/xap/1.0/mm/' xapMM:DocumentID='eb375232-a2e8-11ef-0000-d39812e60157'/>
-<rdf:Description rdf:about='eb375232-a2e8-11ef-0000-d39812e60157' xmlns:dc='http://purl.org/dc/elements/1.1/' dc:format='application/pdf'><dc:title><rdf:Alt><rdf:li xml:lang='x-default'>asg4-symbols-types.ps</rdf:li></rdf:Alt></dc:title></rdf:Description>
+<rdf:Description rdf:about='632a1695-a92b-11ef-0000-5efe38cc17cc' xmlns:xapMM='http://ns.adobe.com/xap/1.0/mm/' xapMM:DocumentID='632a1695-a92b-11ef-0000-5efe38cc17cc'/>
+<rdf:Description rdf:about='632a1695-a92b-11ef-0000-5efe38cc17cc' xmlns:dc='http://purl.org/dc/elements/1.1/' dc:format='application/pdf'><dc:title><rdf:Alt><rdf:li xml:lang='x-default'>asg4-symbols-types.ps</rdf:li></rdf:Alt></dc:title></rdf:Description>
 </rdf:RDF>
 </x:xmpmeta>
                                                                         
@@ -6007,94 +6006,94 @@ endstream
 endobj
 2 0 obj
 <</Producer(GPL Ghostscript 8.70)
-/CreationDate(D:20141112163112-08'00')
-/ModDate(D:20141112163112-08'00')
+/CreationDate(D:20141120154207-08'00')
+/ModDate(D:20141120154207-08'00')
 /Creator(groff version 1.18.1.4)
 /Title(asg4-symbols-types.ps)>>endobj
 xref
 0 78
 0000000000 65535 f 
-0000074398 00000 n 
-0000126084 00000 n 
-0000074283 00000 n 
-0000072908 00000 n 
+0000074272 00000 n 
+0000125958 00000 n 
+0000074157 00000 n 
+0000072782 00000 n 
 0000000009 00000 n 
 0000009036 00000 n 
-0000074463 00000 n 
-0000077716 00000 n 
-0000103353 00000 n 
-0000076310 00000 n 
-0000088132 00000 n 
-0000075341 00000 n 
-0000079426 00000 n 
-0000078755 00000 n 
-0000116508 00000 n 
-0000078284 00000 n 
-0000110377 00000 n 
-0000074504 00000 n 
-0000074534 00000 n 
-0000073059 00000 n 
+0000074337 00000 n 
+0000077139 00000 n 
+0000097078 00000 n 
+0000075733 00000 n 
+0000081857 00000 n 
+0000078849 00000 n 
+0000118396 00000 n 
+0000078178 00000 n 
+0000110233 00000 n 
+0000077707 00000 n 
+0000104102 00000 n 
+0000074378 00000 n 
+0000074408 00000 n 
+0000072933 00000 n 
 0000009056 00000 n 
 0000018759 00000 n 
-0000074608 00000 n 
-0000074638 00000 n 
-0000073212 00000 n 
+0000074482 00000 n 
+0000074512 00000 n 
+0000073086 00000 n 
 0000018780 00000 n 
 0000027100 00000 n 
-0000075792 00000 n 
-0000085575 00000 n 
-0000074701 00000 n 
-0000074731 00000 n 
-0000073365 00000 n 
+0000075215 00000 n 
+0000079300 00000 n 
+0000074575 00000 n 
+0000074605 00000 n 
+0000073239 00000 n 
 0000027121 00000 n 
-0000043291 00000 n 
-0000077154 00000 n 
-0000097252 00000 n 
-0000074794 00000 n 
-0000074824 00000 n 
-0000073518 00000 n 
-0000043313 00000 n 
-0000052016 00000 n 
-0000074909 00000 n 
-0000074939 00000 n 
-0000073671 00000 n 
-0000052037 00000 n 
-0000059619 00000 n 
-0000075002 00000 n 
-0000075032 00000 n 
-0000073824 00000 n 
-0000059640 00000 n 
-0000067224 00000 n 
-0000075095 00000 n 
-0000075125 00000 n 
-0000073977 00000 n 
-0000067245 00000 n 
-0000072265 00000 n 
-0000075177 00000 n 
-0000075207 00000 n 
-0000074130 00000 n 
-0000072286 00000 n 
-0000072888 00000 n 
-0000075270 00000 n 
-0000075300 00000 n 
-0000079906 00000 n 
-0000085855 00000 n 
-0000088638 00000 n 
-0000097621 00000 n 
-0000103732 00000 n 
-0000110694 00000 n 
-0000117089 00000 n 
-0000076135 00000 n 
-0000077039 00000 n 
-0000077604 00000 n 
-0000078188 00000 n 
-0000078670 00000 n 
-0000079324 00000 n 
-0000124671 00000 n 
+0000043380 00000 n 
+0000076577 00000 n 
+0000090977 00000 n 
+0000074668 00000 n 
+0000074698 00000 n 
+0000073392 00000 n 
+0000043402 00000 n 
+0000051643 00000 n 
+0000074783 00000 n 
+0000074813 00000 n 
+0000073545 00000 n 
+0000051664 00000 n 
+0000059338 00000 n 
+0000074876 00000 n 
+0000074906 00000 n 
+0000073698 00000 n 
+0000059359 00000 n 
+0000067076 00000 n 
+0000074969 00000 n 
+0000074999 00000 n 
+0000073851 00000 n 
+0000067097 00000 n 
+0000072139 00000 n 
+0000075051 00000 n 
+0000075081 00000 n 
+0000074004 00000 n 
+0000072160 00000 n 
+0000072762 00000 n 
+0000075144 00000 n 
+0000075174 00000 n 
+0000079580 00000 n 
+0000082363 00000 n 
+0000091346 00000 n 
+0000097457 00000 n 
+0000104419 00000 n 
+0000110814 00000 n 
+0000118876 00000 n 
+0000075558 00000 n 
+0000076462 00000 n 
+0000077027 00000 n 
+0000077611 00000 n 
+0000078093 00000 n 
+0000078747 00000 n 
+0000124545 00000 n 
 trailer
 << /Size 78 /Root 1 0 R /Info 2 0 R
-/ID [<2E22B6CB67D846CFD3AA4D7465124002><2E22B6CB67D846CFD3AA4D7465124002>]
+/ID [<90F8B7DE1E8118183EDAE583352C7FF0><90F8B7DE1E8118183EDAE583352C7FF0>]
 >>
 startxref
-126270
+126144
 %%EOF

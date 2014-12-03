@@ -5,6 +5,8 @@
 Submitted files:
 Makefile
 README
+typecheck.cpp
+typecheck.h
 astree.cpp
 astree.h
 auxlib.cpp
@@ -16,6 +18,4 @@ parser.y
 scanner.l
 stringset.cpp
 stringset.h
-
-
 

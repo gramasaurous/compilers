@@ -11,8 +11,9 @@ VALGRIND  = valgrind --leak-check=full --show-reachable=yes
 #
 # Definitions of list of files:
 #
-HSOURCES  = astree.h  lyutils.h  auxlib.h  stringset.h
-CSOURCES  = astree.cpp lyutils.cpp auxlib.cpp stringset.cpp main.cpp
+MODULES    = typecheck astree lyutils auxlib stringset
+HSOURCES   = ${MODULES:=.h}
+CSOURCES   = ${MODULES:=.cpp} main.cpp 
 LSOURCES  = scanner.l
 YSOURCES  = parser.y
 ETCSRC    = README ${MKFILE} ${DEPSFILE}
@@ -28,7 +29,7 @@ OBJECTS   = ${ALLCSRC:.cpp=.o}
 LREPORT   = yylex.output
 YREPORT   = yyparse.output
 REPORTS   = ${LREPORT} ${YREPORT}
-ALLSRC    = ${ETCSRC} ${YSOURCES} ${LSOURCES} ${HSOURCES} ${CSOURCES}
+ALLSRC    = ${ETCSRC} ${YSOURCES} ${LSOURCES} ${CSOURCES} ${HSOURCES}
 SUBSRC    = ${ETCSUB} ${LSOURCES} ${YSOURCES} ${CSOURCES} ${HSOURCES}
 
 #
@@ -51,12 +52,12 @@ TESTDIR    = ../../grading/${PROJECT}_test/
 #
 all: ${EXECBIN}
 ifeq ($(HOST),ucsc)
-	- checksource ${ALLSRC}
+	- checksource ${SUBSRC}
 endif
 #
 # Build the executable image from the object files.
 #
-${EXECBIN}: ${OBJECTS}
+${EXECBIN}: ${CLGEN} ${CYGE{} ${OBJECTS}
 	${GCC} -o ${EXECBIN} ${OBJECTS}
 
 #
@@ -125,7 +126,7 @@ git:
 submit: ${SUBSRC} spotless
 ifeq ($(HOST),ucsc)
 	- checksource ${SUBSRC}
-	- git commit -a -m "gmake submission commit: `LC_TIME=C date`"
+	- git commit -m "gmake submission commit: `LC_TIME=C date`"
 	submit ${CLASS} ${PROJECT} ${SUBSRC}
 endif
 
