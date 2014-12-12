@@ -108,6 +108,17 @@ void write_str(string base) {
    fclose(out);
 }
 
+void write_oil(string base) {  
+   base.append("oil");
+   FILE *out = fopen(base.c_str(), "w");
+   if (out == NULL) {
+      syserrprintf (base.c_str());
+      exit (get_exitstatus());
+   }
+   // do oil stuff
+   fclose(out);
+}
+
 void write_ast(string base) {  
    base.append("ast");
    FILE *out = fopen(base.c_str(), "w");
@@ -172,6 +183,7 @@ int main (int argc, char** argv) {
    fclose(sym_file);
    write_str(filebase);
    write_ast(filebase);
+   write_oil(filebase);
    free_ast(yyparse_astree);
    free_typechecker();
    yylex_destroy();
