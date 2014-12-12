@@ -1,0 +1,35 @@
+
+int ggg = 4;
+
+int func(int p1, int p2, int p3) {
+   int x = p1;
+   int y = p2;
+   int z = x + y;
+   return 5;
+}
+
+int fart() {
+   return 4;
+}
+
+struct foo {
+	int bar;
+	int baz;
+	int fuck;	
+}
+
+int foo = 5;
+string bar = "hi";
+
+func(5, 6, 7);
+
+if (foo == 5) {
+   int yy = 1;
+   int bb = 2;
+   if (yy == 1) {
+      int cc = 4;
+   }
+} else {
+   int zz = 3;
+   int aa = 4;
+}

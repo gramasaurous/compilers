@@ -1,0 +1,21 @@
+# Graham Greving
+# ggreving@ucsc.edu
+# CMPS104a: asg5: README
+
+Submitted files:
+Makefile
+README
+typecheck.cpp
+typecheck.h
+astree.cpp
+astree.h
+auxlib.cpp
+auxlib.h
+lyutils.cpp
+lyutils.h
+main.cpp
+parser.y
+scanner.l
+stringset.cpp
+stringset.h
+
