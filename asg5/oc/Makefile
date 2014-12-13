@@ -11,9 +11,9 @@ VALGRIND  = valgrind --leak-check=full --show-reachable=yes
 #
 # Definitions of list of files:
 #
-MODULES    = typecheck astree lyutils auxlib stringset
-HSOURCES   = ${MODULES:=.h}
-CSOURCES   = ${MODULES:=.cpp} main.cpp 
+MODULES   = icgen typecheck astree lyutils auxlib stringset
+HSOURCES  = ${MODULES:=.h}
+CSOURCES  = ${MODULES:=.cpp} main.cpp 
 LSOURCES  = scanner.l
 YSOURCES  = parser.y
 ETCSRC    = README ${MKFILE} ${DEPSFILE}
@@ -135,7 +135,7 @@ endif
 #
 again :
 	gmake --no-print-directory spotless deps all
-	
+
 ifeq "${NEEDINCL}" ""
 include ${DEPSFILE}
 endif

@@ -122,7 +122,7 @@ git:
 #
 submit: ${SUBSRC} spotless
 ifeq ($(HOST),ucsc)
-	- checksource ${SUBSRC}
+	checksource ${SUBSRC}
 	- git commit -a -m "gmake submission commit: `LC_TIME=C date`"
 	submit ${CLASS} ${PROJECT} ${SUBSRC}
 endif

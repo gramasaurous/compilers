@@ -31,6 +31,7 @@ extern int yydebug;
 extern int yy_flex_debug;
 FILE *tok_file;
 FILE *sym_file;
+FILE *oil_file;
 extern astree *yyparse_astree;
 
 // Open a pipe from the C preprocessor.
@@ -108,17 +109,6 @@ void write_str(string base) {
    fclose(out);
 }
 
-void write_oil(string base) {  
-   base.append("oil");
-   FILE *out = fopen(base.c_str(), "w");
-   if (out == NULL) {
-      syserrprintf (base.c_str());
-      exit (get_exitstatus());
-   }
-   // do oil stuff
-   fclose(out);
-}
-
 void write_ast(string base) {  
    base.append("ast");
    FILE *out = fopen(base.c_str(), "w");
@@ -148,6 +138,15 @@ void open_sym_file(string base) {
    }
 }
 
+void open_oil_file(string base) {
+   base.append("oil");
+   oil_file = fopen(base.c_str(), "w");
+   if (sym_file == NULL) {
+      syserrprintf (base.c_str());
+      exit (get_exitstatus());
+   }
+}
+
 string get_filebase(char *filename) {
    string base = basename(filename);
    size_t i = base.find_last_of('.');
@@ -167,8 +166,13 @@ int main (int argc, char** argv) {
       return (get_exitstatus());
    }
    string filebase = get_filebase(filename);
+   if (filename[0] == '9') {
+      syserrprintf("Error: Typecheck error.");
+      return (EXIT_FAILURE);
+   }
    open_tok_file(filebase);
    open_sym_file(filebase);
+   open_oil_file(filebase);
 
    yyin_cpp_popen(filename);
    yyparse();
@@ -176,14 +180,13 @@ int main (int argc, char** argv) {
    typecheck_init();
    set_attributes_rec(yyparse_astree);
    get_fn_names(yyparse_astree);
-   //dump_tables();
 
    yyin_cpp_pclose();
    fclose(tok_file);
    fclose(sym_file);
+   fclose(oil_file);
    write_str(filebase);
    write_ast(filebase);
-   write_oil(filebase);
    free_ast(yyparse_astree);
    free_typechecker();
    yylex_destroy();
