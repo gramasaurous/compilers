@@ -146,7 +146,7 @@ void new_var(astree *var_node) {
    for (uint8_t g = 0; g <= blockstack.back(); g++ ) {
       fprintf(oil_file, "\t");
    }
-   fprintf(oil_file, "%s __%s\n", var_type->lexinfo->c_str(),
+   fprintf(oil_file, "%s __%s;\n", var_type->lexinfo->c_str(),
                                   var_name->lexinfo->c_str());
    var_node->visited = true;
 }
@@ -192,6 +192,9 @@ void new_param(astree *param, symbol_table *fn_table,
    fn_symbol->parameters->push_back(param_sym);
    insert_symbol(fn_table, param_sym, (string*)param_name->lexinfo);
    param->visited = true;
+   fprintf(oil_file, "\t%s _%d_%s", param->lexinfo->c_str(),
+                                    (int)blockstack.back(),
+                                    param_name->lexinfo->c_str());
 }
 
 void new_fn(astree *fn_node) {
@@ -220,10 +223,16 @@ void new_fn(astree *fn_node) {
    idents.push_back(fn_table);
    //printf("New Function: %s %s() \n",
    //   type_node->lexinfo->c_str(), name_node->lexinfo->c_str());
-
+   fprintf(oil_file, "%s __%s (\n", type_node->lexinfo->c_str(),
+                                    name_node->lexinfo->c_str());
    // get parameters
    for (auto &param_type : params_node->children) {
       new_param(param_type, fn_table, fn_symbol);
+      if (param_type == params_node->children.back()) {
+         fprintf(oil_file, ")\n");
+      } else {
+         fprintf(oil_file, ",\n");
+      }
    }
 
    // get function block
