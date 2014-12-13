@@ -143,6 +143,11 @@ void new_var(astree *var_node) {
    var_sym->attributes.set(ATTR_variable);
    insert_symbol(idents[blockstack.back()],
                  var_sym, (string*)var_name->lexinfo);
+   for (uint8_t g = 0; g <= blockstack.back(); g++ ) {
+      fprintf(oil_file, "\t");
+   }
+   fprintf(oil_file, "%s __%s\n", var_type->lexinfo->c_str(),
+                                  var_name->lexinfo->c_str());
    var_node->visited = true;
 }
 
