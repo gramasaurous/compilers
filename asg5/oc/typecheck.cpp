@@ -234,13 +234,14 @@ void new_fn(astree *fn_node) {
          fprintf(oil_file, ",\n");
       }
    }
-
+   fprintf(oil_file, "{\n");
    // get function block
    new_block(fnblock_node);
    exit_block();
    insert_symbol(idents[blockstack.back()],
                  fn_symbol, (string*)name_node->lexinfo);
    fn_node->visited = true;
+   fprintf(oil_file, "}\n");
 }
 
 
