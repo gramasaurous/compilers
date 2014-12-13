@@ -26,6 +26,7 @@ vector<size_t> blockstack;
 
 // Symbol table output file
 extern FILE *sym_file;
+extern FILE *oil_file;
 
 // Initialize the symboltables
 void typecheck_init() {
@@ -95,6 +96,9 @@ void new_type (astree *struct_node) {
    if (struct_name == NULL) return;
    symbol *type_sym = new_symbol(struct_name);
    insert_symbol(&types, type_sym, (string*)struct_name->lexinfo);
+   // generate ic
+   fprintf(oil_file, "struct s_%s {\n",struct_name->lexinfo->c_str());
+   
    symbol_table *field_table = new symbol_table();
    // use c to skip the first child in the following
    // for:each loop 
@@ -111,7 +115,12 @@ void new_type (astree *struct_node) {
       if (field == NULL) return;
       field->attributes.set(ATTR_field);
       insert_symbol(field_table, field, (string*)field_name->lexinfo);
+      fprintf(oil_file, "\t%s f_%s_%s;\n", 
+                  i->lexinfo->c_str(),
+                  struct_name->lexinfo->c_str(),
+                  field_name->lexinfo->c_str());
    }
+   fprintf(oil_file, "};\n");
    fields.push_back(field_table);
    type_sym->fields = field_table;
    struct_node->visited = true;
