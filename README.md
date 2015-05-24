@@ -1,4 +1,4 @@
-cmps104a
+compilers
 ========
 
-CMPS104a: Compilers
+Compilers
